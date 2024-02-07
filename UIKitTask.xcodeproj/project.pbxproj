@@ -9,21 +9,25 @@
 /* Begin PBXBuildFile section */
 		672748692B725827004CFDBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672748682B725827004CFDBE /* AppDelegate.swift */; };
 		6727486B2B725827004CFDBE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727486A2B725827004CFDBE /* SceneDelegate.swift */; };
-		6727486D2B725827004CFDBE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727486C2B725827004CFDBE /* ViewController.swift */; };
-		672748702B725827004CFDBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6727486E2B725827004CFDBE /* Main.storyboard */; };
+		6727486D2B725827004CFDBE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727486C2B725827004CFDBE /* MainViewController.swift */; };
 		672748722B725829004CFDBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 672748712B725829004CFDBE /* Assets.xcassets */; };
 		672748752B725829004CFDBE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 672748732B725829004CFDBE /* LaunchScreen.storyboard */; };
+		674FB6CE2B743B6E00F28984 /* Verdana.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 674FB6CD2B743B5C00F28984 /* Verdana.ttf */; };
+		674FB6D02B743CE300F28984 /* VerdanaBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 674FB6CF2B743CD600F28984 /* VerdanaBold.ttf */; };
+		67CBF2522B73EA9E00D04D4D /* UIColor+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CBF2512B73EA9E00D04D4D /* UIColor+extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		672748652B725827004CFDBE /* UIKitTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIKitTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		672748682B725827004CFDBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6727486A2B725827004CFDBE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		6727486C2B725827004CFDBE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		6727486F2B725827004CFDBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6727486C2B725827004CFDBE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		672748712B725829004CFDBE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		672748742B725829004CFDBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		672748762B725829004CFDBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		674FB6CD2B743B5C00F28984 /* Verdana.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Verdana.ttf; sourceTree = "<group>"; };
+		674FB6CF2B743CD600F28984 /* VerdanaBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = VerdanaBold.ttf; sourceTree = "<group>"; };
+		67CBF2512B73EA9E00D04D4D /* UIColor+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +44,7 @@
 		6727485C2B725827004CFDBE = {
 			isa = PBXGroup;
 			children = (
+				674FB6C92B7439A500F28984 /* Fonts */,
 				672748672B725827004CFDBE /* UIKitTask */,
 				672748662B725827004CFDBE /* Products */,
 			);
@@ -58,13 +63,22 @@
 			children = (
 				672748682B725827004CFDBE /* AppDelegate.swift */,
 				6727486A2B725827004CFDBE /* SceneDelegate.swift */,
-				6727486C2B725827004CFDBE /* ViewController.swift */,
-				6727486E2B725827004CFDBE /* Main.storyboard */,
+				6727486C2B725827004CFDBE /* MainViewController.swift */,
+				67CBF2512B73EA9E00D04D4D /* UIColor+extension.swift */,
 				672748712B725829004CFDBE /* Assets.xcassets */,
 				672748732B725829004CFDBE /* LaunchScreen.storyboard */,
 				672748762B725829004CFDBE /* Info.plist */,
 			);
 			path = UIKitTask;
+			sourceTree = "<group>";
+		};
+		674FB6C92B7439A500F28984 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				674FB6CF2B743CD600F28984 /* VerdanaBold.ttf */,
+				674FB6CD2B743B5C00F28984 /* Verdana.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,11 +88,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 672748792B725829004CFDBE /* Build configuration list for PBXNativeTarget "UIKitTask" */;
 			buildPhases = (
-				6727487D2B7258E8004CFDBE /* SwiftFormat Run Script */,
-				6727487C2B7258C8004CFDBE /* SwiftLint Run Script */,
 				672748612B725827004CFDBE /* Sources */,
 				672748622B725827004CFDBE /* Frameworks */,
 				672748632B725827004CFDBE /* Resources */,
+				6727487C2B7258C8004CFDBE /* SwiftLint Run Script */,
+				6727487D2B7258E8004CFDBE /* SwiftFormat Run Script */,
 			);
 			buildRules = (
 			);
@@ -127,9 +141,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				674FB6D02B743CE300F28984 /* VerdanaBold.ttf in Resources */,
+				674FB6CE2B743B6E00F28984 /* Verdana.ttf in Resources */,
 				672748752B725829004CFDBE /* LaunchScreen.storyboard in Resources */,
 				672748722B725829004CFDBE /* Assets.xcassets in Resources */,
-				672748702B725827004CFDBE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,23 +198,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6727486D2B725827004CFDBE /* ViewController.swift in Sources */,
+				6727486D2B725827004CFDBE /* MainViewController.swift in Sources */,
 				672748692B725827004CFDBE /* AppDelegate.swift in Sources */,
 				6727486B2B725827004CFDBE /* SceneDelegate.swift in Sources */,
+				67CBF2522B73EA9E00D04D4D /* UIColor+extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		6727486E2B725827004CFDBE /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6727486F2B725827004CFDBE /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		672748732B725829004CFDBE /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -343,7 +351,6 @@
 				INFOPLIST_FILE = UIKitTask/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -372,7 +379,6 @@
 				INFOPLIST_FILE = UIKitTask/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
