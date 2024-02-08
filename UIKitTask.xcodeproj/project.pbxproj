@@ -16,6 +16,7 @@
 		674FB6DF2B74D86600F28984 /* Verdana-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 674FB6DE2B74D86300F28984 /* Verdana-BoldItalic.ttf */; };
 		674FB6E22B74E17900F28984 /* UIFont+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674FB6E12B74E17900F28984 /* UIFont+extension.swift */; };
 		674FB6E52B74E39500F28984 /* UIColor+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674FB6E42B74E39500F28984 /* UIColor+extension.swift */; };
+		674FB6F12B750E5F00F28984 /* WordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674FB6F02B750E5F00F28984 /* WordModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		674FB6DE2B74D86300F28984 /* Verdana-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Verdana-BoldItalic.ttf"; sourceTree = "<group>"; };
 		674FB6E12B74E17900F28984 /* UIFont+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+extension.swift"; sourceTree = "<group>"; };
 		674FB6E42B74E39500F28984 /* UIColor+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+extension.swift"; sourceTree = "<group>"; };
+		674FB6F02B750E5F00F28984 /* WordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +48,7 @@
 		6727485C2B725827004CFDBE = {
 			isa = PBXGroup;
 			children = (
+				674FB6EF2B750E5300F28984 /* Model */,
 				674FB6E02B74E15600F28984 /* Helpers */,
 				674FB6DB2B74D61C00F28984 /* Font */,
 				672748672B725827004CFDBE /* UIKitTask */,
@@ -90,6 +93,14 @@
 				674FB6E42B74E39500F28984 /* UIColor+extension.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		674FB6EF2B750E5300F28984 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				674FB6F02B750E5F00F28984 /* WordModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,6 +221,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6727486D2B725827004CFDBE /* MainViewController.swift in Sources */,
+				674FB6F12B750E5F00F28984 /* WordModel.swift in Sources */,
 				672748692B725827004CFDBE /* AppDelegate.swift in Sources */,
 				674FB6E52B74E39500F28984 /* UIColor+extension.swift in Sources */,
 				674FB6E22B74E17900F28984 /* UIFont+extension.swift in Sources */,

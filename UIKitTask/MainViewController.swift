@@ -59,6 +59,13 @@ class MainViewController: UIViewController {
 
     // MARK: Private Properties
 
+    var model = WordModel(word: "") {
+        didSet {
+            reversedWordLabel.text = model.word
+            startWordLabel.text = model.reversedWord
+        }
+    }
+
     var isWordIsEnter: Bool = false {
         didSet {
             changeScreenState()
@@ -154,14 +161,12 @@ extension MainViewController {
                 return
             }
 
-            self?.reversedWordLabel.text = String(wordText.reversed())
-            self?.startWordLabel.text = wordText
+            self?.model.word = wordText
             self?.isWordIsEnter = true
         }
 
         alertController.addTextField { textField in
             textField.placeholder = "Введите слово"
-//            textField.font = .systemFont(ofSize: 15)
         }
 
         alertController.addAction(actionCancel)
