@@ -5,10 +5,7 @@ import UIKit
 
 /// ViewController
 final class MainViewController: UIViewController {
-    // MARK: Private Properties
-
-    private var calculateResult = 0
-    private var randomGuessNumber = 0
+    // MARK: Constants
 
     private let backgroundImageView: UIImageView = {
         let imageView = UIImageView()
@@ -20,7 +17,7 @@ final class MainViewController: UIViewController {
 
     private let greetingLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 30, weight: .bold)
+        label.font = UIFont(name: "Verdana-Bold", size: 30)
         label.numberOfLines = 2
         label.textColor = .white
         label.backgroundColor = UIColor.getRgbColor(151, 203, 229)
@@ -31,7 +28,7 @@ final class MainViewController: UIViewController {
     private let guessButton: UIButton = {
         let button = UIButton()
         button.setTitle("Угадай \nчисло", for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
+        button.titleLabel?.font = UIFont(name: "Verdana-Bold", size: 20)
         button.titleLabel?.numberOfLines = 2
         button.titleLabel?.textAlignment = .center
         button.backgroundColor = UIColor.getRgbColor(155, 127, 181)
@@ -44,7 +41,7 @@ final class MainViewController: UIViewController {
     private let calculatorButton: UIButton = {
         let button = UIButton()
         button.setTitle("Калькулятор", for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
+        button.titleLabel?.font = UIFont(name: "Verdana-Bold", size: 20)
         button.backgroundColor = .systemGreen
         button.backgroundColor = UIColor.getRgbColor(100, 181, 130)
         button.addTarget(nil, action: #selector(calculatorButtonTap), for: .touchUpInside)
@@ -52,6 +49,11 @@ final class MainViewController: UIViewController {
         button.layer.borderWidth = 3
         return button
     }()
+
+    // MARK: Private Properties
+
+    private var calculateResult = 0
+    private var randomGuessNumber = 0
 
     // MARK: Life Cycle
 
@@ -141,7 +143,7 @@ private extension MainViewController {
                 self?.showGetUserNameAlert()
                 return
             }
-            self?.greetingLabel.text = " Приветствую,\n\(userName)!"
+            self?.greetingLabel.text = " Приветствую,\n\(userName.uppercased())!"
             self?.displaceViewsFromSafeArea()
         }
 
@@ -212,36 +214,37 @@ private extension MainViewController {
             preferredStyle: .alert
         )
 
-        let calculateOperation = { (numbers: [Int], operation: CalculateOperations) -> Int in
+        let calculateOperation = { (operation: CalculateOperations) -> Int in
+            guard !numbers.isEmpty else { return 0 }
             if operation == .division, numbers.first == 0 {
                 return 0
             }
             switch operation {
             case .composition:
-                return numbers.reduce(1, *)
+                return numbers.reduce(0, +)
             case .division:
-                return numbers.reduce(1, /)
+                return firstNumber / secondNumber
             case .multiplication:
-                return numbers.reduce(1, +)
+                return numbers.reduce(1, *)
             case .subtraction:
-                return numbers.reduce(1, -)
+                return firstNumber - secondNumber
             }
         }
 
         let actionComposition = UIAlertAction(title: "Сложить", style: .default) { [weak self] _ in
-            self?.calculateResult = calculateOperation([firstNumber, secondNumber], .composition)
+            self?.calculateResult = calculateOperation(.composition)
             self?.showCalculateResult()
         }
         let actionSubtraction = UIAlertAction(title: "Вычесть", style: .default) { [weak self] _ in
-            self?.calculateResult = calculateOperation([firstNumber, secondNumber], .subtraction)
+            self?.calculateResult = calculateOperation(.subtraction)
             self?.showCalculateResult()
         }
         let actionMultiplication = UIAlertAction(title: "Умножить", style: .default) { [weak self] _ in
-            self?.calculateResult = calculateOperation([firstNumber, secondNumber], .multiplication)
+            self?.calculateResult = calculateOperation(.multiplication)
             self?.showCalculateResult()
         }
         let actionDivision = UIAlertAction(title: "Разделить", style: .default) { [weak self] _ in
-            self?.calculateResult = calculateOperation([firstNumber, secondNumber], .division)
+            self?.calculateResult = calculateOperation(.division)
             self?.showCalculateResult()
         }
 

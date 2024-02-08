@@ -4,7 +4,7 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>VerdanaBold.ttf</string>
+		<string>Verdana-Bold.ttf</string>
 		<string>Verdana.ttf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
