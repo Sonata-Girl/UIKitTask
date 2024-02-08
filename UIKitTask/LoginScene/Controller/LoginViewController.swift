@@ -4,54 +4,61 @@
 import UIKit
 
 /// LoginViewController
-class LoginViewController: UIViewController {
-    // MARK: - Constants
+final class LoginViewController: UIViewController {
+    // MARK: IBOutlets
 
-    // MARK: - IBOutlets
-
-    @IBOutlet var mailLabel: UITextField!
-    @IBOutlet var passwordLabel: UITextField!
+    @IBOutlet var mailTextField: UITextField!
+    @IBOutlet var passwordTextField: UITextField!
     @IBOutlet var loginButton: UIButton!
 
-    // MARK: - Public Properties
+    // MARK: Life Cycle
 
-    // MARK: - Private Properties
-
-    // MARK: - Life Cycle
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        //        configureNavigationBar()
-        //        setupHierarchy()
-        //        setupLayout()
-        setupUI()
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "cafeScreenSegue" {
+            guard
+                let mail = mailTextField.text,
+                let password = passwordTextField.text,
+                !password.isEmpty,
+                !mail.isEmpty,
+                mail.contains("@"),
+                mail.contains(".")
+            else {
+                showDefaultAlert(title: "Упс!", message: "Проверьте пожалуйста логин и пароль")
+                return
+            }
+            let nextViewController = segue.destination as? CafeViewController
+            nextViewController?.passMailToCafeReception(mail: mail)
+        }
     }
 
-    private func setupUI() {}
-
-    // MARK: - Public Methods
-
-    // MARK: - Private Methods
+    // MARK: Public Properties
 
     @IBAction func showPasswordButtonTap(_ sender: UIButton) {
-        passwordLabel.isSecureTextEntry = !passwordLabel.isSecureTextEntry
+        passwordTextField.isSecureTextEntry = !passwordTextField.isSecureTextEntry
     }
 
-    @IBAction func loginButtonTap(_ sender: UIButton) {}
+    @IBAction func mailTextDidChanged(_ sender: UITextField) {
+        changeStateLoginButton(textField: sender)
+    }
+
+    // MARK: Private Properties
+
+    private func changeStateLoginButton(textField: UITextField) {
+        var secondTextField = UITextField()
+        if textField == mailTextField {
+            secondTextField = passwordTextField
+        } else {
+            secondTextField = mailTextField
+        }
+        guard
+            let first = secondTextField.text,
+            let second = textField.text
+        else { return }
+
+        if first.isEmpty, second.isEmpty {
+            loginButton.alpha = 0.5
+        } else {
+            loginButton.alpha = 1
+        }
+    }
 }
-
-// MARK: - Configure Navigation bar
-
-// MARK: - Setup hierarchy
-
-// MARK: - Setup layouts for UIElements
-
-// MARK: - Configure view property
-
-// MARK: - CollectionViewDataSource
-
-// MARK: - CollectionViewDelegate
-
-// MARK: - Collection layout methods
-
-// MARK: - Constants
