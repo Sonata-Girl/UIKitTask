@@ -3,7 +3,7 @@
 
 import UIKit
 
-/// SceneDelegate
+/// Старт приложения, настройка сцен приложения
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 

@@ -3,7 +3,7 @@
 
 import UIKit
 
-/// ViewController
+/// Стартовый экран приложения и контроллер
 final class MainViewController: UIViewController {
     // MARK: Constants
 

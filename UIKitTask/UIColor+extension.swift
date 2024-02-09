@@ -2,7 +2,7 @@
 // Copyright © RoadMap. All rights reserved.
 
 import UIKit
-
+/// Расширение для доступа к кастомному цвету
 extension UIColor {
     static func getRgbColor(_ red: CGFloat, _ green: CGFloat, _ blue: CGFloat) -> UIColor {
         UIColor(
