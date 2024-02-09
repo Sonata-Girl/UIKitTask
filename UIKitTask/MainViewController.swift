@@ -103,15 +103,6 @@ final class MainViewController: UIViewController {
 
     // MARK: Private Methods
 
-    @objc private func guessButtonTap() {
-        randomGuessNumber = (1 ... 10).randomElement() ?? 0
-        guessNumberAlert(title: "Угадайте число от 1 до 10")
-    }
-
-    @objc private func calculatorButtonTap() {
-        showCalculateNumberAlert()
-    }
-
     private func getUserName() {
         showGetUserNameAlert()
     }
@@ -124,6 +115,17 @@ final class MainViewController: UIViewController {
             self.backgroundImageView.frame.origin.y = self.view.safeAreaInsets.top
         }
     }
+
+
+    @objc private func guessButtonTap() {
+        randomGuessNumber = (1 ... 10).randomElement() ?? 0
+        guessNumberAlert(title: "Угадайте число от 1 до 10")
+    }
+
+    @objc private func calculatorButtonTap() {
+        showCalculateNumberAlert()
+    }
+
 }
 
 // MARK: - Greeting Alert
