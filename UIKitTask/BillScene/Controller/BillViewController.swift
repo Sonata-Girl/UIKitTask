@@ -3,11 +3,11 @@
 
 import UIKit
 
-/// BillViewController
+/// Контроллер экрана показа заказа и вопроса отправки чека на почту, следует за экраном CafeVC
 final class BillViewController: UIViewController {
     // MARK: Private Properties
 
-    private var model: GuestModel?
+    private var model: Guest?
 
     // MARK: Private Methods
 
@@ -34,7 +34,7 @@ final class BillViewController: UIViewController {
 
     // MARK: Public Methods
 
-    func passGuestForBill(model: GuestModel) {
+    func passGuestForBill(model: Guest) {
         self.model = model
     }
 }

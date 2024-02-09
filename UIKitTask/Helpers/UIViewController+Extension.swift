@@ -1,9 +1,11 @@
-// UIALertController+Extension.swift
+// UIViewController+Extension.swift
 // Copyright © RoadMap. All rights reserved.
 
 import UIKit
 
+/// Расширение для универсальных алертов
 extension UIViewController {
+    /// Алерт для показа информации и кнопки ОК
     func showDefaultAlert(title: String, message: String?, needCancel: Bool = false) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let actionOk = UIAlertAction(title: "Ок", style: .default)
@@ -18,6 +20,7 @@ extension UIViewController {
         present(alertController, animated: true)
     }
 
+    /// Алерт для показа информации c кнопкой ok и действием для нее
     func showQuestionAlert(
         title: String,
         message: String?,

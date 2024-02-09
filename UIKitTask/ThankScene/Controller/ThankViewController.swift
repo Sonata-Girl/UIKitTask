@@ -3,7 +3,7 @@
 
 import UIKit
 
-/// ThankViewController
+/// Контроллер экрана отправки чека на почту, следует за экраном чека ( BillVC )
 class ThankViewController: UIViewController {
     // MARK: IBOutlets
 

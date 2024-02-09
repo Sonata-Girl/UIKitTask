@@ -18,9 +18,10 @@
 		674FB6FD2B75388200F28984 /* UIColor+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674FB6FC2B75388200F28984 /* UIColor+extension.swift */; };
 		674FB7012B75520B00F28984 /* CafeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674FB7002B75520B00F28984 /* CafeViewController.swift */; };
 		674FB7042B755D1500F28984 /* BillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674FB7032B755D1500F28984 /* BillViewController.swift */; };
-		674FB7072B75639C00F28984 /* UIALertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674FB7062B75639C00F28984 /* UIALertController+Extension.swift */; };
+		674FB7072B75639C00F28984 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674FB7062B75639C00F28984 /* UIViewController+Extension.swift */; };
 		674FB70A2B756A1F00F28984 /* GuestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674FB7092B756A1F00F28984 /* GuestModel.swift */; };
 		675996032B7575AC002A5B0B /* ThankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675996022B7575AC002A5B0B /* ThankViewController.swift */; };
+		67B8F3392B764CC400B46F32 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67B8F3382B764CC400B46F32 /* Colors.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,9 +38,10 @@
 		674FB6FC2B75388200F28984 /* UIColor+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+extension.swift"; sourceTree = "<group>"; };
 		674FB7002B75520B00F28984 /* CafeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeViewController.swift; sourceTree = "<group>"; };
 		674FB7032B755D1500F28984 /* BillViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillViewController.swift; sourceTree = "<group>"; };
-		674FB7062B75639C00F28984 /* UIALertController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIALertController+Extension.swift"; sourceTree = "<group>"; };
+		674FB7062B75639C00F28984 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		674FB7092B756A1F00F28984 /* GuestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestModel.swift; sourceTree = "<group>"; };
 		675996022B7575AC002A5B0B /* ThankViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankViewController.swift; sourceTree = "<group>"; };
+		67B8F3382B764CC400B46F32 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,8 +84,9 @@
 				675996012B757570002A5B0B /* ThankScene */,
 				674FB7082B756A0500F28984 /* Model */,
 				672748712B725829004CFDBE /* Assets.xcassets */,
-				672748732B725829004CFDBE /* LaunchScreen.storyboard */,
+				67B8F3382B764CC400B46F32 /* Colors.xcassets */,
 				672748762B725829004CFDBE /* Info.plist */,
+				672748732B725829004CFDBE /* LaunchScreen.storyboard */,
 			);
 			path = UIKitTask;
 			sourceTree = "<group>";
@@ -134,7 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				674FB6FC2B75388200F28984 /* UIColor+extension.swift */,
-				674FB7062B75639C00F28984 /* UIALertController+Extension.swift */,
+				674FB7062B75639C00F28984 /* UIViewController+Extension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 				674FB6F62B75153D00F28984 /* Verdana.ttf in Resources */,
 				672748752B725829004CFDBE /* LaunchScreen.storyboard in Resources */,
 				672748722B725829004CFDBE /* Assets.xcassets in Resources */,
+				67B8F3392B764CC400B46F32 /* Colors.xcassets in Resources */,
 				672748702B725827004CFDBE /* Main.storyboard in Resources */,
 				674FB6F52B75153B00F28984 /* Verdana-Bold.ttf in Resources */,
 			);
@@ -321,7 +325,7 @@
 				674FB70A2B756A1F00F28984 /* GuestModel.swift in Sources */,
 				674FB6FD2B75388200F28984 /* UIColor+extension.swift in Sources */,
 				674FB7042B755D1500F28984 /* BillViewController.swift in Sources */,
-				674FB7072B75639C00F28984 /* UIALertController+Extension.swift in Sources */,
+				674FB7072B75639C00F28984 /* UIViewController+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

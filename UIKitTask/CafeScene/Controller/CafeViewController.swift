@@ -3,7 +3,7 @@
 
 import UIKit
 
-/// CafeViewController
+/// Контроллер экрана ввода данных для регистрации столика, следует за экраном авторизации
 final class CafeViewController: UIViewController {
     // MARK: IBOutlets
 
@@ -14,7 +14,7 @@ final class CafeViewController: UIViewController {
     // MARK: Private Properties
 
     private var mail: String = ""
-    private var model: GuestModel?
+    private var model: Guest?
 
     // MARK: Life Cycle
 
@@ -63,7 +63,7 @@ final class CafeViewController: UIViewController {
             return false
         }
 
-        model = GuestModel(
+        model = Guest(
             login: mail,
             FIO: name,
             upfrontPayment: isUpfrontPayment.isOn,

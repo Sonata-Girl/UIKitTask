@@ -3,8 +3,8 @@
 
 import Foundation
 
-/// GuestModel
-struct GuestModel {
+/// Описание модели для сохранения информация о госте
+struct Guest {
     let login: String
     let FIO: String
     let upfrontPayment: Bool

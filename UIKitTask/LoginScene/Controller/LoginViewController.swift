@@ -3,7 +3,7 @@
 
 import UIKit
 
-/// LoginViewController
+/// Стартовый контроллер экрана входа в приложение, для ввода данных авторизации
 final class LoginViewController: UIViewController {
     // MARK: IBOutlets
 
