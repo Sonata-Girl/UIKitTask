@@ -7,23 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		67192EA82B76AB34004A7152 /* UIColor+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67192EA72B76AB34004A7152 /* UIColor+extension.swift */; };
+		67192EAA2B76B615004A7152 /* ReminderListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67192EA92B76B614004A7152 /* ReminderListViewController.swift */; };
 		672748692B725827004CFDBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672748682B725827004CFDBE /* AppDelegate.swift */; };
 		6727486B2B725827004CFDBE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727486A2B725827004CFDBE /* SceneDelegate.swift */; };
-		6727486D2B725827004CFDBE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727486C2B725827004CFDBE /* ViewController.swift */; };
-		672748702B725827004CFDBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6727486E2B725827004CFDBE /* Main.storyboard */; };
+		6727486D2B725827004CFDBE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727486C2B725827004CFDBE /* LoginViewController.swift */; };
 		672748722B725829004CFDBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 672748712B725829004CFDBE /* Assets.xcassets */; };
 		672748752B725829004CFDBE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 672748732B725829004CFDBE /* LaunchScreen.storyboard */; };
+		67B8F3422B768F6500B46F32 /* BirthdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B8F3412B768F6500B46F32 /* BirthdayView.swift */; };
+		67B8F3482B7699D300B46F32 /* Verdana.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 67B8F3472B76999100B46F32 /* Verdana.ttf */; };
+		67B8F3492B7699D600B46F32 /* Verdana-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 67B8F3462B76999100B46F32 /* Verdana-Bold.ttf */; };
+		67B8F34C2B769A2600B46F32 /* UIFont+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B8F34B2B769A2600B46F32 /* UIFont+extension.swift */; };
+		67B8F34E2B769BD200B46F32 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67B8F34D2B769BD200B46F32 /* Colors.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		67192EA72B76AB34004A7152 /* UIColor+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+extension.swift"; sourceTree = "<group>"; };
+		67192EA92B76B614004A7152 /* ReminderListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderListViewController.swift; sourceTree = "<group>"; };
 		672748652B725827004CFDBE /* UIKitTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIKitTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		672748682B725827004CFDBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6727486A2B725827004CFDBE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		6727486C2B725827004CFDBE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		6727486F2B725827004CFDBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6727486C2B725827004CFDBE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		672748712B725829004CFDBE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		672748742B725829004CFDBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		672748762B725829004CFDBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		67B8F3412B768F6500B46F32 /* BirthdayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayView.swift; sourceTree = "<group>"; };
+		67B8F3462B76999100B46F32 /* Verdana-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Verdana-Bold.ttf"; sourceTree = "<group>"; };
+		67B8F3472B76999100B46F32 /* Verdana.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Verdana.ttf; sourceTree = "<group>"; };
+		67B8F34B2B769A2600B46F32 /* UIFont+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+extension.swift"; sourceTree = "<group>"; };
+		67B8F34D2B769BD200B46F32 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +68,85 @@
 		672748672B725827004CFDBE /* UIKitTask */ = {
 			isa = PBXGroup;
 			children = (
-				672748682B725827004CFDBE /* AppDelegate.swift */,
-				6727486A2B725827004CFDBE /* SceneDelegate.swift */,
-				6727486C2B725827004CFDBE /* ViewController.swift */,
-				6727486E2B725827004CFDBE /* Main.storyboard */,
+				67B8F34A2B769A1600B46F32 /* Helpers */,
+				67B8F3452B76998600B46F32 /* Fonts */,
+				67B8F33D2B76735400B46F32 /* App */,
+				67B8F3402B768F2300B46F32 /* CustomUI */,
+				67B8F33A2B76730900B46F32 /* LoginScene */,
+				67B8F33C2B76731900B46F32 /* ReminderListScene */,
 				672748712B725829004CFDBE /* Assets.xcassets */,
+				67B8F34D2B769BD200B46F32 /* Colors.xcassets */,
 				672748732B725829004CFDBE /* LaunchScreen.storyboard */,
 				672748762B725829004CFDBE /* Info.plist */,
 			);
 			path = UIKitTask;
+			sourceTree = "<group>";
+		};
+		67B8F33A2B76730900B46F32 /* LoginScene */ = {
+			isa = PBXGroup;
+			children = (
+				67B8F33B2B76731400B46F32 /* ViewController */,
+			);
+			path = LoginScene;
+			sourceTree = "<group>";
+		};
+		67B8F33B2B76731400B46F32 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6727486C2B725827004CFDBE /* LoginViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		67B8F33C2B76731900B46F32 /* ReminderListScene */ = {
+			isa = PBXGroup;
+			children = (
+				67B8F33F2B7673A100B46F32 /* ViewController */,
+			);
+			path = ReminderListScene;
+			sourceTree = "<group>";
+		};
+		67B8F33D2B76735400B46F32 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				672748682B725827004CFDBE /* AppDelegate.swift */,
+				6727486A2B725827004CFDBE /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		67B8F33F2B7673A100B46F32 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				67192EA92B76B614004A7152 /* ReminderListViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		67B8F3402B768F2300B46F32 /* CustomUI */ = {
+			isa = PBXGroup;
+			children = (
+				67B8F3412B768F6500B46F32 /* BirthdayView.swift */,
+			);
+			path = CustomUI;
+			sourceTree = "<group>";
+		};
+		67B8F3452B76998600B46F32 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				67B8F3462B76999100B46F32 /* Verdana-Bold.ttf */,
+				67B8F3472B76999100B46F32 /* Verdana.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		67B8F34A2B769A1600B46F32 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				67B8F34B2B769A2600B46F32 /* UIFont+extension.swift */,
+				67192EA72B76AB34004A7152 /* UIColor+extension.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,9 +209,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67B8F34E2B769BD200B46F32 /* Colors.xcassets in Resources */,
 				672748752B725829004CFDBE /* LaunchScreen.storyboard in Resources */,
 				672748722B725829004CFDBE /* Assets.xcassets in Resources */,
-				672748702B725827004CFDBE /* Main.storyboard in Resources */,
+				67B8F3482B7699D300B46F32 /* Verdana.ttf in Resources */,
+				67B8F3492B7699D600B46F32 /* Verdana-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,23 +267,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6727486D2B725827004CFDBE /* ViewController.swift in Sources */,
+				6727486D2B725827004CFDBE /* LoginViewController.swift in Sources */,
+				67192EAA2B76B615004A7152 /* ReminderListViewController.swift in Sources */,
+				67B8F34C2B769A2600B46F32 /* UIFont+extension.swift in Sources */,
 				672748692B725827004CFDBE /* AppDelegate.swift in Sources */,
+				67192EA82B76AB34004A7152 /* UIColor+extension.swift in Sources */,
 				6727486B2B725827004CFDBE /* SceneDelegate.swift in Sources */,
+				67B8F3422B768F6500B46F32 /* BirthdayView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		6727486E2B725827004CFDBE /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6727486F2B725827004CFDBE /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		672748732B725829004CFDBE /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -343,7 +423,6 @@
 				INFOPLIST_FILE = UIKitTask/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -372,7 +451,6 @@
 				INFOPLIST_FILE = UIKitTask/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
