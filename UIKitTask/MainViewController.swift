@@ -3,7 +3,7 @@
 
 import UIKit
 
-/// MainViewController
+/// Стартовый экран приложения, возможность ввода слова
 class MainViewController: UIViewController {
     // MARK: Constants
 
