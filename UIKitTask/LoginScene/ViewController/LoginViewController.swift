@@ -68,6 +68,7 @@ final class LoginViewController: UIViewController {
         textField.font = .setVerdana(withSize: 14)
         textField.placeholder = "Typing password"
         textField.textColor = .label
+        textField.isSecureTextEntry = true
         textField.addTarget(self, action: #selector(passwordTextChanged), for: .editingChanged)
         return textField
     }()
@@ -191,13 +192,13 @@ final class LoginViewController: UIViewController {
     @objc private func loginButtonPressed() {
         do {
             let emailRegex = try Regex("[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}")
-//            guard
-//                let mail = emailTextField.text,
-//                mail.contains(emailRegex)
-//            else {
-//                showDefaultAlert(title: "Упс!", message: "Проверьте пожалуйста правильность ввода данных")
-//                return
-//            }
+            guard
+                let mail = emailTextField.text,
+                mail.contains(emailRegex)
+            else {
+                showDefaultAlert(title: "Упс!", message: "Проверьте пожалуйста правильность ввода данных")
+                return
+            }
             let nextViewController = ReminderListViewController()
             navigationController?.pushViewController(nextViewController, animated: true)
         } catch {}
