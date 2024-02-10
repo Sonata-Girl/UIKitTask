@@ -10,6 +10,8 @@
 		67192EA82B76AB34004A7152 /* UIColor+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67192EA72B76AB34004A7152 /* UIColor+extension.swift */; };
 		67192EAA2B76B615004A7152 /* ReminderListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67192EA92B76B614004A7152 /* ReminderListViewController.swift */; };
 		67192EAE2B77849C004A7152 /* UIViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67192EAD2B77849C004A7152 /* UIViewController+extension.swift */; };
+		67192EB02B77937E004A7152 /* ContactInfoCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67192EAF2B77937E004A7152 /* ContactInfoCellView.swift */; };
+		67192EB42B779935004A7152 /* ContactInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67192EB32B779935004A7152 /* ContactInfoViewController.swift */; };
 		672748692B725827004CFDBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672748682B725827004CFDBE /* AppDelegate.swift */; };
 		6727486B2B725827004CFDBE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727486A2B725827004CFDBE /* SceneDelegate.swift */; };
 		6727486D2B725827004CFDBE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727486C2B725827004CFDBE /* LoginViewController.swift */; };
@@ -26,6 +28,8 @@
 		67192EA72B76AB34004A7152 /* UIColor+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+extension.swift"; sourceTree = "<group>"; };
 		67192EA92B76B614004A7152 /* ReminderListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderListViewController.swift; sourceTree = "<group>"; };
 		67192EAD2B77849C004A7152 /* UIViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+extension.swift"; sourceTree = "<group>"; };
+		67192EAF2B77937E004A7152 /* ContactInfoCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoCellView.swift; sourceTree = "<group>"; };
+		67192EB32B779935004A7152 /* ContactInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoViewController.swift; sourceTree = "<group>"; };
 		672748652B725827004CFDBE /* UIKitTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIKitTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		672748682B725827004CFDBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6727486A2B725827004CFDBE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +55,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		67192EB12B779902004A7152 /* ContactInfoScene */ = {
+			isa = PBXGroup;
+			children = (
+				67192EB22B77991A004A7152 /* ViewController */,
+			);
+			path = ContactInfoScene;
+			sourceTree = "<group>";
+		};
+		67192EB22B77991A004A7152 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				67192EB32B779935004A7152 /* ContactInfoViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		6727485C2B725827004CFDBE = {
 			isa = PBXGroup;
 			children = (
@@ -76,6 +96,7 @@
 				67B8F3402B768F2300B46F32 /* CustomUI */,
 				67B8F33A2B76730900B46F32 /* LoginScene */,
 				67B8F33C2B76731900B46F32 /* ReminderListScene */,
+				67192EB12B779902004A7152 /* ContactInfoScene */,
 				672748712B725829004CFDBE /* Assets.xcassets */,
 				67B8F34D2B769BD200B46F32 /* Colors.xcassets */,
 				672748732B725829004CFDBE /* LaunchScreen.storyboard */,
@@ -129,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				67B8F3412B768F6500B46F32 /* BirthdayView.swift */,
+				67192EAF2B77937E004A7152 /* ContactInfoCellView.swift */,
 			);
 			path = CustomUI;
 			sourceTree = "<group>";
@@ -270,8 +292,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67192EB02B77937E004A7152 /* ContactInfoCellView.swift in Sources */,
 				67192EAE2B77849C004A7152 /* UIViewController+extension.swift in Sources */,
 				6727486D2B725827004CFDBE /* LoginViewController.swift in Sources */,
+				67192EB42B779935004A7152 /* ContactInfoViewController.swift in Sources */,
 				67192EAA2B76B615004A7152 /* ReminderListViewController.swift in Sources */,
 				67B8F34C2B769A2600B46F32 /* UIFont+extension.swift in Sources */,
 				672748692B725827004CFDBE /* AppDelegate.swift in Sources */,

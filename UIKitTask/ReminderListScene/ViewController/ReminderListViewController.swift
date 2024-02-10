@@ -4,21 +4,82 @@
 import UIKit
 
 /// Главный экран приложения, список день рождений контактов
-class ReminderListViewController: UIViewController {
-    
+final class ReminderListViewController: UIViewController {
+    // MARK: - Visual Components
+
+    // MARK: - Public Properties
+
+    // MARK: - Private Properties
+
+    private var lastViewYOrigin: CGFloat = 35
+    private var viewHeight: CGFloat = 75
+    private var contactImageNumber = 1
+
+    // MARK: - Initializers
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("")
-        // Do any additional setup after loading the view.
+        configureNavigationBar()
+        setupUI()
     }
 
-    /*
-     // MARK: - Navigation
+    private func setupUI() {
+        view.backgroundColor = .white
+    }
 
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         // Get the new view controller using segue.destination.
-         // Pass the selected object to the new view controller.
-     }
-     */
+    // MARK: - Life Cycle
+
+    // MARK: - Public methods
+
+    // MARK: - IBAction или @objc (not private)
+
+    // MARK: - Private Methods
+
+    @objc private func addNewContactBirthday() {
+        let addContactViewController = ContactInfoViewController()
+        addContactViewController.modalPresentationStyle = .pageSheet
+        let addContactAction = { (name: String, birthDay: Date) in
+            self.createAndAddNewContact(name: name, birthDay: birthDay)
+        }
+        addContactViewController.addContactButtonPressed = addContactAction
+        navigationController?.present(addContactViewController, animated: true)
+    }
+
+    private func createAndAddNewContact(name: String, birthDay: Date) {
+        let newView = BirthdayCellView(frame: .init(
+            x: view.safeAreaInsets.left,
+            y: lastViewYOrigin + viewHeight,
+            width: 335,
+            height: viewHeight
+        ))
+        lastViewYOrigin += viewHeight + 10
+        newView.configureView(name: name, birthday: birthDay, countOfView: contactImageNumber)
+
+        contactImageNumber = contactImageNumber == 4 ? 1 : contactImageNumber + 1
+        view.addSubview(newView)
+    }
+}
+
+// MARK: - Configure Navigation bar
+
+private extension ReminderListViewController {
+    func configureNavigationBar() {
+        let font = UIFont.setVerdanaBold(withSize: 18)
+        let attributes = [NSAttributedString.Key.font: font]
+        navigationItem.title = "Birthday Reminder"
+        navigationController?.navigationBar.titleTextAttributes = attributes as [NSAttributedString.Key: Any]
+
+        setupRightBarButtonItem()
+    }
+
+    func setupRightBarButtonItem() {
+        let addButton = UIBarButtonItem(
+            image: UIImage(systemName: "plus"),
+            style: .plain,
+            target: self,
+            action: #selector(addNewContactBirthday)
+        )
+
+        navigationItem.rightBarButtonItem = addButton
+    }
 }

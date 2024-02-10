@@ -3,12 +3,8 @@
 
 import UIKit
 
-/// ViewController
+/// Стартовый экран приложения для авторизации пользователя
 final class LoginViewController: UIViewController {
-    // MARK: - Types
-
-    // MARK: - Constants
-
     // MARK: - Visual Components
 
     private let imageView: UIImageView = {
@@ -109,20 +105,16 @@ final class LoginViewController: UIViewController {
         label.font = .setVerdanaBold(withSize: 16)
         label.textColor = .black
         label.textAlignment = .center
+        label.isHidden = true
         return label
     }()
 
     private let faceIDSwitch: UISwitch = {
         let switchElement = UISwitch()
         switchElement.isOn = true
+        switchElement.isHidden = true
         return switchElement
     }()
-
-    // MARK: - Public Properties
-
-    // MARK: - Private Properties
-
-    // MARK: - Initializers
 
     // MARK: - Life Cycle
 
@@ -171,10 +163,6 @@ final class LoginViewController: UIViewController {
         loginButton.frame = .init(x: 20, y: 671, width: 335, height: 44)
     }
 
-    // MARK: - Public methods
-
-    // MARK: - IBAction или @objc (not private)
-
     // MARK: - Private Methods
 
     private func changeStateLoginButton() {
@@ -183,10 +171,10 @@ final class LoginViewController: UIViewController {
             let password = passwordTextField.text
         else { return }
         loginButton.isUserInteractionEnabled = !mail.isEmpty && !password.isEmpty
+        faceIDLabel.isHidden = !loginButton.isUserInteractionEnabled
+        faceIDSwitch.isHidden = !loginButton.isUserInteractionEnabled
         loginButton.alpha = loginButton.isUserInteractionEnabled ? 1 : 0.5
     }
-
-    // MARK: - IBAction или @objc (private)
 
     @objc private func showPasswordButtonTap() {
         passwordTextField.isSecureTextEntry.toggle()
@@ -203,13 +191,13 @@ final class LoginViewController: UIViewController {
     @objc private func loginButtonPressed() {
         do {
             let emailRegex = try Regex("[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}")
-            guard
-                let mail = emailTextField.text,
-                mail.contains(emailRegex)
-            else {
-                showDefaultAlert(title: "Упс!", message: "Проверьте пожалуйста правильность ввода данных")
-                return
-            }
+//            guard
+//                let mail = emailTextField.text,
+//                mail.contains(emailRegex)
+//            else {
+//                showDefaultAlert(title: "Упс!", message: "Проверьте пожалуйста правильность ввода данных")
+//                return
+//            }
             let nextViewController = ReminderListViewController()
             navigationController?.pushViewController(nextViewController, animated: true)
         } catch {}

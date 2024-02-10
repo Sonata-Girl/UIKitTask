@@ -3,7 +3,7 @@
 
 import UIKit
 
-final class BirthdayView: UIView {
+final class BirthdayCellView: UIView {
     // MARK: - Visual Components
 
     private let contactImage: UIImageView = {
@@ -11,7 +11,8 @@ final class BirthdayView: UIView {
         imageView.clipsToBounds = false
         imageView.contentMode = .scaleAspectFill
         imageView.layer.borderWidth = 1
-        imageView.layer.cornerRadius = 30
+        imageView.layer.borderColor = UIColor.lightGray.cgColor
+        imageView.layer.cornerRadius = 40
         return imageView
     }()
 
@@ -32,14 +33,16 @@ final class BirthdayView: UIView {
     private let daysUntilBirthLabel: UILabel = {
         let label = UILabel()
         label.font = .setVerdanaBold(withSize: 16)
-        label.textColor = .label
+        label.textColor = .appPurple
         label.isHidden = true
+        label.numberOfLines = 2
+        label.textAlignment = .center
         return label
     }()
 
     private let birthdayImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "birthCake")
+        imageView.image = UIImage(named: "BirthIdayCake")
         imageView.clipsToBounds = false
         imageView.contentMode = .scaleAspectFill
         imageView.isHidden = true
@@ -79,45 +82,27 @@ final class BirthdayView: UIView {
     private func setupUI() {
         contactImage.frame = .init(x: 20, y: 10, width: 75, height: 75)
         contactNameLabel.frame = .init(
-            x: contactImage.frame.origin.x + 8,
+            x: contactImage.frame.origin.x + 75 + 8,
             y: 24,
             width: 209,
             height: 20
         )
         birthDateLabel.frame = .init(
-            x: contactImage.frame.origin.x + 8,
+            x: contactImage.frame.origin.x + 75 + 8,
             y: contactNameLabel.frame.origin.y + 24 + 8,
             width: 209,
             height: 20
         )
     }
 
-    private func setBirthdayIcon() {
-        if isBirthDayNow {
-            birthdayImage.frame = .init(
-                x: frame.width - 18,
-                y: birthDateLabel.frame.origin.y + birthDateLabel.frame.width + 3,
-                width: 42,
-                height: 44
-            )
-        } else {
-            daysUntilBirthLabel.frame = .init(
-                x: frame.width - 18,
-                y: birthDateLabel.frame.origin.y + birthDateLabel.frame.width + 3,
-                width: 42,
-                height: 44
-            )
-        }
-    }
-
     // MARK: - Public methods
 
-    func configureView(name: String, birthday: Date) {
+    func configureView(name: String, birthday: Date, countOfView: Int) {
         contactNameLabel.text = name
 
         let dateFormatter = DateFormatter()
-        let yearsFromBirthDay = birthday.timeIntervalSinceNow / 365 / 60 / 60 / 24
-        let daysUntilBirthday = birthday.timeIntervalSinceNow / 365 / 60 / 24
+        let yearsFromBirthDay = Int(birthday.timeIntervalSinceNow / 365 / 60 / 60 / 24) * -1
+        let daysUntilBirthday = Int(birthday.timeIntervalSinceNow / 60 / 60 / 24) * -1
 
         dateFormatter.dateFormat = "dd.MM"
         birthDateLabel.text = "\(dateFormatter.string(from: birthday)) - turns \(yearsFromBirthDay)"
@@ -125,8 +110,32 @@ final class BirthdayView: UIView {
         if daysUntilBirthday == .zero {
             isBirthDayNow = true
         } else {
-            daysUntilBirthLabel.text = String(daysUntilBirthday)
+            daysUntilBirthLabel.text = "\(daysUntilBirthday)\n days"
         }
         setBirthdayIcon()
+
+        contactImage.image = UIImage(named: "Contact\(countOfView)")
+    }
+
+    // MARK: - Private Properties
+
+    private func setBirthdayIcon() {
+        if isBirthDayNow {
+            birthdayImage.frame = .init(
+                x: frame.width - 42,
+                y: 25,
+                width: 42,
+                height: 44
+            )
+            birthdayImage.isHidden = false
+        } else {
+            daysUntilBirthLabel.frame = .init(
+                x: frame.width - 44,
+                y: 25,
+                width: 48,
+                height: 44
+            )
+            daysUntilBirthLabel.isHidden = false
+        }
     }
 }
