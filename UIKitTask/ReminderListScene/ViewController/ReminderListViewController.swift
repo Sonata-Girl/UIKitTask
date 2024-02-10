@@ -5,6 +5,7 @@ import UIKit
 
 /// Главный экран приложения, список день рождений контактов
 class ReminderListViewController: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("")
