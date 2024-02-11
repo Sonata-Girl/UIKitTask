@@ -32,21 +32,30 @@ class DetailTrackViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print()
+        trackImageView.layer.borderColor = UIColor.white.cgColor
+        setupData()
     }
 
     // MARK: - Public methods
 
     func configureView(track: Track) {
         self.track = track
-        trackName.text = track.name
-        singerName.text = track.singer
-        trackImageView.image = UIImage(named: "\(track.imageName)")
     }
 
     // MARK: - IBAction или @objc (not private)
 
     // MARK: - Private Methods
 
+    private func setupData() {
+        guard let track else { return }
+        trackName.text = track.name
+        singerName.text = track.singer
+        trackImageView.image = UIImage(named: "\(track.imageName)")
+    }
+
     // MARK: - IBAction или @objc (private)
+
+    @IBAction func closeButtonPressed(_ sender: UIButton) {
+        dismiss(animated: true)
+    }
 }
