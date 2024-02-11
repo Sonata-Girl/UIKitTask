@@ -254,6 +254,13 @@ class DetailTrackViewController: UIViewController {
         }
         changeStateOffVolumeButton()
     }
+
+    @IBAction func sharePressed(_ sender: UIButton) {
+        guard let url = URL(string: "https://www.apple.com") else { return }
+        let items = [url]
+        let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        present(ac, animated: true)
+    }
 }
 
 // MARK: - Constants

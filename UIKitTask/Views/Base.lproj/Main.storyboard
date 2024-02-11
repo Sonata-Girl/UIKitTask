@@ -436,6 +436,9 @@
                                         <integer key="value" value="20"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="sharePressed:" destination="YUi-TT-9ht" eventType="touchUpInside" id="1ez-Dw-oG4"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="jIQ-L1-2IV"/>
