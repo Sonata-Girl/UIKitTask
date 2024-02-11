@@ -44,6 +44,7 @@ class DetailTrackViewController: UIViewController {
 
     deinit {
         displayLink.invalidate()
+        player.stop()
     }
 
     // MARK: - Life Cycle
@@ -195,6 +196,8 @@ class DetailTrackViewController: UIViewController {
     }
 
     @IBAction private func closeButtonPressed(_ sender: UIButton) {
+        displayLink.invalidate()
+        player.stop()
         dismiss(animated: true)
     }
 
