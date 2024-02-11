@@ -5,9 +5,6 @@ import UIKit
 
 /// Стартовый экран приложений, список песен
 class PlayerListViewController: UIViewController {
-    // MARK: - Types
-
-    // MARK: - Constants
 
     // MARK: - IBOutlet
 
@@ -17,15 +14,9 @@ class PlayerListViewController: UIViewController {
     @IBOutlet private var trackFourView: UIView!
     @IBOutlet private var trackFiveView: UIView!
 
-    // MARK: - Visual Components
-
-    // MARK: - Public Properties
-
     // MARK: - Private Properties
 
     private var tracks: [Track] = []
-
-    // MARK: - Initializers
 
     // MARK: - Life Cycle
 
@@ -35,10 +26,6 @@ class PlayerListViewController: UIViewController {
         setupGestures()
         getData()
     }
-
-    // MARK: - Public methods
-
-    // MARK: - IBAction или @objc (not private)
 
     // MARK: - Private Methods
 

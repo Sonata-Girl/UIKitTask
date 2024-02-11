@@ -6,10 +6,7 @@ import UIKit
 
 /// Контроллер экрана детализации выбранного трека (storyboard ID detailTrackViewController)
 class DetailTrackViewController: UIViewController {
-    // MARK: - Types
-
-    // MARK: - Constants
-
+  
     // MARK: - IBOutlet
 
     @IBOutlet private var trackName: UILabel!
@@ -21,11 +18,7 @@ class DetailTrackViewController: UIViewController {
     @IBOutlet private var volumeOffButton: UIButton!
     @IBOutlet var durationLabel: UILabel!
 
-    // MARK: - Visual Components
-
-    // MARK: - Public Properties
-
-    // MARK: - Private Properties
+     // MARK: - Private Properties
 
     private lazy var displayLink: CADisplayLink = {
         let displayLink = CADisplayLink(target: self, selector: #selector(updatePlaybackStatus))
@@ -39,13 +32,6 @@ class DetailTrackViewController: UIViewController {
     private var currentVolume: Float = 0.3
 
     private var player = AVAudioPlayer()
-
-    // MARK: - Initializers
-
-    deinit {
-        displayLink.invalidate()
-        player.stop()
-    }
 
     // MARK: - Life Cycle
 
