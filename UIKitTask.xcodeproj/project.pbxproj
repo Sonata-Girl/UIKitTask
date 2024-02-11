@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		67192EB62B78B899004A7152 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67192EB52B78B899004A7152 /* Colors.xcassets */; };
 		672748692B725827004CFDBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672748682B725827004CFDBE /* AppDelegate.swift */; };
 		6727486B2B725827004CFDBE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727486A2B725827004CFDBE /* SceneDelegate.swift */; };
 		6727486D2B725827004CFDBE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727486C2B725827004CFDBE /* ViewController.swift */; };
@@ -16,6 +17,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		67192EB52B78B899004A7152 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		67192EBB2B78BC3B004A7152 /* Verdana-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Verdana-Bold.ttf"; sourceTree = "<group>"; };
+		67192EBC2B78BC3B004A7152 /* Verdana.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Verdana.ttf; sourceTree = "<group>"; };
 		672748652B725827004CFDBE /* UIKitTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIKitTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		672748682B725827004CFDBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6727486A2B725827004CFDBE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +41,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		67192EBA2B78BC2D004A7152 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				67192EBB2B78BC3B004A7152 /* Verdana-Bold.ttf */,
+				67192EBC2B78BC3B004A7152 /* Verdana.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		6727485C2B725827004CFDBE = {
 			isa = PBXGroup;
 			children = (
@@ -56,11 +69,13 @@
 		672748672B725827004CFDBE /* UIKitTask */ = {
 			isa = PBXGroup;
 			children = (
+				67192EBA2B78BC2D004A7152 /* Fonts */,
 				672748682B725827004CFDBE /* AppDelegate.swift */,
 				6727486A2B725827004CFDBE /* SceneDelegate.swift */,
 				6727486C2B725827004CFDBE /* ViewController.swift */,
 				6727486E2B725827004CFDBE /* Main.storyboard */,
 				672748712B725829004CFDBE /* Assets.xcassets */,
+				67192EB52B78B899004A7152 /* Colors.xcassets */,
 				672748732B725829004CFDBE /* LaunchScreen.storyboard */,
 				672748762B725829004CFDBE /* Info.plist */,
 			);
@@ -128,6 +143,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				672748752B725829004CFDBE /* LaunchScreen.storyboard in Resources */,
+				67192EB62B78B899004A7152 /* Colors.xcassets in Resources */,
 				672748722B725829004CFDBE /* Assets.xcassets in Resources */,
 				672748702B725827004CFDBE /* Main.storyboard in Resources */,
 			);
