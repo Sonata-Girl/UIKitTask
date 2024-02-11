@@ -14,6 +14,8 @@ class PlayerListViewController: UIViewController {
     @IBOutlet private var trackOneView: UIView!
     @IBOutlet private var trackTwoView: UIView!
     @IBOutlet private var trackThreeView: UIView!
+    @IBOutlet private var trackFourView: UIView!
+    @IBOutlet private var trackFiveView: UIView!
 
     // MARK: - Visual Components
 
@@ -43,20 +45,63 @@ class PlayerListViewController: UIViewController {
     private func setupGestures() {
         let tapOne = UITapGestureRecognizer(target: self, action: #selector(trackTapped(sender:)))
         trackOneView.addGestureRecognizer(tapOne)
+        trackOneView.isUserInteractionEnabled = true
+
         let tapTwo = UITapGestureRecognizer(target: self, action: #selector(trackTapped(sender:)))
         trackTwoView.addGestureRecognizer(tapTwo)
+        trackTwoView.isUserInteractionEnabled = true
+
         let tapThree = UITapGestureRecognizer(target: self, action: #selector(trackTapped(sender:)))
         trackThreeView.addGestureRecognizer(tapThree)
-        trackOneView.isUserInteractionEnabled = true
-        trackTwoView.isUserInteractionEnabled = true
         trackThreeView.isUserInteractionEnabled = true
+
+        let tapFour = UITapGestureRecognizer(target: self, action: #selector(trackTapped(sender:)))
+        trackFourView.addGestureRecognizer(tapFour)
+        trackFourView.isUserInteractionEnabled = true
+
+        let tapFive = UITapGestureRecognizer(target: self, action: #selector(trackTapped(sender:)))
+        trackFiveView.addGestureRecognizer(tapFive)
+        trackFiveView.isUserInteractionEnabled = true
     }
 
     private func getData() {
         tracks += [
-            Track(name: "Let it be", singer: "The Beatles", imageName: "letItBe"),
-            Track(name: "Yesterday", singer: "The Beatles", imageName: "yesterday"),
-            Track(name: "Show must go on", singer: "Queen", imageName: "queen")
+            Track(
+                name: "Let it be",
+                singer: "The Beatles",
+                imageName: "letItBe",
+                musicName: nil,
+                formatAudio: nil
+            ),
+            Track(
+                name: "Yesterday",
+
+                singer: "The Beatles",
+                imageName: "yesterday",
+                musicName: nil,
+                formatAudio: nil
+            ),
+            Track(
+                name: "Show must go on",
+                singer: "Queen",
+                imageName: "queen",
+                musicName: nil,
+                formatAudio: nil
+            ),
+            Track(
+                name: "Ever dream",
+                singer: "Nightwish",
+                imageName: "emptyAlbum",
+                musicName: "Nightwish",
+                formatAudio: "mp3"
+            ),
+            Track(
+                name: "Pumped up Kicks",
+                singer: "Dual session",
+                imageName: "pumpedUpKicks",
+                musicName: "Pumped up Kicks",
+                formatAudio: "mp3"
+            )
         ]
     }
 
@@ -71,17 +116,22 @@ class PlayerListViewController: UIViewController {
             let detailVC = storyboard?.instantiateViewController(identifier: "detailTrackViewController")
             as? DetailTrackViewController
         else { return }
-        var track: Track?
-        if sender.view == trackOneView {
-            track = tracks[0]
-        } else if sender.view == trackTwoView {
-            track = tracks[1]
-        } else if sender.view == trackThreeView {
-            track = tracks[2]
+        var indexTrack = 0
+        switch sender.view {
+        case trackOneView:
+            indexTrack = 0
+        case trackTwoView:
+            indexTrack = 1
+        case trackThreeView:
+            indexTrack = 2
+        case trackFourView:
+            indexTrack = 3
+        case trackFiveView:
+            indexTrack = 4
+        default: break
         }
-        guard let track else { return }
 
-        detailVC.configureView(track: track)
+        detailVC.configureView(tracks: tracks, indexTrack: indexTrack)
         present(detailVC, animated: true)
     }
 }
