@@ -1,9 +1,5 @@
-//
-//  UIColor+extension.swift
-//  UIKitTask
-//
-//  Created by Sonata Girl on 12.02.2024.
-//
+// UIColor+extension.swift
+// Copyright © RoadMap. All rights reserved.
 
 import UIKit
 
