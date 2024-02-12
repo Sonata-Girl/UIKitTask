@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "letItBe.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

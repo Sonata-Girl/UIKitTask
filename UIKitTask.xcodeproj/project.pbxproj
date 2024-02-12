@@ -7,19 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		67192EB62B78B899004A7152 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67192EB52B78B899004A7152 /* Colors.xcassets */; };
+		67192EBE2B78C708004A7152 /* DetailTrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67192EBD2B78C708004A7152 /* DetailTrackViewController.swift */; };
+		67192EC02B78CB63004A7152 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67192EBF2B78CB63004A7152 /* Track.swift */; };
+		67192EC72B78E16E004A7152 /* Pumped up Kicks.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 67192EC62B78E16E004A7152 /* Pumped up Kicks.mp3 */; };
+		67192ECD2B7930B9004A7152 /* Nightwish.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 67192ECC2B7930B9004A7152 /* Nightwish.mp3 */; };
 		672748692B725827004CFDBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672748682B725827004CFDBE /* AppDelegate.swift */; };
 		6727486B2B725827004CFDBE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727486A2B725827004CFDBE /* SceneDelegate.swift */; };
-		6727486D2B725827004CFDBE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727486C2B725827004CFDBE /* ViewController.swift */; };
+		6727486D2B725827004CFDBE /* PlayerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727486C2B725827004CFDBE /* PlayerListViewController.swift */; };
 		672748702B725827004CFDBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6727486E2B725827004CFDBE /* Main.storyboard */; };
 		672748722B725829004CFDBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 672748712B725829004CFDBE /* Assets.xcassets */; };
 		672748752B725829004CFDBE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 672748732B725829004CFDBE /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		67192EB52B78B899004A7152 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		67192EBB2B78BC3B004A7152 /* Verdana-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Verdana-Bold.ttf"; sourceTree = "<group>"; };
+		67192EBC2B78BC3B004A7152 /* Verdana.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Verdana.ttf; sourceTree = "<group>"; };
+		67192EBD2B78C708004A7152 /* DetailTrackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTrackViewController.swift; sourceTree = "<group>"; };
+		67192EBF2B78CB63004A7152 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
+		67192EC62B78E16E004A7152 /* Pumped up Kicks.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pumped up Kicks.mp3"; sourceTree = "<group>"; };
+		67192ECC2B7930B9004A7152 /* Nightwish.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Nightwish.mp3; sourceTree = "<group>"; };
 		672748652B725827004CFDBE /* UIKitTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIKitTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		672748682B725827004CFDBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6727486A2B725827004CFDBE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		6727486C2B725827004CFDBE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		6727486C2B725827004CFDBE /* PlayerListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerListViewController.swift; sourceTree = "<group>"; };
 		6727486F2B725827004CFDBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		672748712B725829004CFDBE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		672748742B725829004CFDBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -37,6 +49,59 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		67192EBA2B78BC2D004A7152 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				67192EBB2B78BC3B004A7152 /* Verdana-Bold.ttf */,
+				67192EBC2B78BC3B004A7152 /* Verdana.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		67192EC12B78CB82004A7152 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				67192EBF2B78CB63004A7152 /* Track.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		67192EC22B78CB89004A7152 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6727486E2B725827004CFDBE /* Main.storyboard */,
+				672748732B725829004CFDBE /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		67192EC32B78CB94004A7152 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				672748682B725827004CFDBE /* AppDelegate.swift */,
+				6727486A2B725827004CFDBE /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		67192EC42B78CB9A004A7152 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6727486C2B725827004CFDBE /* PlayerListViewController.swift */,
+				67192EBD2B78C708004A7152 /* DetailTrackViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		67192EC52B78E138004A7152 /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				67192EC62B78E16E004A7152 /* Pumped up Kicks.mp3 */,
+				67192ECC2B7930B9004A7152 /* Nightwish.mp3 */,
+			);
+			path = Music;
+			sourceTree = "<group>";
+		};
 		6727485C2B725827004CFDBE = {
 			isa = PBXGroup;
 			children = (
@@ -56,12 +121,14 @@
 		672748672B725827004CFDBE /* UIKitTask */ = {
 			isa = PBXGroup;
 			children = (
-				672748682B725827004CFDBE /* AppDelegate.swift */,
-				6727486A2B725827004CFDBE /* SceneDelegate.swift */,
-				6727486C2B725827004CFDBE /* ViewController.swift */,
-				6727486E2B725827004CFDBE /* Main.storyboard */,
+				67192EC52B78E138004A7152 /* Music */,
+				67192EBA2B78BC2D004A7152 /* Fonts */,
+				67192EC32B78CB94004A7152 /* App */,
+				67192EC12B78CB82004A7152 /* Models */,
+				67192EC42B78CB9A004A7152 /* Controllers */,
+				67192EC22B78CB89004A7152 /* Views */,
 				672748712B725829004CFDBE /* Assets.xcassets */,
-				672748732B725829004CFDBE /* LaunchScreen.storyboard */,
+				67192EB52B78B899004A7152 /* Colors.xcassets */,
 				672748762B725829004CFDBE /* Info.plist */,
 			);
 			path = UIKitTask;
@@ -128,6 +195,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				672748752B725829004CFDBE /* LaunchScreen.storyboard in Resources */,
+				67192EB62B78B899004A7152 /* Colors.xcassets in Resources */,
+				67192EC72B78E16E004A7152 /* Pumped up Kicks.mp3 in Resources */,
+				67192ECD2B7930B9004A7152 /* Nightwish.mp3 in Resources */,
 				672748722B725829004CFDBE /* Assets.xcassets in Resources */,
 				672748702B725827004CFDBE /* Main.storyboard in Resources */,
 			);
@@ -183,7 +253,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6727486D2B725827004CFDBE /* ViewController.swift in Sources */,
+				6727486D2B725827004CFDBE /* PlayerListViewController.swift in Sources */,
+				67192EC02B78CB63004A7152 /* Track.swift in Sources */,
+				67192EBE2B78C708004A7152 /* DetailTrackViewController.swift in Sources */,
 				672748692B725827004CFDBE /* AppDelegate.swift in Sources */,
 				6727486B2B725827004CFDBE /* SceneDelegate.swift in Sources */,
 			);
@@ -338,6 +410,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RD3BV5S34P;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = UIKitTask/Info.plist;
@@ -367,6 +440,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RD3BV5S34P;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = UIKitTask/Info.plist;
