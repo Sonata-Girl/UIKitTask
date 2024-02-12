@@ -33,13 +33,24 @@ class ProductOptionsViewController: UIViewController {
         return imageView
     }()
 
-//    private let shareButton: UIButton = {
-//        let button = UIButton()
-//        button.setBackgroundImage(UIImage(systemName: "paperplane.fill"), for: .normal)
-//        button.tintColor = .label
-    ////        button.addTarget(nil, action: #selector(shareButtonTapped), for: .touchUpInside)
-//        return button
-//    }()
+    private lazy var leftButtonBar: UIButton = {
+        var leftButtonBar = UIButton()
+        leftButtonBar.setImage(.backArrow, for: .normal)
+        leftButtonBar.backgroundColor = .appLightSky
+        leftButtonBar.layer.cornerRadius = 23
+        leftButtonBar.frame.size.height = 44
+        leftButtonBar.frame.size.width = 44
+        leftButtonBar.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
+        return leftButtonBar
+    }()
+
+    private lazy var rightButtonBar: UIButton = {
+        let button = UIButton()
+        button.setBackgroundImage(UIImage(systemName: "paperplane.fill"), for: .normal)
+        button.tintColor = .label
+        button.addTarget(nil, action: #selector(shareButtonTapped), for: .touchUpInside)
+        return button
+    }()
 
     private lazy var typeProductSegmented: UISegmentedControl = {
         let segmented = UISegmentedControl(items: products.map(\.type))
@@ -112,13 +123,7 @@ class ProductOptionsViewController: UIViewController {
         return label
     }()
 
-    private let orderButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Заказать", for: .normal)
-        button.backgroundColor = .appTurquoise
-        button.layer.cornerRadius = 15
-        return button
-    }()
+    private let orderButton: UIButton = DefaultButton(text: "Заказать")
 
     // MARK: - Public Properties
 
@@ -138,6 +143,7 @@ class ProductOptionsViewController: UIViewController {
         super.viewDidLoad()
         setupHierarchy()
         setupUI()
+        setupNavigationBar()
     }
 
     private func setupHierarchy() {
@@ -189,8 +195,11 @@ class ProductOptionsViewController: UIViewController {
         orderButton.frame = .init(x: 15, y: 717, width: 345, height: 53)
 
         productImage.frame = .init(x: 112, y: 128, width: 150, height: 150)
+    }
 
-//        shareButton.frame = .init(x: <#T##CGFloat#>, y: <#T##CGFloat#>, width: <#T##CGFloat#>, height: <#T##CGFloat#>)
+    private func setupNavigationBar() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftButtonBar)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightButtonBar)
     }
 
     // MARK: - Public methods
@@ -204,6 +213,17 @@ class ProductOptionsViewController: UIViewController {
             let segmentedIndex = sender.selectedSegmentIndex
             productImage.image = UIImage(named: products[segmentedIndex].imageName)
         }
+    }
+
+    @objc private func backButtonPressed() {
+        navigationController?.popViewController(animated: true)
+    }
+
+    @objc private func shareButtonTapped() {
+        let items = ["Лови промокод roadmaplove на любой напиток из Кофейнов"]
+
+        let shareController = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        present(shareController, animated: true)
     }
 
     // MARK: - IBAction или @objc (private)

@@ -24,7 +24,8 @@
 		67192EFA2B7A8845004A7152 /* Verdana-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 67192EF22B7A880C004A7152 /* Verdana-Bold.ttf */; };
 		67192EFC2B7AA31B004A7152 /* Coffee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67192EFB2B7AA31B004A7152 /* Coffee.swift */; };
 		67192EFE2B7AA3CE004A7152 /* ExtraOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67192EFD2B7AA3CE004A7152 /* ExtraOption.swift */; };
-		67192F002B7AA43D004A7152 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67192EFF2B7AA43D004A7152 /* Order.swift */; };
+		67192F002B7AA43D004A7152 /* OrderStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67192EFF2B7AA43D004A7152 /* OrderStorageService.swift */; };
+		67192F052B7AB5A5004A7152 /* DefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67192F042B7AB5A5004A7152 /* DefaultButton.swift */; };
 		672748692B725827004CFDBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672748682B725827004CFDBE /* AppDelegate.swift */; };
 		6727486B2B725827004CFDBE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727486A2B725827004CFDBE /* SceneDelegate.swift */; };
 		672748722B725829004CFDBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 672748712B725829004CFDBE /* Assets.xcassets */; };
@@ -49,7 +50,8 @@
 		67192EF52B7A8839004A7152 /* Verdana-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Verdana-BoldItalic.ttf"; sourceTree = "<group>"; };
 		67192EFB2B7AA31B004A7152 /* Coffee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coffee.swift; sourceTree = "<group>"; };
 		67192EFD2B7AA3CE004A7152 /* ExtraOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraOption.swift; sourceTree = "<group>"; };
-		67192EFF2B7AA43D004A7152 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		67192EFF2B7AA43D004A7152 /* OrderStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderStorageService.swift; sourceTree = "<group>"; };
+		67192F042B7AB5A5004A7152 /* DefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultButton.swift; sourceTree = "<group>"; };
 		672748652B725827004CFDBE /* UIKitTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIKitTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		672748682B725827004CFDBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6727486A2B725827004CFDBE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 		67192EE82B7A6426004A7152 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				67192F032B7AB580004A7152 /* CustomUI */,
 				67192EEC2B7A8652004A7152 /* UIFont+extension.swift */,
 				67192EEE2B7A865F004A7152 /* UIColor+extension.swift */,
 			);
@@ -193,7 +196,7 @@
 			children = (
 				67192EFB2B7AA31B004A7152 /* Coffee.swift */,
 				67192EFD2B7AA3CE004A7152 /* ExtraOption.swift */,
-				67192EFF2B7AA43D004A7152 /* Order.swift */,
+				67192EFF2B7AA43D004A7152 /* OrderStorageService.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -208,6 +211,14 @@
 				67192EF42B7A881E004A7152 /* AmaticSC-Regular.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		67192F032B7AB580004A7152 /* CustomUI */ = {
+			isa = PBXGroup;
+			children = (
+				67192F042B7AB5A5004A7152 /* DefaultButton.swift */,
+			);
+			path = CustomUI;
 			sourceTree = "<group>";
 		};
 		6727485C2B725827004CFDBE = {
@@ -358,7 +369,7 @@
 			files = (
 				67192ED42B7A5F26004A7152 /* CafeViewController.swift in Sources */,
 				67192ED12B7A5F08004A7152 /* LoginViewController.swift in Sources */,
-				67192F002B7AA43D004A7152 /* Order.swift in Sources */,
+				67192F002B7AA43D004A7152 /* OrderStorageService.swift in Sources */,
 				67192EE02B7A6072004A7152 /* BillViewController.swift in Sources */,
 				67192EDA2B7A5F8B004A7152 /* ExtraOptionsViewController.swift in Sources */,
 				67192EDD2B7A5FDF004A7152 /* CoffeeRoastingViewController.swift in Sources */,
@@ -370,6 +381,7 @@
 				67192ED72B7A5F5C004A7152 /* ProductOptionsViewController.swift in Sources */,
 				67192EE32B7A60CC004A7152 /* FinishedOrderViewController.swift in Sources */,
 				67192EFC2B7AA31B004A7152 /* Coffee.swift in Sources */,
+				67192F052B7AB5A5004A7152 /* DefaultButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
