@@ -59,8 +59,8 @@
 		67192ECF2B7A5ECE004A7152 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				67192ED22B7A5F0C004A7152 /* LoginScene */,
 				67192ED52B7A5F2A004A7152 /* CafeScene */,
+				67192ED22B7A5F0C004A7152 /* LoginScene */,
 				67192ED82B7A5F5F004A7152 /* ProductOptionsScene */,
 				67192EDB2B7A5F8E004A7152 /* ExtraOptionsScene */,
 				67192EDE2B7A5FE2004A7152 /* CoffeeRoastingScene */,

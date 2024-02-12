@@ -12,6 +12,11 @@ class ProductOptionsViewController: UIViewController {
     // MARK: - IBOutlet
 
     // MARK: - Visual Components
+    private let topView: UIView = {
+        let view = UIView()
+//        view.backgroundColor =
+        return view
+    }()
 
     // MARK: - Public Properties
 
