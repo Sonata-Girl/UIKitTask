@@ -5,7 +5,6 @@ import UIKit
 
 /// Стартовый экран приложений, список песен
 class PlayerListViewController: UIViewController {
-
     // MARK: - IBOutlet
 
     @IBOutlet private var trackOneView: UIView!

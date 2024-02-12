@@ -6,7 +6,6 @@ import UIKit
 
 /// Контроллер экрана детализации выбранного трека (storyboard ID detailTrackViewController)
 class DetailTrackViewController: UIViewController {
-  
     // MARK: - IBOutlet
 
     @IBOutlet private var trackName: UILabel!
@@ -18,12 +17,9 @@ class DetailTrackViewController: UIViewController {
     @IBOutlet private var volumeOffButton: UIButton!
     @IBOutlet var durationLabel: UILabel!
 
-     // MARK: - Private Properties
+    // MARK: - Private Properties
 
-    private lazy var displayLink: CADisplayLink = {
-        let displayLink = CADisplayLink(target: self, selector: #selector(updatePlaybackStatus))
-        return displayLink
-    }()
+    private var displayLink: CADisplayLink?
 
     private var tracks: [Track]?
     private var track: Track?
@@ -79,7 +75,11 @@ class DetailTrackViewController: UIViewController {
         do {
             if let audioPath = Bundle.main.path(forResource: track?.musicName, ofType: track?.formatAudio) {
                 try player = AVAudioPlayer(contentsOf: URL(fileURLWithPath: audioPath))
+
                 setupStartPositionOfPlayer()
+                setupDisplayLinkForUpdateSlider()
+
+                player.play()
             }
         } catch {
             print("Error")
@@ -91,13 +91,19 @@ class DetailTrackViewController: UIViewController {
         player.volume = currentVolume
         volumeSlider.value = currentVolume
 
-        displayLink.add(to: .main, forMode: .common)
-        player.play()
         updateTimeLabel()
+    }
+
+    private func setupDisplayLinkForUpdateSlider() {
+        let displayLink = CADisplayLink(target: self, selector: #selector(updatePlaybackStatus))
+        displayLink.add(to: .main, forMode: .common)
     }
 
     private func setupNextTrack() {
         guard let tracks, !tracks.isEmpty else { return }
+        player.stop()
+        displayLink?.invalidate()
+
         if currentTrack == tracks.count - 1 {
             currentTrack = 0
         } else {
@@ -110,6 +116,9 @@ class DetailTrackViewController: UIViewController {
 
     private func setupPreviousTrack() {
         guard let tracks, !tracks.isEmpty else { return }
+        player.stop()
+        displayLink?.invalidate()
+
         if currentTrack == 0 {
             currentTrack = tracks.count - 1
         } else {
@@ -182,7 +191,7 @@ class DetailTrackViewController: UIViewController {
     }
 
     @IBAction private func closeButtonPressed(_ sender: UIButton) {
-        displayLink.invalidate()
+        displayLink?.invalidate()
         player.stop()
         dismiss(animated: true)
     }
@@ -190,10 +199,10 @@ class DetailTrackViewController: UIViewController {
     @IBAction private func pauseButtonPressed(_ sender: UIButton) {
         if player.isPlaying {
             player.stop()
-            displayLink.isPaused = true
+            displayLink?.isPaused = true
         } else {
             player.play()
-            displayLink.isPaused = false
+            displayLink?.isPaused = false
         }
         changeStatePauseButton()
     }
@@ -207,7 +216,6 @@ class DetailTrackViewController: UIViewController {
     }
 
     @IBAction func nextTrackButtonPressed(_ sender: UIButton) {
-        player.stop()
         setupNextTrack()
     }
 
