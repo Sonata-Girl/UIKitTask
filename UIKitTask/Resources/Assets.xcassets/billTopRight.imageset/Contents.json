@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "billTopRight.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
