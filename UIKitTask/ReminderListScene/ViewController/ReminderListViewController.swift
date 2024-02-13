@@ -5,10 +5,7 @@ import UIKit
 
 /// Главный экран приложения, список день рождений контактов
 final class ReminderListViewController: UIViewController {
-    // MARK: - Visual Components
-
-    // MARK: - Public Properties
-
+   
     // MARK: - Private Properties
 
     private var lastViewYOrigin: CGFloat = 35
@@ -27,13 +24,7 @@ final class ReminderListViewController: UIViewController {
         view.backgroundColor = .white
     }
 
-    // MARK: - Life Cycle
-
-    // MARK: - Public methods
-
-    // MARK: - IBAction или @objc (not private)
-
-    // MARK: - Private Methods
+     // MARK: - Private Methods
 
     @objc private func addNewContactBirthday() {
         let addContactViewController = ContactInfoViewController()
