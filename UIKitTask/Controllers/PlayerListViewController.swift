@@ -91,12 +91,6 @@ class PlayerListViewController: UIViewController {
         ]
     }
 
-    // MARK: - IBAction или @objc (private)
-
-    @objc private func trackTapped(sender: UITapGestureRecognizer) {
-        prepareAndPresentData(sender: sender)
-    }
-
     private func prepareAndPresentData(sender: UITapGestureRecognizer) {
         guard
             let detailVC = storyboard?.instantiateViewController(identifier: "detailTrackViewController")
@@ -119,5 +113,9 @@ class PlayerListViewController: UIViewController {
 
         detailVC.configureView(tracks: tracks, indexTrack: indexTrack)
         present(detailVC, animated: true)
+    }
+
+    @objc private func trackTapped(sender: UITapGestureRecognizer) {
+        prepareAndPresentData(sender: sender)
     }
 }

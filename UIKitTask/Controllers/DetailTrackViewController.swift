@@ -39,6 +39,17 @@ class DetailTrackViewController: UIViewController {
         activateAudioPlayer()
     }
 
+
+    // MARK: - Public methods
+
+    func configureView(tracks: [Track], indexTrack: Int) {
+        self.tracks = tracks
+        track = tracks[indexTrack]
+        currentTrack = indexTrack
+    }
+
+    // MARK: - Private Methods
+
     private func setupUI() {
         trackContinuousSlider.setThumbImage(UIImage(named: "sliderButton"), for: .normal)
         trackContinuousSlider.setMaximumTrackImage(UIImage(named: "emptyTimeSliderStripe"), for: .normal)
@@ -60,16 +71,6 @@ class DetailTrackViewController: UIViewController {
         singerName.text = track.singer
         trackImageView.image = UIImage(named: "\(track.imageName)")
     }
-
-    // MARK: - Public methods
-
-    func configureView(tracks: [Track], indexTrack: Int) {
-        self.tracks = tracks
-        track = tracks[indexTrack]
-        currentTrack = indexTrack
-    }
-
-    // MARK: - Private Methods
 
     private func activateAudioPlayer() {
         do {
