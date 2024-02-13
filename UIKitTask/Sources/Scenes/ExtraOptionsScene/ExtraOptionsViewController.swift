@@ -5,7 +5,6 @@ import UIKit
 
 /// Экран выбора дополнительных ингредиентов для продукта
 final class ExtraOptionsViewController: UIViewController {
-   
     // MARK: - Visual Components
 
     private lazy var closeButton: UIButton = {
@@ -36,13 +35,22 @@ final class ExtraOptionsViewController: UIViewController {
 
     private var additions: [ExtraOption] = []
 
-   // MARK: - Life Cycle
+    // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupHierarchy()
         setupUI()
     }
+
+
+    // MARK: - Public methods
+
+    func setAdditions(additions: [ExtraOption]) {
+        self.additions = additions
+    }
+
+    // MARK: - Private Methods
 
     private func setupHierarchy() {
         view.addSubview(titleLabel)
@@ -85,14 +93,6 @@ final class ExtraOptionsViewController: UIViewController {
             currentLineY += height + 15
         }
     }
-
-    // MARK: - Public methods
-
-    func setAdditions(additions: [ExtraOption]) {
-        self.additions = additions
-    }
-
-    // MARK: - Private Methods
 
     @objc private func closeButtonPressed() {
         didClosedExtraOptionsScreen?(additions)

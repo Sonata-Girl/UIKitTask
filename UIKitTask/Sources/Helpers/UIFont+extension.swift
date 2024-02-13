@@ -3,7 +3,7 @@
 
 import UIKit
 
-/// Расширение для быстрого доступа к добавленным шрифтам
+/// Расширение для быстрого доступа к  шрифтам
 extension UIFont {
     static func setVerdanaBold(withSize: CGFloat) -> UIFont? {
         UIFont(name: "Verdana-Bold", size: withSize)

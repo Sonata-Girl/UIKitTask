@@ -5,7 +5,6 @@ import Foundation
 
 /// Модель заказа гостя
 struct OrderStorageService {
-
     // MARK: Private Properties
 
     private(set) var product: Coffee
@@ -22,7 +21,7 @@ struct OrderStorageService {
     }
 
     // MARK: Public Methods
-   
+
     mutating func changeProduct(product: Coffee) {
         self.product = product
         calculatePrice()
@@ -36,7 +35,6 @@ struct OrderStorageService {
     mutating func changeRoasting(roastingType: RoastingType) {
         roasting = roastingType
     }
-
 
     // MARK: Private Methods
 

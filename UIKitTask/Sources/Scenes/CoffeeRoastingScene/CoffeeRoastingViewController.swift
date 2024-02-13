@@ -54,6 +54,8 @@ final class CoffeeRoastingViewController: UIViewController {
         setStatesCells()
     }
 
+    // MARK: - Private Methods
+
     private func setupHierarchy() {
         [
             closeButton,
@@ -70,8 +72,6 @@ final class CoffeeRoastingViewController: UIViewController {
         roastingHighButton.frame = .init(x: 15, y: 102, width: 165, height: 165)
         roastingLightButton.frame = .init(x: 195, y: 102, width: 165, height: 165)
     }
-
-    // MARK: - Private Methods
 
     private func changeStateCell(sender: UIView, isSelected: Bool) {
         if isSelected {

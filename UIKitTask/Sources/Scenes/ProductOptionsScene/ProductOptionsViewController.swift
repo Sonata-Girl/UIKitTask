@@ -29,7 +29,6 @@ enum RoastingType {
 
 /// Настройка и выбор доп.ингредиентов продукта для заказа, пока только Кофе
 final class ProductOptionsViewController: UIViewController {
-
     // MARK: - Visual Components
 
     private let topView: UIView = {
@@ -114,7 +113,7 @@ final class ProductOptionsViewController: UIViewController {
         return button
     }()
 
-     // MARK: - Private Properties
+    // MARK: - Private Properties
 
     private var model: OrderStorageService?
 
@@ -123,8 +122,6 @@ final class ProductOptionsViewController: UIViewController {
         Coffee(type: "Капучино", imageName: "cappuccino", price: 150),
         Coffee(type: "Латте", imageName: "latte", price: 200)
     ]
-
-    // MARK: - Initializers
 
     // MARK: - Life Cycle
 
@@ -136,6 +133,8 @@ final class ProductOptionsViewController: UIViewController {
 
         getData()
     }
+
+    // MARK: - Private Methods
 
     private func setupHierarchy() {
         [
@@ -175,8 +174,6 @@ final class ProductOptionsViewController: UIViewController {
             roasting: .high
         )
     }
-
-    // MARK: - Private Methods
 
     private func updateRoasting() {
         guard let model else { return }
@@ -233,6 +230,8 @@ final class ProductOptionsViewController: UIViewController {
 //        billViewController.configureOrder(order: OrderStorageService)
         billViewController.modalPresentationStyle = .pageSheet
         present(billViewController, animated: true)
+
+
     }
 
     @objc private func productChanged(sender: UISegmentedControl) {
