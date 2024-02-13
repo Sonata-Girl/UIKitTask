@@ -65,6 +65,7 @@ final class LoginViewController: UIViewController {
         textField.font = .setVerdana(withSize: 14)
         textField.placeholder = "Введите пароль"
         textField.textColor = .label
+        textField.isSecureTextEntry = true
         textField.addTarget(self, action: #selector(passwordTextChanged), for: .editingChanged)
         return textField
     }()

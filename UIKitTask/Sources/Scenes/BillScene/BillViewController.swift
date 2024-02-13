@@ -6,9 +6,9 @@ import UIKit
 protocol BillViewControllerProtocol: AnyObject {
     func didClosedScreen()
 }
+
 /// Экран для показа итоговой суммы продукта и перехода для оплаты
 final class BillViewController: UIViewController {
-
     // MARK: - Visual Components
 
     private let whiteView: UIView = {
@@ -128,10 +128,10 @@ final class BillViewController: UIViewController {
         button.layer.cornerRadius = 12
         return button
     }()
-    
+
     // MARK: - Public Properties
-    
-    weak var delegate: (BillViewControllerProtocol)?
+
+    weak var delegate: BillViewControllerProtocol?
 
     // MARK: - Life Cycle
 
@@ -142,7 +142,7 @@ final class BillViewController: UIViewController {
     }
 
     // MARK: - Private Methods
-    
+
     private func setupHierarchy() {
         view.addSubview(whiteView)
         whiteView.addSubview(closeButton)
@@ -181,7 +181,7 @@ final class BillViewController: UIViewController {
     @objc private func closeButtonTapped() {
         dismiss(animated: true)
     }
-    
+
     @objc private func payButtonTapped() {
         let finishedViewController = FinishedOrderViewController()
         finishedViewController.modalPresentationStyle = .fullScreen
