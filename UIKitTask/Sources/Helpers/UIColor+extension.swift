@@ -1,13 +1,10 @@
-//
-//  UIColor+extension.swift
-//  UIKitTask
-//
-//  Created by Sonata Girl on 12.02.2024.
-//
+// UIColor+extension.swift
+// Copyright © RoadMap. All rights reserved.
 
 import UIKit
 
 /// Расширение для быстрого доступа к добавленным цветам
+
 extension UIColor {
     var appBeige: UIColor? {
         UIColor(named: "appBeige") ?? nil

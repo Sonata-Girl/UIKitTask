@@ -25,6 +25,7 @@ class ProductOptionsViewController: UIViewController {
         super.viewDidLoad()
         setupHierarchy()
         setupUI()
+        view.backgroundColor = .cyan
     }
 
     private func setupHierarchy() {}
