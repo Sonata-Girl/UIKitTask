@@ -5,12 +5,7 @@ import UIKit
 
 /// Экран выбора дополнительных ингредиентов для продукта
 final class ExtraOptionsViewController: UIViewController {
-    // MARK: - Types
-
-    // MARK: - Constants
-
-    // MARK: - IBOutlet
-
+   
     // MARK: - Visual Components
 
     private lazy var closeButton: UIButton = {
@@ -41,9 +36,7 @@ final class ExtraOptionsViewController: UIViewController {
 
     private var additions: [ExtraOption] = []
 
-    // MARK: - Initializers
-
-    // MARK: - Life Cycle
+   // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,8 +91,6 @@ final class ExtraOptionsViewController: UIViewController {
     func setAdditions(additions: [ExtraOption]) {
         self.additions = additions
     }
-
-    // MARK: - IBAction или @objc (not private)
 
     // MARK: - Private Methods
 

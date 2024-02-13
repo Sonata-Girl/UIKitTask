@@ -29,11 +29,6 @@ enum RoastingType {
 
 /// Настройка и выбор доп.ингредиентов продукта для заказа, пока только Кофе
 final class ProductOptionsViewController: UIViewController {
-    // MARK: - Types
-
-    // MARK: - Constants
-
-    // MARK: - IBOutlet
 
     // MARK: - Visual Components
 
@@ -41,7 +36,7 @@ final class ProductOptionsViewController: UIViewController {
         let view = UIView()
         view.backgroundColor = .appBeige
         view.layer.cornerRadius = 30
-        view.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMaxYCorner]
+        view.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         return view
     }()
 
@@ -113,11 +108,13 @@ final class ProductOptionsViewController: UIViewController {
         return label
     }()
 
-    private let orderButton: UIButton = DefaultButton(text: "Заказать")
+    private lazy var orderButton: UIButton = {
+        let button = DefaultButton(text: "Заказать")
+        button.addTarget(self, action: #selector(orderButtonPressed), for: .touchUpInside)
+        return button
+    }()
 
-    // MARK: - Public Properties
-
-    // MARK: - Private Properties
+     // MARK: - Private Properties
 
     private var model: OrderStorageService?
 
@@ -179,10 +176,6 @@ final class ProductOptionsViewController: UIViewController {
         )
     }
 
-    // MARK: - Public methods
-
-    // MARK: - IBAction или @objc (not private)
-
     // MARK: - Private Methods
 
     private func updateRoasting() {
@@ -234,6 +227,14 @@ final class ProductOptionsViewController: UIViewController {
         present(extraOptionsViewController, animated: true)
     }
 
+    private func goToBillScreen() {
+        guard let model else { return }
+        let billViewController = BillViewController()
+//        billViewController.configureOrder(order: OrderStorageService)
+        billViewController.modalPresentationStyle = .pageSheet
+        present(billViewController, animated: true)
+    }
+
     @objc private func productChanged(sender: UISegmentedControl) {
         if sender == typeProductSegmented {
             let segmentedIndex = sender.selectedSegmentIndex
@@ -260,5 +261,9 @@ final class ProductOptionsViewController: UIViewController {
 
     @objc private func extraOptionsPressed(sender: UIView) {
         goToExtraOptionsScreen()
+    }
+
+    @objc private func orderButtonPressed(sender: UIView) {
+        goToBillScreen()
     }
 }

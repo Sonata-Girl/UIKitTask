@@ -5,11 +5,24 @@ import Foundation
 
 /// Модель заказа гостя
 struct OrderStorageService {
+
+    // MARK: Private Properties
+
     private(set) var product: Coffee
     private(set) var additions: [ExtraOption] = []
     private(set) var roasting: RoastingType
     private(set) var price = 0
 
+    // MARK: Initializers
+
+    init(product: Coffee, roasting: RoastingType) {
+        self.product = product
+        self.roasting = roasting
+        additions = fillAdditions()
+    }
+
+    // MARK: Public Methods
+   
     mutating func changeProduct(product: Coffee) {
         self.product = product
         calculatePrice()
@@ -24,11 +37,8 @@ struct OrderStorageService {
         roasting = roastingType
     }
 
-    init(product: Coffee, roasting: RoastingType) {
-        self.product = product
-        self.roasting = roasting
-        additions = fillAdditions()
-    }
+
+    // MARK: Private Methods
 
     private mutating func calculatePrice() {
         price = additions.filter(\.select).map(\.price).reduce(0, +) + product.price
