@@ -26,6 +26,7 @@
 		67192EFE2B7AA3CE004A7152 /* ExtraOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67192EFD2B7AA3CE004A7152 /* ExtraOption.swift */; };
 		67192F002B7AA43D004A7152 /* OrderStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67192EFF2B7AA43D004A7152 /* OrderStorageService.swift */; };
 		67192F052B7AB5A5004A7152 /* DefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67192F042B7AB5A5004A7152 /* DefaultButton.swift */; };
+		67192F072B7AB81A004A7152 /* DefaultBigButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67192F062B7AB81A004A7152 /* DefaultBigButton.swift */; };
 		672748692B725827004CFDBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672748682B725827004CFDBE /* AppDelegate.swift */; };
 		6727486B2B725827004CFDBE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727486A2B725827004CFDBE /* SceneDelegate.swift */; };
 		672748722B725829004CFDBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 672748712B725829004CFDBE /* Assets.xcassets */; };
@@ -52,6 +53,7 @@
 		67192EFD2B7AA3CE004A7152 /* ExtraOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraOption.swift; sourceTree = "<group>"; };
 		67192EFF2B7AA43D004A7152 /* OrderStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderStorageService.swift; sourceTree = "<group>"; };
 		67192F042B7AB5A5004A7152 /* DefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultButton.swift; sourceTree = "<group>"; };
+		67192F062B7AB81A004A7152 /* DefaultBigButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBigButton.swift; sourceTree = "<group>"; };
 		672748652B725827004CFDBE /* UIKitTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIKitTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		672748682B725827004CFDBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6727486A2B725827004CFDBE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				67192F042B7AB5A5004A7152 /* DefaultButton.swift */,
+				67192F062B7AB81A004A7152 /* DefaultBigButton.swift */,
 			);
 			path = CustomUI;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				67192ED42B7A5F26004A7152 /* CafeViewController.swift in Sources */,
 				67192ED12B7A5F08004A7152 /* LoginViewController.swift in Sources */,
 				67192F002B7AA43D004A7152 /* OrderStorageService.swift in Sources */,
+				67192F072B7AB81A004A7152 /* DefaultBigButton.swift in Sources */,
 				67192EE02B7A6072004A7152 /* BillViewController.swift in Sources */,
 				67192EDA2B7A5F8B004A7152 /* ExtraOptionsViewController.swift in Sources */,
 				67192EDD2B7A5FDF004A7152 /* CoffeeRoastingViewController.swift in Sources */,

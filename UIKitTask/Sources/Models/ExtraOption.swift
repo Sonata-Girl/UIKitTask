@@ -7,4 +7,5 @@ import Foundation
 struct ExtraOption {
     let name: String
     let price: Int
+    var select: Bool = false
 }

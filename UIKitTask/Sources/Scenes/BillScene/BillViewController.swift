@@ -4,7 +4,7 @@
 import UIKit
 
 /// Экран для показа итоговой суммы продукта и перехода для оплаты
-class BillViewController: UIViewController {
+final class BillViewController: UIViewController {
     // MARK: - Types
 
     // MARK: - Constants

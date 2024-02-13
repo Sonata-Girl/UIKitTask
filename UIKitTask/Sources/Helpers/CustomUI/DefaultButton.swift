@@ -5,8 +5,12 @@ import UIKit
 
 /// Кастомная кнопка для исключения дублирования создания кнопок
 final class DefaultButton: UIButton {
-    var text: String = ""
-    var color: UIColor?
+    // MARK: private Properties
+
+    private var text: String = ""
+    private var color: UIColor?
+
+    // MARK: Initializers
 
     init(text: String, color: UIColor = .appTurquoise) {
         super.init(frame: .zero)
@@ -21,7 +25,9 @@ final class DefaultButton: UIButton {
         setupButton()
     }
 
-    func setupButton() {
+    // MARK: Private Methods
+
+    private func setupButton() {
         titleLabel?.textColor = .white
         setTitle(text, for: .normal)
         titleLabel?.font = .setVerdanaBold(withSize: 18)

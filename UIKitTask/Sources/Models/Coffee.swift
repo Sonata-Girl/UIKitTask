@@ -7,4 +7,5 @@ import Foundation
 struct Coffee {
     let type: String
     let imageName: String
+    let price: Int
 }

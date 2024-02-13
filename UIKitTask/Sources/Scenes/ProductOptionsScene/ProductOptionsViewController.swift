@@ -5,12 +5,30 @@ import UIKit
 
 /// Степени поджарки кофе
 enum RoastingType {
-    case high(image: UIImage, title: String)
-    case light(image: UIImage, title: String)
+    case high
+    case light
+
+    var image: UIImage {
+        switch self {
+        case .high:
+            return .highRoasting
+        case .light:
+            return .lightRoasting
+        }
+    }
+
+    var title: String {
+        switch self {
+        case .high:
+            return "Темная \nобжарка"
+        case .light:
+            return "Свѣтлая \nобжарка"
+        }
+    }
 }
 
 /// Настройка и выбор доп.ингредиентов продукта для заказа, пока только Кофе
-class ProductOptionsViewController: UIViewController {
+final class ProductOptionsViewController: UIViewController {
     // MARK: - Types
 
     // MARK: - Constants
@@ -23,6 +41,7 @@ class ProductOptionsViewController: UIViewController {
         let view = UIView()
         view.backgroundColor = .appBeige
         view.layer.cornerRadius = 30
+        view.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMaxYCorner]
         return view
     }()
 
@@ -48,7 +67,7 @@ class ProductOptionsViewController: UIViewController {
         let button = UIButton()
         button.setBackgroundImage(UIImage(systemName: "paperplane.fill"), for: .normal)
         button.tintColor = .label
-        button.addTarget(nil, action: #selector(shareButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
         return button
     }()
 
@@ -68,50 +87,21 @@ class ProductOptionsViewController: UIViewController {
         return label
     }()
 
-    private let roastingView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .systemGray6
-        view.layer.cornerRadius = 20
-        return view
-    }()
-
-    private let roastingButton: UIButton = {
-        let button = UIButton()
-        button.setImage(.highRoasting, for: .normal)
+    private lazy var roastingButton: DefaultBigButton = {
+        let button = DefaultBigButton()
+        button.configureView(typeRoasting: .high)
+        button.addTarget(self, action: #selector(roastingPressed), for: .touchUpInside)
         return button
     }()
 
-    private let roastingLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Темная \nобжарка"
-        label.font = .setVerdana(withSize: 14)
-        label.textColor = .label
-        label.textAlignment = .center
-        label.numberOfLines = 2
-        return label
-    }()
-
-    private let extraOptionsView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .systemGray6
-        view.layer.cornerRadius = 20
-        return view
-    }()
-
-    private let extraOptionsButton: UIButton = {
-        let button = UIButton()
-        button.setImage(.plus, for: .normal)
+    private lazy var extraOptionsButton: DefaultBigButton = {
+        let button = DefaultBigButton()
+        button.configureView(
+            title: "Дополнительные \nингредіенты",
+            imageName: "plus"
+        )
+        button.addTarget(self, action: #selector(extraOptionsPressed), for: .touchUpInside)
         return button
-    }()
-
-    private let extraOptionsLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Дополнительные \nингредіенты"
-        label.font = .setVerdana(withSize: 14)
-        label.textColor = .label
-        label.textAlignment = .center
-        label.numberOfLines = 2
-        return label
     }()
 
     private let priceLabel: UILabel = {
@@ -129,10 +119,12 @@ class ProductOptionsViewController: UIViewController {
 
     // MARK: - Private Properties
 
+    private var model: OrderStorageService?
+
     private var products: [Coffee] = [
-        Coffee(type: "Американо", imageName: "americano"),
-        Coffee(type: "Капучино", imageName: "cappuccino"),
-        Coffee(type: "Латте", imageName: "latte")
+        Coffee(type: "Американо", imageName: "americano", price: 100),
+        Coffee(type: "Капучино", imageName: "cappuccino", price: 150),
+        Coffee(type: "Латте", imageName: "latte", price: 200)
     ]
 
     // MARK: - Initializers
@@ -144,6 +136,8 @@ class ProductOptionsViewController: UIViewController {
         setupHierarchy()
         setupUI()
         setupNavigationBar()
+
+        getData()
     }
 
     private func setupHierarchy() {
@@ -151,49 +145,25 @@ class ProductOptionsViewController: UIViewController {
             topView,
             typeProductSegmented,
             modificationLabel,
-            roastingView,
-            extraOptionsView,
+            roastingButton,
+            extraOptionsButton,
             priceLabel,
             orderButton
         ].forEach { view.addSubview($0) }
 
-        [
-            productImage,
-//            shareButton
-        ].forEach { topView.addSubview($0) }
-
-        [
-            roastingButton,
-            roastingLabel
-        ].forEach { roastingView.addSubview($0) }
-
-        [
-            extraOptionsButton,
-            extraOptionsLabel
-        ].forEach { extraOptionsView.addSubview($0) }
+        topView.addSubview(productImage)
     }
 
     private func setupUI() {
         view.backgroundColor = .white
 
         topView.frame = .init(x: 0, y: 0, width: 375, height: 346)
-
         typeProductSegmented.frame = .init(x: 15, y: 368, width: 345, height: 44)
-
         modificationLabel.frame = .init(x: 15, y: 432, width: 200, height: 30)
-
-        roastingView.frame = .init(x: 15, y: 482, width: 165, height: 165)
-        roastingButton.frame = .init(x: 31, y: 17, width: 100, height: 100)
-        roastingLabel.frame = .init(x: 0, y: 117, width: 165, height: 37)
-
-        extraOptionsView.frame = .init(x: 195, y: 482, width: 165, height: 165)
-        extraOptionsButton.frame = .init(x: 31, y: 17, width: 100, height: 100)
-        extraOptionsLabel.frame = .init(x: 0, y: 117, width: 165, height: 37)
-
+        roastingButton.frame = .init(x: 15, y: 482, width: 165, height: 165)
+        extraOptionsButton.frame = .init(x: 195, y: 482, width: 165, height: 165)
         priceLabel.frame = .init(x: 15, y: 669, width: 345, height: 30)
-
         orderButton.frame = .init(x: 15, y: 717, width: 345, height: 53)
-
         productImage.frame = .init(x: 112, y: 128, width: 150, height: 150)
     }
 
@@ -202,16 +172,74 @@ class ProductOptionsViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightButtonBar)
     }
 
+    private func getData() {
+        model = OrderStorageService(
+            product: products[0],
+            roasting: .high
+        )
+    }
+
     // MARK: - Public methods
 
     // MARK: - IBAction или @objc (not private)
 
     // MARK: - Private Methods
 
+    private func updateRoasting() {
+        guard let model else { return }
+        roastingButton.configureView(typeRoasting: model.roasting)
+    }
+
+    private func updateStateButtons() {
+        guard let model else { return }
+        if model.additions.filter(\.select).count > .zero {
+            extraOptionsButton.changeImage(imageName: "check")
+        } else {
+            extraOptionsButton.changeImage(imageName: "plus")
+        }
+    }
+
+    private func updatePrice() {
+        guard let model else { return }
+        priceLabel.text = "Цѣна - \(model.price) руб"
+    }
+
+    private func goToSelectRoastingScreen() {
+        let roastingViewController = CoffeeRoastingViewController()
+        roastingViewController.currentRoasting = model?.roasting
+        roastingViewController.didSelectRoasting = { [weak self] roastingType in
+            self?.model?.changeRoasting(roastingType: roastingType)
+            self?.updateRoasting()
+        }
+        roastingViewController.modalPresentationStyle = .formSheet
+        if let sheet = roastingViewController.sheetPresentationController {
+            sheet.detents = [.medium(), .large()]
+        }
+        present(roastingViewController, animated: true)
+    }
+
+    private func goToExtraOptionsScreen() {
+        guard let model else { return }
+        let extraOptionsViewController = ExtraOptionsViewController()
+        extraOptionsViewController.setAdditions(additions: model.additions)
+        extraOptionsViewController.didClosedExtraOptionsScreen = { [weak self] additions in
+            self?.model?.changeOptions(options: additions)
+            self?.updatePrice()
+            self?.updateStateButtons()
+        }
+        extraOptionsViewController.modalPresentationStyle = .formSheet
+        if let sheet = extraOptionsViewController.sheetPresentationController {
+            sheet.detents = [.medium(), .large()]
+        }
+        present(extraOptionsViewController, animated: true)
+    }
+
     @objc private func productChanged(sender: UISegmentedControl) {
         if sender == typeProductSegmented {
             let segmentedIndex = sender.selectedSegmentIndex
             productImage.image = UIImage(named: products[segmentedIndex].imageName)
+            model?.changeProduct(product: products[segmentedIndex])
+            updatePrice()
         }
     }
 
@@ -226,5 +254,11 @@ class ProductOptionsViewController: UIViewController {
         present(shareController, animated: true)
     }
 
-    // MARK: - IBAction или @objc (private)
+    @objc private func roastingPressed(sender: UIView) {
+        goToSelectRoastingScreen()
+    }
+
+    @objc private func extraOptionsPressed(sender: UIView) {
+        goToExtraOptionsScreen()
+    }
 }
