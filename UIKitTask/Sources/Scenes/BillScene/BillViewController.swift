@@ -8,7 +8,7 @@ protocol BillViewControllerProtocol: AnyObject {
     /// Функция закрытия экрана
     func didClosedScreen()
 }
-  
+
 /// Экран для показа итоговой суммы продукта и перехода для оплаты
 final class BillViewController: UIViewController {
     // MARK: Private Properties
@@ -204,6 +204,7 @@ final class BillViewController: UIViewController {
     @objc private func payButtonTapped() {
         let finishedViewController = FinishedOrderViewController()
         finishedViewController.modalPresentationStyle = .fullScreen
+        finishedViewController.delegate = self
         present(finishedViewController, animated: true)
     }
 }
@@ -213,6 +214,5 @@ final class BillViewController: UIViewController {
 extension BillViewController: FinishOrderProtocol {
     func didClosedScreen() {
         delegate?.didClosedScreen()
-        dismiss(animated: true)
     }
 }

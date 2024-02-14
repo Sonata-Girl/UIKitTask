@@ -107,6 +107,5 @@ final class FinishedOrderViewController: UIViewController {
 
     @objc private func okButtonTapped() {
         delegate?.didClosedScreen()
-        closeWindow()
     }
 }

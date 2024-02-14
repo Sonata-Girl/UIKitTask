@@ -216,7 +216,7 @@ final class ProductOptionsViewController: UIViewController {
     private func goToBillScreen() {
         guard let model else { return }
         let billViewController = BillViewController()
-//       billViewController.configureOrder(order: OrderStorageService)
+        billViewController.delegate = self
         billViewController.modalPresentationStyle = .pageSheet
         present(billViewController, animated: true)
     }
@@ -257,6 +257,7 @@ final class ProductOptionsViewController: UIViewController {
 
 extension ProductOptionsViewController: BillViewControllerProtocol {
     func didClosedScreen() {
-        navigationController?.popToRootViewController(animated: true)
+        dismiss(animated: false)
+        navigationController?.popToRootViewController(animated: false)
     }
 }
