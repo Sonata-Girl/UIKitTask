@@ -3,32 +3,20 @@
 
 import UIKit
 
-/// Степени поджарки кофе
-enum RoastingType {
-    case high
-    case light
-
-    var image: UIImage {
-        switch self {
-        case .high:
-            return .highRoasting
-        case .light:
-            return .lightRoasting
-        }
-    }
-
-    var title: String {
-        switch self {
-        case .high:
-            return "Темная \nобжарка"
-        case .light:
-            return "Свѣтлая \nобжарка"
-        }
-    }
-}
-
 /// Настройка и выбор доп.ингредиентов продукта для заказа, пока только Кофе
 final class ProductOptionsViewController: UIViewController {
+    // MARK: Constants
+
+    private enum Constants {
+        static let modificationsSectionTitle = "Модификация"
+        static let extraOptionButtonDefaultTitle = "Дополнительные \nингредіенты"
+        static let extraOptionButtonDefaultImageName = "plus"
+        static let orderButtonTitle = "Заказать"
+        static let promo = "Лови промокод roadmaplove на любой напиток из Кофейнов"
+        static let priceTitle = "Цѣна"
+        static let currencyName = "руб"
+    }
+
     // MARK: - Visual Components
 
     private let topView: UIView = {
@@ -41,7 +29,7 @@ final class ProductOptionsViewController: UIViewController {
 
     private let productImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill // заполнить
+        imageView.contentMode = .scaleAspectFill
         imageView.image = .americano
         return imageView
     }()
@@ -75,7 +63,7 @@ final class ProductOptionsViewController: UIViewController {
 
     private let modificationLabel: UILabel = {
         let label = UILabel()
-        label.text = "Модификация"
+        label.text = Constants.modificationsSectionTitle
         label.font = .setVerdanaBold(withSize: 18)
         label.textColor = .label
         return label
@@ -91,8 +79,8 @@ final class ProductOptionsViewController: UIViewController {
     private lazy var extraOptionsButton: DefaultBigButton = {
         let button = DefaultBigButton()
         button.configureView(
-            title: "Дополнительные \nингредіенты",
-            imageName: "plus"
+            title: Constants.extraOptionButtonDefaultTitle,
+            imageName: Constants.extraOptionButtonDefaultImageName
         )
         button.addTarget(self, action: #selector(extraOptionsPressed), for: .touchUpInside)
         return button
@@ -100,7 +88,6 @@ final class ProductOptionsViewController: UIViewController {
 
     private let priceLabel: UILabel = {
         let label = UILabel()
-        label.text = "Цѣна - 100 руб"
         label.font = .setVerdanaBold(withSize: 18)
         label.textColor = .label
         label.textAlignment = .right
@@ -108,7 +95,7 @@ final class ProductOptionsViewController: UIViewController {
     }()
 
     private lazy var orderButton: UIButton = {
-        let button = DefaultButton(text: "Заказать")
+        let button = DefaultButton(text: Constants.orderButtonTitle)
         button.addTarget(self, action: #selector(orderButtonPressed), for: .touchUpInside)
         return button
     }()
@@ -131,7 +118,7 @@ final class ProductOptionsViewController: UIViewController {
         setupUI()
         setupNavigationBar()
 
-        getData()
+        fillOrderModelForController()
     }
 
     // MARK: - Private Methods
@@ -168,11 +155,12 @@ final class ProductOptionsViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightButtonBar)
     }
 
-    private func getData() {
+    private func fillOrderModelForController() {
         model = OrderStorageService(
             product: products[0],
             roasting: .high
         )
+        updatePrice()
     }
 
     private func updateRoasting() {
@@ -191,13 +179,13 @@ final class ProductOptionsViewController: UIViewController {
 
     private func updatePrice() {
         guard let model else { return }
-        priceLabel.text = "Цѣна - \(model.price) руб"
+        priceLabel.text = "\(Constants.priceTitle) - \(model.price) \(Constants.currencyName)"
     }
 
     private func goToSelectRoastingScreen() {
         let roastingViewController = CoffeeRoastingViewController()
         roastingViewController.currentRoasting = model?.roasting
-        roastingViewController.didSelectRoasting = { [weak self] roastingType in
+        roastingViewController.selectedRoastingHandler = { [weak self] roastingType in
             self?.model?.changeRoasting(roastingType: roastingType)
             self?.updateRoasting()
         }
@@ -212,7 +200,7 @@ final class ProductOptionsViewController: UIViewController {
         guard let model else { return }
         let extraOptionsViewController = ExtraOptionsViewController()
         extraOptionsViewController.setAdditions(additions: model.additions)
-        extraOptionsViewController.didClosedExtraOptionsScreen = { [weak self] additions in
+        extraOptionsViewController.closeExtraOptionsScreenHandler = { [weak self] additions in
             self?.model?.changeOptions(options: additions)
             self?.updatePrice()
             self?.updateStateButtons()
@@ -224,10 +212,11 @@ final class ProductOptionsViewController: UIViewController {
         present(extraOptionsViewController, animated: true)
     }
 
+    // TODO: Доделаем при слиянии веток
     private func goToBillScreen() {
         guard let model else { return }
         let billViewController = BillViewController()
-//        billViewController.configureOrder(order: OrderStorageService)
+//       billViewController.configureOrder(order: OrderStorageService)
         billViewController.modalPresentationStyle = .pageSheet
         present(billViewController, animated: true)
     }
@@ -246,9 +235,10 @@ final class ProductOptionsViewController: UIViewController {
     }
 
     @objc private func shareButtonTapped() {
-        let items = ["Лови промокод roadmaplove на любой напиток из Кофейнов"]
-
-        let shareController = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        let shareController = UIActivityViewController(
+            activityItems: [Constants.promo],
+            applicationActivities: nil
+        )
         present(shareController, animated: true)
     }
 

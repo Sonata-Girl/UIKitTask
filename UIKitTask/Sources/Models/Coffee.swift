@@ -3,9 +3,12 @@
 
 import Foundation
 
-/// Модель кофе
+/// Кофейный напиток
 struct Coffee {
+    /// Тип напитка
     let type: String
+    /// Наименование картинки напитка
     let imageName: String
+    /// Цена напитка
     let price: Int
 }

@@ -5,6 +5,12 @@ import UIKit
 
 /// Кастомная кнопка для исключения дублирования создания кнопок
 final class DefaultButton: UIButton {
+    // MARK: Constants
+
+    private enum Constants {
+        static let radiusDivider: CGFloat = 4
+    }
+
     // MARK: private Properties
 
     private var text: String = ""
@@ -35,6 +41,6 @@ final class DefaultButton: UIButton {
 
         frame.size.width = 345
         frame.size.height = 53
-        layer.cornerRadius = frame.size.height / 4
+        layer.cornerRadius = frame.size.height / Constants.radiusDivider
     }
 }

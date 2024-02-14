@@ -3,18 +3,17 @@
 
 import UIKit
 
+/// Кастомная квадратная с угловым радиусом кнопка для отображения картинки и снизу описания
 final class DefaultBigButton: UIButton {
-    // MARK: - Visual Components
+    // MARK: Visual Components
 
     private let image: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "highRoasting")
         return imageView
     }()
 
     private let title: UILabel = {
         let label = UILabel()
-        label.text = "Темная \nобжарка"
         label.font = .setVerdana(withSize: 14)
         label.textColor = .label
         label.textAlignment = .center
@@ -22,10 +21,12 @@ final class DefaultBigButton: UIButton {
         return label
     }()
 
-    // MARK: - Initializers
+    // MARK: Initializers
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setTitle("", for: .normal)
+
         setupHierarchy()
         setupUI()
     }
@@ -36,19 +37,17 @@ final class DefaultBigButton: UIButton {
         setupUI()
     }
 
-    // MARK: - Public methods
+    // MARK: Public methods
 
     func configureView(typeRoasting: RoastingType) {
         image.image = typeRoasting.image
         title.text = typeRoasting.title
-        setTitle("", for: .normal)
         image.frame = .init(x: 31, y: 17, width: 100, height: 100)
     }
 
     func configureView(title: String, imageName: String) {
         image.image = UIImage(named: imageName)
         self.title.text = title
-        setTitle("", for: .normal)
         image.frame = .init(x: 67, y: 56, width: 29, height: 29)
     }
 
@@ -56,7 +55,7 @@ final class DefaultBigButton: UIButton {
         image.image = UIImage(named: imageName)
     }
 
-    // MARK: - Private methods
+    // MARK: Private methods
 
     private func setupHierarchy() {
         [

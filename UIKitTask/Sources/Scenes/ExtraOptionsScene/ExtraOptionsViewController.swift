@@ -5,19 +5,29 @@ import UIKit
 
 /// Экран выбора дополнительных ингредиентов для продукта
 final class ExtraOptionsViewController: UIViewController {
+    // MARK: Constants
+
+    private enum Constants {
+        static let titleExtraOptionsScreen = "Выберите дополнительные \nингредіенты"
+        static let currencyName = "руб"
+        static let sideInset: CGFloat = 20
+        static let labelsWidth: CGFloat = 54
+        static let verticalInset: CGFloat = 15
+    }
+
     // MARK: - Visual Components
 
     private lazy var closeButton: UIButton = {
         let button = UIButton()
         button.setBackgroundImage(UIImage(systemName: "xmark"), for: .normal)
         button.tintColor = .label
-        button.addTarget(nil, action: #selector(closeButtonPressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(closeButtonPressed), for: .touchUpInside)
         return button
     }()
 
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Выберите дополнительные \nингредіенты"
+        label.text = Constants.titleExtraOptionsScreen
         label.font = .setVerdanaBold(withSize: 18)
         label.numberOfLines = 2
         label.textColor = .label
@@ -29,7 +39,7 @@ final class ExtraOptionsViewController: UIViewController {
 
     // MARK: - Public Properties
 
-    var didClosedExtraOptionsScreen: (([ExtraOption]) -> ())?
+    var closeExtraOptionsScreenHandler: (([ExtraOption]) -> ())?
 
     // MARK: - Private Properties
 
@@ -71,9 +81,10 @@ final class ExtraOptionsViewController: UIViewController {
             labelName.numberOfLines = 2
             let myRange = NSRange(
                 location: addition.name.count + 1,
-                length: "+\(addition.price) руб".count
+                length: "+\(addition.price) \(Constants.currencyName)".count
             )
-            let attributedString = NSMutableAttributedString(string: "\(addition.name) +\(addition.price) руб")
+            let attributedString =
+                NSMutableAttributedString(string: "\(addition.name) +\(addition.price) \(Constants.currencyName)")
             attributedString.addAttribute(
                 NSAttributedString.Key.foregroundColor,
                 value: UIColor.systemGreen, range: myRange
@@ -83,18 +94,22 @@ final class ExtraOptionsViewController: UIViewController {
 
             let switcher = UISwitch()
             switcher.isOn = addition.select
-            switcher.frame = .init(x: view.frame.width - 20 - 54, y: currentLineY, width: 54, height: height)
+            switcher.frame = .init(
+                x: view.frame.width - Constants.sideInset - Constants.labelsWidth,
+                y: currentLineY,
+                width: Constants.labelsWidth, height: height
+            )
             switcher.addTarget(self, action: #selector(switcherValueChanged), for: .valueChanged)
             view.addSubview(labelName)
             view.addSubview(switcher)
             components.append(switcher)
 
-            currentLineY += height + 15
+            currentLineY += height + Constants.verticalInset
         }
     }
 
     @objc private func closeButtonPressed() {
-        didClosedExtraOptionsScreen?(additions)
+        closeExtraOptionsScreenHandler?(additions)
         dismiss(animated: true)
     }
 

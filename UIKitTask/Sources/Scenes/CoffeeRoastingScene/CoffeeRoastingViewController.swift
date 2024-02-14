@@ -3,21 +3,55 @@
 
 import UIKit
 
+/// Степени обжарки кофе
+enum RoastingType {
+    // Сильная степень обжарки
+    case high
+    // Слабая степень обжарки
+    case light
+
+    // Имя картинки для обжарок
+    var image: UIImage {
+        switch self {
+        case .high:
+            return .highRoasting
+        case .light:
+            return .lightRoasting
+        }
+    }
+
+    // Наименование обжарки для кнопок
+    var title: String {
+        switch self {
+        case .high:
+            return "Темная \nобжарка"
+        case .light:
+            return "Свѣтлая \nобжарка"
+        }
+    }
+}
+
 /// Экран выбора способа обжарки для кофе
 final class CoffeeRoastingViewController: UIViewController {
-    // MARK: - Visual Components
+    // MARK: Constants
+
+    private enum Constants {
+        static let titleRoastingScreen = "Уточните обжарку зеренъ"
+    }
+
+    // MARK: Visual Components
 
     private lazy var closeButton: UIButton = {
         let button = UIButton()
         button.setBackgroundImage(UIImage(systemName: "xmark"), for: .normal)
         button.tintColor = .label
-        button.addTarget(nil, action: #selector(closeButtonPressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(sendSelectionAndCloseScreen), for: .touchUpInside)
         return button
     }()
 
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Уточните обжарку зеренъ"
+        label.text = Constants.titleRoastingScreen
         label.font = .setVerdanaBold(withSize: 18)
         label.textColor = .label
         return label
@@ -41,7 +75,7 @@ final class CoffeeRoastingViewController: UIViewController {
 
     // MARK: - Public Properties
 
-    var didSelectRoasting: ((RoastingType) -> ())?
+    var selectedRoastingHandler: ((RoastingType) -> ())?
     var currentRoasting: RoastingType?
 
     // MARK: - Life Cycle
@@ -74,11 +108,7 @@ final class CoffeeRoastingViewController: UIViewController {
     }
 
     private func changeStateCell(sender: UIView, isSelected: Bool) {
-        if isSelected {
-            sender.layer.borderWidth = 1
-        } else {
-            sender.layer.borderWidth = 0
-        }
+        sender.layer.borderWidth = isSelected ? 1 : 0
     }
 
     private func setStatesCells() {
@@ -93,18 +123,14 @@ final class CoffeeRoastingViewController: UIViewController {
         }
     }
 
-    @objc private func closeButtonPressed() {
+    @objc private func sendSelectionAndCloseScreen() {
         guard let currentRoasting else { return }
-        didSelectRoasting?(currentRoasting)
+        selectedRoastingHandler?(currentRoasting)
         dismiss(animated: true)
     }
 
     @objc private func roastingSelected(sender: UIView) {
-        if sender == roastingHighButton {
-            currentRoasting = .high
-        } else {
-            currentRoasting = .light
-        }
+        currentRoasting = sender == roastingHighButton ? .high : .light
         setStatesCells()
     }
 }
