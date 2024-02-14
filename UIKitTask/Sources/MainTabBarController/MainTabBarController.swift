@@ -5,6 +5,23 @@ import UIKit
 
 /// Таб бар контроллер, инициализирует запуск стартовых экранов приложения по вкладкам
 final class MainTabBarController: UITabBarController {
+
+    // MARK: Constants
+
+    enum Constants {
+        static let catalogVCTitle = "Каталог"
+        static let catalogVCImage = UIImage(named: "catalog")
+        static let catalogVCSelectedImage = UIImage(systemName: "catalogRose")
+
+        static let basketVCTitle = "Корзина"
+        static let basketVCImage = UIImage(named: "basket")
+        static let basketVCSelectedImage = UIImage(named: "basketRose")
+
+        static let profileVCTitle = "Профиль"
+        static let profileVCImage = UIImage(named: "profile")
+        static let profileVCSelectedImage = UIImage(named: "profileRose")
+    }
+
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
@@ -45,23 +62,5 @@ final class MainTabBarController: UITabBarController {
 
         setViewControllers([catalogVC, basketVC, profileVC], animated: true)
         selectedViewController = catalogVC
-    }
-}
-
-// MARK: - Constants
-
-private extension MainTabBarController {
-    enum Constants {
-        static let catalogVCTitle = "Каталог"
-        static let catalogVCImage = UIImage(named: "catalog")
-        static let catalogVCSelectedImage = UIImage(systemName: "catalogRose")
-
-        static let basketVCTitle = "Корзина"
-        static let basketVCImage = UIImage(named: "basket")
-        static let basketVCSelectedImage = UIImage(named: "basketRose")
-
-        static let profileVCTitle = "Профиль"
-        static let profileVCImage = UIImage(named: "profile")
-        static let profileVCSelectedImage = UIImage(named: "profileRose")
     }
 }

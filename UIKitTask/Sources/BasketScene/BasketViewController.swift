@@ -4,8 +4,4 @@
 import UIKit
 
 /// Экран корзины для товаров
-class BasketViewController: UIViewController {
-
-
-}
-
+class BasketViewController: UIViewController {}
