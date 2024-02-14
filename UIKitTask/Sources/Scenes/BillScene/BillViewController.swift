@@ -8,7 +8,7 @@ protocol BillViewControllerProtocol: AnyObject {
     /// Функция закрытия экрана
     func didClosedScreen()
 }
-
+  
 /// Экран для показа итоговой суммы продукта и перехода для оплаты
 final class BillViewController: UIViewController {
     // MARK: Private Properties

@@ -13,13 +13,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         options connectionOptions: UIScene.ConnectionOptions
     ) {
         guard let scene = (scene as? UIWindowScene) else { return }
-
-        let navigationVC = UINavigationController()
-        let cafeVC = CafeViewController()
-
         window = UIWindow(windowScene: scene)
-        window?.rootViewController = navigationVC
-        navigationVC.pushViewController(cafeVC, animated: true)
+        window?.rootViewController = UINavigationController(rootViewController:  CafeViewController())
         window?.makeKeyAndVisible()
     }
 }

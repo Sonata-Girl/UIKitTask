@@ -4,8 +4,6 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Verdana-Bold.ttf</string>
-		<string>Verdana.ttf</string>
 		<string>Verdana-BoldItalic.ttf</string>
 		<string>AmaticSC-Bold.ttf</string>
 		<string>AmaticSC-Regular.ttf</string>

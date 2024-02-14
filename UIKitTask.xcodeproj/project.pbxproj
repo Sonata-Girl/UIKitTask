@@ -18,10 +18,12 @@
 		67192EED2B7A8652004A7152 /* UIFont+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67192EEC2B7A8652004A7152 /* UIFont+extension.swift */; };
 		67192EEF2B7A865F004A7152 /* UIColor+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67192EEE2B7A865F004A7152 /* UIColor+extension.swift */; };
 		67192EF62B7A883C004A7152 /* AmaticSC-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 67192EF42B7A881E004A7152 /* AmaticSC-Regular.ttf */; };
-		67192EF72B7A883E004A7152 /* AmaticSC-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 67192EF32B7A881E004A7152 /* AmaticSC-Bold.ttf */; };
-		67192EF82B7A8840004A7152 /* Verdana-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 67192EF52B7A8839004A7152 /* Verdana-BoldItalic.ttf */; };
-		67192EF92B7A8842004A7152 /* Verdana.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 67192EF12B7A880C004A7152 /* Verdana.ttf */; };
-		67192EFA2B7A8845004A7152 /* Verdana-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 67192EF22B7A880C004A7152 /* Verdana-Bold.ttf */; };
+		67192EFC2B7AA31B004A7152 /* Coffee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67192EFB2B7AA31B004A7152 /* Coffee.swift */; };
+		67192EFE2B7AA3CE004A7152 /* ExtraOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67192EFD2B7AA3CE004A7152 /* ExtraOption.swift */; };
+		67192F002B7AA43D004A7152 /* OrderStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67192EFF2B7AA43D004A7152 /* OrderStorageService.swift */; };
+		67192F052B7AB5A5004A7152 /* DefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67192F042B7AB5A5004A7152 /* DefaultButton.swift */; };
+		67192F072B7AB81A004A7152 /* DefaultBigButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67192F062B7AB81A004A7152 /* DefaultBigButton.swift */; };
+		67192F082B7BD5FA004A7152 /* AmaticSC-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 67192EF32B7A881E004A7152 /* AmaticSC-Bold.ttf */; };
 		672748692B725827004CFDBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672748682B725827004CFDBE /* AppDelegate.swift */; };
 		6727486B2B725827004CFDBE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727486A2B725827004CFDBE /* SceneDelegate.swift */; };
 		672748722B725829004CFDBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 672748712B725829004CFDBE /* Assets.xcassets */; };
@@ -39,11 +41,13 @@
 		67192EEA2B7A85EC004A7152 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		67192EEC2B7A8652004A7152 /* UIFont+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+extension.swift"; sourceTree = "<group>"; };
 		67192EEE2B7A865F004A7152 /* UIColor+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+extension.swift"; sourceTree = "<group>"; };
-		67192EF12B7A880C004A7152 /* Verdana.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Verdana.ttf; sourceTree = "<group>"; };
-		67192EF22B7A880C004A7152 /* Verdana-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Verdana-Bold.ttf"; sourceTree = "<group>"; };
 		67192EF32B7A881E004A7152 /* AmaticSC-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AmaticSC-Bold.ttf"; sourceTree = "<group>"; };
 		67192EF42B7A881E004A7152 /* AmaticSC-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AmaticSC-Regular.ttf"; sourceTree = "<group>"; };
-		67192EF52B7A8839004A7152 /* Verdana-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Verdana-BoldItalic.ttf"; sourceTree = "<group>"; };
+		67192EFB2B7AA31B004A7152 /* Coffee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coffee.swift; sourceTree = "<group>"; };
+		67192EFD2B7AA3CE004A7152 /* ExtraOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraOption.swift; sourceTree = "<group>"; };
+		67192EFF2B7AA43D004A7152 /* OrderStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderStorageService.swift; sourceTree = "<group>"; };
+		67192F042B7AB5A5004A7152 /* DefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultButton.swift; sourceTree = "<group>"; };
+		67192F062B7AB81A004A7152 /* DefaultBigButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBigButton.swift; sourceTree = "<group>"; };
 		672748652B725827004CFDBE /* UIKitTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIKitTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		672748682B725827004CFDBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6727486A2B725827004CFDBE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -75,8 +79,8 @@
 		67192ECF2B7A5ECE004A7152 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				67192ED22B7A5F0C004A7152 /* LoginScene */,
 				67192ED52B7A5F2A004A7152 /* CafeScene */,
+				67192ED22B7A5F0C004A7152 /* LoginScene */,
 				67192ED82B7A5F5F004A7152 /* ProductOptionsScene */,
 				67192EDB2B7A5F8E004A7152 /* ExtraOptionsScene */,
 				67192EDE2B7A5FE2004A7152 /* CoffeeRoastingScene */,
@@ -176,6 +180,7 @@
 		67192EE82B7A6426004A7152 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				67192F032B7AB580004A7152 /* CustomUI */,
 				67192EEC2B7A8652004A7152 /* UIFont+extension.swift */,
 				67192EEE2B7A865F004A7152 /* UIColor+extension.swift */,
 			);
@@ -185,6 +190,9 @@
 		67192EE92B7A6442004A7152 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				67192EFB2B7AA31B004A7152 /* Coffee.swift */,
+				67192EFD2B7AA3CE004A7152 /* ExtraOption.swift */,
+				67192EFF2B7AA43D004A7152 /* OrderStorageService.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -192,13 +200,19 @@
 		67192EF02B7A87F1004A7152 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				67192EF22B7A880C004A7152 /* Verdana-Bold.ttf */,
-				67192EF12B7A880C004A7152 /* Verdana.ttf */,
-				67192EF52B7A8839004A7152 /* Verdana-BoldItalic.ttf */,
 				67192EF32B7A881E004A7152 /* AmaticSC-Bold.ttf */,
 				67192EF42B7A881E004A7152 /* AmaticSC-Regular.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		67192F032B7AB580004A7152 /* CustomUI */ = {
+			isa = PBXGroup;
+			children = (
+				67192F042B7AB5A5004A7152 /* DefaultButton.swift */,
+				67192F062B7AB81A004A7152 /* DefaultBigButton.swift */,
+			);
+			path = CustomUI;
 			sourceTree = "<group>";
 		};
 		6727485C2B725827004CFDBE = {
@@ -287,13 +301,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				67192EF62B7A883C004A7152 /* AmaticSC-Regular.ttf in Resources */,
-				67192EF72B7A883E004A7152 /* AmaticSC-Bold.ttf in Resources */,
-				67192EF92B7A8842004A7152 /* Verdana.ttf in Resources */,
-				67192EFA2B7A8845004A7152 /* Verdana-Bold.ttf in Resources */,
 				672748752B725829004CFDBE /* LaunchScreen.storyboard in Resources */,
 				672748722B725829004CFDBE /* Assets.xcassets in Resources */,
 				67192EEB2B7A85EC004A7152 /* Colors.xcassets in Resources */,
-				67192EF82B7A8840004A7152 /* Verdana-BoldItalic.ttf in Resources */,
+				67192F082B7BD5FA004A7152 /* AmaticSC-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,15 +360,20 @@
 			files = (
 				67192ED42B7A5F26004A7152 /* CafeViewController.swift in Sources */,
 				67192ED12B7A5F08004A7152 /* LoginViewController.swift in Sources */,
+				67192F002B7AA43D004A7152 /* OrderStorageService.swift in Sources */,
+				67192F072B7AB81A004A7152 /* DefaultBigButton.swift in Sources */,
 				67192EE02B7A6072004A7152 /* BillViewController.swift in Sources */,
 				67192EDA2B7A5F8B004A7152 /* ExtraOptionsViewController.swift in Sources */,
 				67192EDD2B7A5FDF004A7152 /* CoffeeRoastingViewController.swift in Sources */,
+				67192EFE2B7AA3CE004A7152 /* ExtraOption.swift in Sources */,
 				672748692B725827004CFDBE /* AppDelegate.swift in Sources */,
 				67192EED2B7A8652004A7152 /* UIFont+extension.swift in Sources */,
 				6727486B2B725827004CFDBE /* SceneDelegate.swift in Sources */,
 				67192EEF2B7A865F004A7152 /* UIColor+extension.swift in Sources */,
 				67192ED72B7A5F5C004A7152 /* ProductOptionsViewController.swift in Sources */,
 				67192EE32B7A60CC004A7152 /* FinishedOrderViewController.swift in Sources */,
+				67192EFC2B7AA31B004A7152 /* Coffee.swift in Sources */,
+				67192F052B7AB5A5004A7152 /* DefaultButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

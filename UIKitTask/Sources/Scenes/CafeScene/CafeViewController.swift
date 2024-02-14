@@ -3,7 +3,7 @@
 
 import UIKit
 
-/// Экран кабинета гостя в приложении, выбор продукта для заказа
+/// Рутовый экран, кабинет гостя в приложении, выбор продукта для заказа, доступен после авторизации
 final class CafeViewController: UIViewController {
     // MARK: Private Properties
 
