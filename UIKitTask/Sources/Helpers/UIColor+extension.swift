@@ -4,6 +4,7 @@
 import UIKit
 
 /// Расширение для быстрого доступа к добавленным цветам
+
 extension UIColor {
     var appBeige: UIColor? {
         UIColor(named: "appBeige") ?? nil
