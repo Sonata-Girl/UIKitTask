@@ -5,12 +5,21 @@ import UIKit
 
 /// Стартовый экран для авторизации в приложении
 final class LoginViewController: UIViewController {
+    // MARK: Private Properties
+
+    private enum Constants {
+        static let logoImageName = "КофеиновЪ"
+        static let authorizationLabelTitle = "Авторизация"
+        static let loginLabelTitle = "Логин"
+        static let passwordLabelTitle = "Пароль"
+    }
+
     // MARK: - Visual Components
 
     private let logoImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(named: "КофеиновЪ")
+        imageView.image = UIImage(named: Constants.logoImageName)
         return imageView
     }()
 
@@ -25,7 +34,7 @@ final class LoginViewController: UIViewController {
         let label = UILabel()
         label.font = .setVerdanaBold(withSize: 26)
         label.textColor = .black
-        label.text = "Авторизация"
+        label.text = Constants.authorizationLabelTitle
         return label
     }()
 
@@ -33,7 +42,7 @@ final class LoginViewController: UIViewController {
         let label = UILabel()
         label.font = .setVerdanaBold(withSize: 16)
         label.textColor = .black
-        label.text = "Логин"
+        label.text = Constants.loginLabelTitle
         return label
     }()
 
@@ -56,7 +65,7 @@ final class LoginViewController: UIViewController {
         let label = UILabel()
         label.font = .setVerdanaBold(withSize: 16)
         label.textColor = .black
-        label.text = "Пароль"
+        label.text = Constants.passwordLabelTitle
         return label
     }()
 

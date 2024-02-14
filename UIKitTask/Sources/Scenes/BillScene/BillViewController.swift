@@ -11,6 +11,23 @@ protocol BillViewControllerProtocol: AnyObject {
 
 /// Экран для показа итоговой суммы продукта и перехода для оплаты
 final class BillViewController: UIViewController {
+    // MARK: Private Properties
+
+    private enum Constants {
+        static let closeButtonTitle = "x"
+        static let leftBranchImageTitle = "left branch"
+        static let rightBranchImageTitle = "right branch"
+        static let orderLabelTitle = "Ваш заказ"
+        static let americanoLabelTitle = "Вашъ Заказъ"
+        static let americanoPriceLabelTitle = "100 руб"
+        static let milkLabelTitle = "Молоко"
+        static let milkPriceLabelTitle = "50 руб"
+        static let espressoLabelTitle = "Эспрессо 50мл"
+        static let espressoPriceLabelTitle = "50 руб"
+        static let priceLabelTitle = "Цъна - 200 руб"
+        static let flowerImageTitle = "flower"
+    }
+
     // MARK: - Visual Components
 
     private let whiteView: UIView = {
@@ -22,7 +39,7 @@ final class BillViewController: UIViewController {
 
     private lazy var closeButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "x"), for: .normal)
+        button.setImage(UIImage(named: Constants.closeButtonTitle), for: .normal)
         button.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -30,14 +47,14 @@ final class BillViewController: UIViewController {
     private let leftBranchImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(named: "left branch")
+        imageView.image = UIImage(named: Constants.leftBranchImageTitle)
         return imageView
     }()
 
     private let rightBranchImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(named: "right branch")
+        imageView.image = UIImage(named: Constants.rightBranchImageTitle)
         return imageView
     }()
 
@@ -46,7 +63,7 @@ final class BillViewController: UIViewController {
         label.font = .setVerdanaBold(withSize: 18)
         label.textColor = .black
         label.textAlignment = .center
-        label.text = ""
+        label.text = Constants.orderLabelTitle
         return label
     }()
 
@@ -55,7 +72,7 @@ final class BillViewController: UIViewController {
         label.font = .setVerdanaBold(withSize: 16)
         label.textColor = .black
         label.textAlignment = .left
-        label.text = ""
+        label.text = Constants.americanoLabelTitle
         return label
     }()
 
@@ -64,7 +81,7 @@ final class BillViewController: UIViewController {
         label.font = .setVerdanaBold(withSize: 16)
         label.textColor = .black
         label.textAlignment = .right
-        label.text = ""
+        label.text = Constants.americanoPriceLabelTitle
         return label
     }()
 
@@ -73,7 +90,7 @@ final class BillViewController: UIViewController {
         label.font = .setVerdana(withSize: 16)
         label.textColor = .black
         label.textAlignment = .left
-        label.text = ""
+        label.text = Constants.milkLabelTitle
         return label
     }()
 
@@ -82,7 +99,7 @@ final class BillViewController: UIViewController {
         label.font = .setVerdana(withSize: 16)
         label.textColor = .black
         label.textAlignment = .right
-        label.text = ""
+        label.text = Constants.milkPriceLabelTitle
         return label
     }()
 
@@ -91,7 +108,7 @@ final class BillViewController: UIViewController {
         label.font = .setVerdana(withSize: 16)
         label.textColor = .black
         label.textAlignment = .left
-        label.text = ""
+        label.text = Constants.espressoLabelTitle
         return label
     }()
 
@@ -100,7 +117,7 @@ final class BillViewController: UIViewController {
         label.font = .setVerdana(withSize: 16)
         label.textColor = .black
         label.textAlignment = .right
-        label.text = ""
+        label.text = Constants.espressoPriceLabelTitle
         return label
     }()
 
@@ -109,14 +126,14 @@ final class BillViewController: UIViewController {
         label.font = .setVerdanaBold(withSize: 18)
         label.textColor = .black
         label.textAlignment = .center
-        label.text = ""
+        label.text = Constants.priceLabelTitle
         return label
     }()
 
     private let flowerImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(named: "flower")
+        imageView.image = UIImage(named: Constants.flowerImageTitle)
         return imageView
     }()
 

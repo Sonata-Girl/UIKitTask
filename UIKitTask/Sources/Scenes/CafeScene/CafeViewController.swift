@@ -5,12 +5,34 @@ import UIKit
 
 /// Экран кабинета гостя в приложении, выбор продукта для заказа
 final class CafeViewController: UIViewController {
+    // MARK: Private Properties
+
+    private enum Constants {
+        static let logoImageName = "КофеиновЪ"
+        static let guestLabelTitle = "Добро пожаловать,\nГость"
+        static let guestViewBackgroundColor = UIColor(red: 89 / 255, green: 190 / 255, blue: 199 / 255, alpha: 1)
+        static let geoViewBackgroundColor = UIColor(red: 235 / 255, green: 246 / 255, blue: 247 / 255, alpha: 1)
+        static let geoDescriptionColor = UIColor(red: 156 / 255, green: 161 / 255, blue: 168 / 255, alpha: 1)
+        static let pieViewBackgroundColor = UIColor(red: 225 / 255, green: 194 / 255, blue: 160 / 255, alpha: 1)
+        static let charLabeltitle = "Г"
+        static let geoLabelTitle = "Адреса кофеен"
+        static let geoDescriptionTitle = "Разръшите доступъ к геолокацiи для поиска ближайшей кофейни"
+        static let geoLocationImageName = "geolocation"
+        static let menuImageName = "menu"
+        static let pieLabelTitle = "Пти пате аля «РюсЪ»"
+        static let pieImageName = "pie"
+        static let drinksLabelTitle = "Горячiя напитки"
+        static let drinksImageName = "cup"
+        static let coffeeLabelTitle = "Кофий"
+        static let coffeeImageName = "grains"
+    }
+
     // MARK: - Visual Components
 
     private let logoImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(named: "КофеиновЪ")
+        imageView.image = UIImage(named: Constants.logoImageName)
         return imageView
     }()
 
@@ -18,14 +40,14 @@ final class CafeViewController: UIViewController {
         let label = UILabel()
         label.font = .setVerdanaBold(withSize: 16)
         label.textColor = .white
-        label.text = "Добро пожаловать,\nГость"
+        label.text = Constants.guestLabelTitle
         label.numberOfLines = 0
         return label
     }()
 
     private let guestView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: 89 / 255, green: 190 / 255, blue: 199 / 255, alpha: 1)
+        view.backgroundColor = Constants.guestViewBackgroundColor
         view.layer.cornerRadius = 23
         return view
     }()
@@ -34,7 +56,7 @@ final class CafeViewController: UIViewController {
         let label = UILabel()
         label.font = .setVerdanaBold(withSize: 16)
         label.textColor = .white
-        label.text = "Г"
+        label.text = Constants.charLabeltitle
         label.textAlignment = .center
         return label
     }()
@@ -48,7 +70,7 @@ final class CafeViewController: UIViewController {
 
     private let geoView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: 235 / 255, green: 246 / 255, blue: 247 / 255, alpha: 1)
+        view.backgroundColor = Constants.geoViewBackgroundColor
         view.layer.cornerRadius = 16
         return view
     }()
@@ -57,15 +79,15 @@ final class CafeViewController: UIViewController {
         let label = UILabel()
         label.font = .setVerdanaBold(withSize: 12)
         label.textColor = .black
-        label.text = "Адреса кофеен"
+        label.text = Constants.geoLabelTitle
         return label
     }()
 
     private let geoDescriptionLabel: UILabel = {
         let label = UILabel()
         label.font = .setVerdana(withSize: 12)
-        label.textColor = UIColor(red: 156 / 255, green: 161 / 255, blue: 168 / 255, alpha: 1)
-        label.text = "Разръшите доступъ к геолокацiи для поиска ближайшей кофейни"
+        label.textColor = Constants.geoDescriptionColor
+        label.text = Constants.geoDescriptionTitle
         label.numberOfLines = 0
         return label
     }()
@@ -73,20 +95,20 @@ final class CafeViewController: UIViewController {
     private let geoLocationImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(named: "Geolocation")
+        imageView.image = UIImage(named: Constants.geoLocationImageName)
         return imageView
     }()
 
     private let menuImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(named: "Menu")
+        imageView.image = UIImage(named: Constants.menuImageName)
         return imageView
     }()
 
     private let pieView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: 225 / 255, green: 194 / 255, blue: 160 / 255, alpha: 1)
+        view.backgroundColor = Constants.pieViewBackgroundColor
         view.layer.cornerRadius = 16
         return view
     }()
@@ -95,20 +117,20 @@ final class CafeViewController: UIViewController {
         let label = UILabel()
         label.font = .setVerdanaBold(withSize: 16)
         label.textColor = .black
-        label.text = "Пти пате аля «РюсЪ»"
+        label.text = Constants.pieLabelTitle
         return label
     }()
 
     private let pieImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(named: "pie")
+        imageView.image = UIImage(named: Constants.pieImageName)
         return imageView
     }()
 
     private let drinksView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: 225 / 255, green: 194 / 255, blue: 160 / 255, alpha: 1)
+        view.backgroundColor = Constants.pieViewBackgroundColor
         view.layer.cornerRadius = 16
         return view
     }()
@@ -117,20 +139,20 @@ final class CafeViewController: UIViewController {
         let label = UILabel()
         label.font = .setVerdanaBold(withSize: 16)
         label.textColor = .black
-        label.text = "Горячiя напитки"
+        label.text = Constants.drinksLabelTitle
         return label
     }()
 
     private let drinksImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(named: "cup")
+        imageView.image = UIImage(named: Constants.drinksImageName)
         return imageView
     }()
 
     private lazy var coffeeView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: 225 / 255, green: 194 / 255, blue: 160 / 255, alpha: 1)
+        view.backgroundColor = Constants.pieViewBackgroundColor
         view.layer.cornerRadius = 16
         let gesture = UITapGestureRecognizer(target: self, action: #selector(customViewTapped(_:)))
         view.addGestureRecognizer(gesture)
@@ -141,14 +163,14 @@ final class CafeViewController: UIViewController {
         let label = UILabel()
         label.font = .setVerdanaBold(withSize: 16)
         label.textColor = .black
-        label.text = "Кофий"
+        label.text = Constants.coffeeLabelTitle
         return label
     }()
 
     private let coffeeImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(named: "grains")
+        imageView.image = UIImage(named: Constants.coffeeImageName)
         return imageView
     }()
 

@@ -11,11 +11,22 @@ protocol FinishOrderProtocol: AnyObject {
 
 /// Экран отображения благодарности за заказ и просьба об отзыве, окончание процесса заказа и оплаты
 final class FinishedOrderViewController: UIViewController {
+    // MARK: Private Properties
+
+    private enum Constants {
+        static let closeButtonTitle = "x"
+        static let branchesImageTitle = "branches"
+        static let thanksImageTitle = "thanks"
+        static let promoLabelTitle = """
+        Разскажи о насъ другу, отправь ему промокодъ на безплатный напитокъ и получи скидку 10% на слъдующiй заказъ.
+        """
+    }
+
     // MARK: - Visual Components
 
     private lazy var closeButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "x"), for: .normal)
+        button.setImage(UIImage(named: Constants.closeButtonTitle), for: .normal)
         button.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -23,14 +34,14 @@ final class FinishedOrderViewController: UIViewController {
     private let branchesImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(named: "branches")
+        imageView.image = UIImage(named: Constants.branchesImageTitle)
         return imageView
     }()
 
     private let thanksImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(named: "Thanks")
+        imageView.image = UIImage(named: Constants.thanksImageTitle)
         return imageView
     }()
 
@@ -40,10 +51,7 @@ final class FinishedOrderViewController: UIViewController {
         label.textColor = .lightGray
         label.numberOfLines = 0
         label.textAlignment = .center
-        label.text =
-            """
-            Разскажи о насъ другу, отправь ему промокодъ на безплатный напитокъ и получи скидку 10% на слъдующiй заказъ.
-            """
+        label.text = Constants.promoLabelTitle
         return label
     }()
 
@@ -88,7 +96,7 @@ final class FinishedOrderViewController: UIViewController {
         promoLabel.frame = .init(x: 30, y: 428, width: 315, height: 89)
         okButton.frame = .init(x: 20, y: 632, width: 345, height: 53)
     }
-    
+
     private func closeWindow() {
         dismiss(animated: true)
     }
