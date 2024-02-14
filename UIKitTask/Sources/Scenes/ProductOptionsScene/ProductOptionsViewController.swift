@@ -230,8 +230,6 @@ final class ProductOptionsViewController: UIViewController {
 //        billViewController.configureOrder(order: OrderStorageService)
         billViewController.modalPresentationStyle = .pageSheet
         present(billViewController, animated: true)
-
-
     }
 
     @objc private func productChanged(sender: UISegmentedControl) {
@@ -264,5 +262,11 @@ final class ProductOptionsViewController: UIViewController {
 
     @objc private func orderButtonPressed(sender: UIView) {
         goToBillScreen()
+    }
+}
+
+extension ProductOptionsViewController: BillViewControllerProtocol {
+    func didClosedScreen() {
+        navigationController?.popToRootViewController(animated: true)
     }
 }

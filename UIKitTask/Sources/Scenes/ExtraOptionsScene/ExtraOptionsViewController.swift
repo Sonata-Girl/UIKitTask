@@ -43,7 +43,6 @@ final class ExtraOptionsViewController: UIViewController {
         setupUI()
     }
 
-
     // MARK: - Public methods
 
     func setAdditions(additions: [ExtraOption]) {

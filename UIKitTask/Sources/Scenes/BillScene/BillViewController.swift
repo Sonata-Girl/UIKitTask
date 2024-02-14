@@ -3,6 +3,10 @@
 
 import UIKit
 
+protocol BillViewControllerProtocol: AnyObject {
+    func didClosedScreen()
+}
+
 /// Экран для показа итоговой суммы продукта и перехода для оплаты
 final class BillViewController: UIViewController {
     // MARK: - Types
