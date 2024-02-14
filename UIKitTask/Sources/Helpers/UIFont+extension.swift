@@ -1,9 +1,5 @@
-//
-//  UIFont+extension.swift
-//  UIKitTask
-//
-//  Created by Sonata Girl on 12.02.2024.
-//
+// UIFont+extension.swift
+// Copyright © RoadMap. All rights reserved.
 
 import UIKit
 
@@ -24,7 +20,7 @@ extension UIFont {
     static func setAmaticBold(withSize: CGFloat) -> UIFont? {
         UIFont(name: "AmaticSC-Bold", size: withSize)
     }
-    
+
     static func setAmaticRegular(withSize: CGFloat) -> UIFont? {
         UIFont(name: "AmaticSC-Regular", size: withSize)
     }
