@@ -3,7 +3,9 @@
 
 import UIKit
 
+/// Протокол для закрытия предыдущего экрана
 protocol FinishOrderProtocol: AnyObject {
+    /// Функция для закрытия предыдущего экрана
     func didClosedScreen()
 }
 
@@ -86,13 +88,17 @@ final class FinishedOrderViewController: UIViewController {
         promoLabel.frame = .init(x: 30, y: 428, width: 315, height: 89)
         okButton.frame = .init(x: 20, y: 632, width: 345, height: 53)
     }
+    
+    private func closeWindow() {
+        dismiss(animated: true)
+    }
 
     @objc private func closeButtonTapped() {
-        dismiss(animated: true)
+        closeWindow()
     }
 
     @objc private func okButtonTapped() {
         delegate?.didClosedScreen()
-        dismiss(animated: true)
+        closeWindow()
     }
 }

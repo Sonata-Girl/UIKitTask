@@ -3,7 +3,9 @@
 
 import UIKit
 
+/// Протокол для закрытия предыдущего экрана
 protocol BillViewControllerProtocol: AnyObject {
+    /// Функция закрытия экрана
     func didClosedScreen()
 }
 
@@ -44,7 +46,7 @@ final class BillViewController: UIViewController {
         label.font = .setVerdanaBold(withSize: 18)
         label.textColor = .black
         label.textAlignment = .center
-        label.text = "Вашъ Заказъ"
+        label.text = ""
         return label
     }()
 
@@ -53,7 +55,7 @@ final class BillViewController: UIViewController {
         label.font = .setVerdanaBold(withSize: 16)
         label.textColor = .black
         label.textAlignment = .left
-        label.text = "Американо"
+        label.text = ""
         return label
     }()
 
@@ -62,7 +64,7 @@ final class BillViewController: UIViewController {
         label.font = .setVerdanaBold(withSize: 16)
         label.textColor = .black
         label.textAlignment = .right
-        label.text = "100 руб"
+        label.text = ""
         return label
     }()
 
@@ -71,7 +73,7 @@ final class BillViewController: UIViewController {
         label.font = .setVerdana(withSize: 16)
         label.textColor = .black
         label.textAlignment = .left
-        label.text = "Молоко"
+        label.text = ""
         return label
     }()
 
@@ -80,7 +82,7 @@ final class BillViewController: UIViewController {
         label.font = .setVerdana(withSize: 16)
         label.textColor = .black
         label.textAlignment = .right
-        label.text = "50 руб"
+        label.text = ""
         return label
     }()
 
@@ -89,7 +91,7 @@ final class BillViewController: UIViewController {
         label.font = .setVerdana(withSize: 16)
         label.textColor = .black
         label.textAlignment = .left
-        label.text = "Эспрессо 50мл"
+        label.text = ""
         return label
     }()
 
@@ -98,7 +100,7 @@ final class BillViewController: UIViewController {
         label.font = .setVerdana(withSize: 16)
         label.textColor = .black
         label.textAlignment = .right
-        label.text = "50 руб"
+        label.text = ""
         return label
     }()
 
@@ -107,7 +109,7 @@ final class BillViewController: UIViewController {
         label.font = .setVerdanaBold(withSize: 18)
         label.textColor = .black
         label.textAlignment = .center
-        label.text = "Цъна - 200 руб"
+        label.text = ""
         return label
     }()
 
@@ -189,7 +191,7 @@ final class BillViewController: UIViewController {
     }
 }
 
-// MARK: - Extensions
+// MARK: - BillViewControllerProtocol
 
 extension BillViewController: FinishOrderProtocol {
     func didClosedScreen() {
