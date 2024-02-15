@@ -12,7 +12,7 @@ final class PersonalDataViewController: UIViewController {
         static let namePlaceholder = "Имя"
         static let surnamePlaceholder = "Фамилия"
         static let phoneNumberPlaceholder = "Номер телефона"
-        static let footSizePlaceholder = "Размер ноги"
+        static let footSizePlaceholder = " Размер ноги"
         static let birthdayPlaceholder = "День рождения"
         static let emailPlaceholder = "Почта"
         static let saveButtonTitle = "Сохранить"
@@ -66,16 +66,21 @@ final class PersonalDataViewController: UIViewController {
         return textField
     }()
 
-    private let footSizeTextField: UITextField = {
-        let textField = UITextField()
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.font = .setVerdana(withSize: 16)
-        textField.placeholder = Constants.footSizePlaceholder
-        textField.borderStyle = .roundedRect
-        textField.backgroundColor = .appLightGray
-        textField.textColor = .label
-        textField.returnKeyType = .go
-        return textField
+
+    private lazy var footSizeLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .setVerdana(withSize: 16)
+        label.text = Constants.footSizePlaceholder
+        label.backgroundColor = .appLightGray
+        label.textColor = .systemGray3
+        label.layer.borderColor = UIColor.systemGray5.cgColor
+        label.layer.borderWidth = 1
+        label.layer.cornerRadius = 6
+        label.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(openPickerController))
+        label.addGestureRecognizer(tap)
+        return label
     }()
 
     private let birthdayTextField: UITextField = {
@@ -137,13 +142,13 @@ final class PersonalDataViewController: UIViewController {
             nameTextField,
             surnameTextField,
             phoneNumberTextField,
-            footSizeTextField,
             birthdayTextField,
             emailTextField
         ].forEach { $0.delegate = self }
 
         let datePicker = UIDatePicker()
         datePicker.preferredDatePickerStyle = .inline
+        datePicker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
         birthdayTextField.inputView = datePicker
     }
 
@@ -158,7 +163,7 @@ final class PersonalDataViewController: UIViewController {
             nameTextField,
             surnameTextField,
             phoneNumberTextField,
-            footSizeTextField,
+            footSizeLabel,
             birthdayTextField,
             emailTextField,
             saveDataButton
@@ -215,24 +220,25 @@ final class PersonalDataViewController: UIViewController {
         ])
 
         NSLayoutConstraint.activate([
-            footSizeTextField.topAnchor.constraint(
+            footSizeLabel.topAnchor.constraint(
                 equalTo: phoneNumberTextField.bottomAnchor,
                 constant: 10
             ),
-            footSizeTextField.leadingAnchor.constraint(
+            footSizeLabel.leadingAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.leadingAnchor,
                 constant: 20
             ),
 
             view.safeAreaLayoutGuide.trailingAnchor.constraint(
-                equalTo: footSizeTextField.trailingAnchor,
+                equalTo: footSizeLabel.trailingAnchor,
                 constant: 20
-            )
+            ),
+            footSizeLabel.heightAnchor.constraint(equalToConstant: 36)
         ])
 
         NSLayoutConstraint.activate([
             birthdayTextField.topAnchor.constraint(
-                equalTo: footSizeTextField.bottomAnchor,
+                equalTo: footSizeLabel.bottomAnchor,
                 constant: 10
             ),
             birthdayTextField.leadingAnchor.constraint(
@@ -288,7 +294,15 @@ final class PersonalDataViewController: UIViewController {
         let pickerVC = PickerViewController()
         pickerVC.modalTransitionStyle = .crossDissolve
         pickerVC.modalPresentationStyle = .overFullScreen
+        pickerVC.dataDidSavedHandler = { [weak self] footSize in
+            self?.footSizeLabel.text = String("  \(footSize)")
+            self?.footSizeLabel.textColor = .label
+        }
         present(pickerVC, animated: true)
+    }
+
+    @objc private func datePickerValueChanged() {
+        
     }
 
     @objc private func goBackToPreviousScreen() {
@@ -299,16 +313,20 @@ final class PersonalDataViewController: UIViewController {
         // TODO: Save data
         navigationController?.popViewController(animated: true)
     }
+
+    @objc private func openPickerController() {
+        showPickerWindow()
+    }
 }
 
+// MARK: - UITextFieldDelegate
 extension PersonalDataViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         changeStateOfButton()
     }
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == footSizeTextField {
-            showPickerWindow()
-        }
+
     }
 }
+

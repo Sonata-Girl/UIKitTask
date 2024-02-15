@@ -38,7 +38,7 @@ class PickerViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(Constants.closedButtonImage, for: .normal)
         button.tintColor = .label
-//        button.addTarget(self, action: #selector(closeScreen), for: .touchUpInside)
+        button.addTarget(self, action: #selector(closeScreen), for: .touchUpInside)
         return button
     }()
 
@@ -168,9 +168,13 @@ class PickerViewController: UIViewController {
         ])
     }
 
+    @objc private func closeScreen() {
+        dismiss(animated: true)
+    }
+
     @objc private func saveData() {
-        // TODO: Save data
         dataDidSavedHandler?(pickerValue)
+        dismiss(animated: true)
     }
 }
 
