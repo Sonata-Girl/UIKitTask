@@ -10,7 +10,7 @@ class BasketViewController: UIViewController {
     private enum Constants {
         static let screenTitle = "Корзина"
 
-        static let oderdButtonTitle = "Оформить заказ - 4250 ₽"
+        static let orderButtonTitle = "Оформить заказ - 4250 ₽"
         static let backButtonImage = UIImage(systemName: "chevron.left")
     }
 
@@ -24,7 +24,7 @@ class BasketViewController: UIViewController {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .appPink
-        button.setTitle(Constants.oderdButtonTitle, for: .normal)
+        button.setTitle(Constants.orderButtonTitle, for: .normal)
         button.titleLabel?.font = .setVerdanaBold(withSize: 16)
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOffset = CGSize(width: 0, height: 4)
@@ -75,6 +75,7 @@ class BasketViewController: UIViewController {
     }
 
     private func setupUI() {
+
         NSLayoutConstraint.activate([
             cellGoodView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             cellGoodView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -102,7 +103,7 @@ class BasketViewController: UIViewController {
     }
 
     private func setupHandle() {
-        cellGoodView.goodDeletedHandle = { _, _ in
+        cellGoodView.goodDeletedHandle = { (_,_) in
             self.cellGoodView.removeFromSuperview()
         }
     }
