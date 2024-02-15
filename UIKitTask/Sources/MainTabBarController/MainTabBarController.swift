@@ -5,7 +5,6 @@ import UIKit
 
 /// Таб бар контроллер, инициализирует запуск стартовых экранов приложения по вкладкам
 final class MainTabBarController: UITabBarController {
-
     // MARK: Constants
 
     enum Constants {
