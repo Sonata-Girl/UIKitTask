@@ -5,10 +5,6 @@ import UIKit
 
 /// Экран личного кабинета, профиля
 final class ProfileViewController: UIViewController {
-    // MARK: - Types
-
-    // MARK: - Constants
-
     // MARK: Constants
 
     private enum Constants {
@@ -22,16 +18,6 @@ final class ProfileViewController: UIViewController {
     }
 
     // MARK: - Visual Components
-
-    private let profileScreenLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = Constants.screenTitle
-        label.font = .setVerdanaBold(withSize: 16)
-        label.textColor = .label
-        label.textAlignment = .center
-        return label
-    }()
 
     private let cardView: UIView = {
         let view = UIView()
@@ -111,12 +97,15 @@ final class ProfileViewController: UIViewController {
         return imageView
     }()
 
-    private let myDataSectionLabel: UILabel = {
+    private lazy var myDataSectionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = Constants.myDataTitle
         label.font = .setVerdana(withSize: 16)
         label.textColor = .label
+        label.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(goToPersonalDataScreen))
+        label.addGestureRecognizer(tap)
         return label
     }()
 
@@ -197,7 +186,6 @@ final class ProfileViewController: UIViewController {
 
     private func setupHierarchy() {
         [
-            profileScreenLabel,
             cardView,
             personalDataTitleLabel,
             myDataSectionIcon,
@@ -222,24 +210,8 @@ final class ProfileViewController: UIViewController {
 
     private func setupLayout() {
         NSLayoutConstraint.activate([
-            profileScreenLabel.topAnchor.constraint(
-                equalTo: view.safeAreaLayoutGuide.topAnchor,
-                constant: 0
-            ),
-            profileScreenLabel.leadingAnchor.constraint(
-                equalTo: view.safeAreaLayoutGuide.leadingAnchor,
-                constant: 20
-            ),
-            view.safeAreaLayoutGuide.trailingAnchor.constraint(
-                equalTo: profileScreenLabel.trailingAnchor,
-                constant: 20
-            ),
-            profileScreenLabel.heightAnchor.constraint(equalToConstant: 44)
-        ])
-
-        NSLayoutConstraint.activate([
             cardView.topAnchor.constraint(
-                equalTo: profileScreenLabel.bottomAnchor,
+                equalTo: view.safeAreaLayoutGuide.topAnchor,
                 constant: 23
             ),
             cardView.leadingAnchor.constraint(
@@ -473,7 +445,11 @@ final class ProfileViewController: UIViewController {
 
     private func configureNavigationVar() {
         navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.title = Constants.screenTitle
     }
 
-    // MARK: - IBAction или @objc (private)
+    @objc private func goToPersonalDataScreen() {
+        let nextVC = PersonalDataViewController()
+        navigationController?.pushViewController(nextVC, animated: true)
+    }
 }
