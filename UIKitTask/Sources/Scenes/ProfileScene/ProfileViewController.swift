@@ -168,6 +168,8 @@ final class ProfileViewController: UIViewController {
 
     // MARK: - Private Properties
 
+    var model: PersonalData?
+
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
@@ -450,6 +452,12 @@ final class ProfileViewController: UIViewController {
 
     @objc private func goToPersonalDataScreen() {
         let nextVC = PersonalDataViewController()
+        if let model {
+            nextVC.configure(model: model)
+        }
+        nextVC.dataDidSavedHandler = { model in
+            self.model = model
+        }
         navigationController?.pushViewController(nextVC, animated: true)
     }
 }
