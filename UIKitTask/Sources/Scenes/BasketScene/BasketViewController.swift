@@ -75,7 +75,6 @@ class BasketViewController: UIViewController {
     }
 
     private func setupUI() {
-
         NSLayoutConstraint.activate([
             cellGoodView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             cellGoodView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -103,7 +102,7 @@ class BasketViewController: UIViewController {
     }
 
     private func setupHandle() {
-        cellGoodView.goodDeletedHandle = { (_,_) in
+        cellGoodView.goodDeletedHandle = { _ in
             self.cellGoodView.removeFromSuperview()
         }
     }

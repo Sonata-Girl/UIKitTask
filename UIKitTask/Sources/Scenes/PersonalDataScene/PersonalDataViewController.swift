@@ -146,6 +146,8 @@ final class PersonalDataViewController: UIViewController {
         options: .caseInsensitive
     )
 
+    private var phoneNumberNotFormat: String = ""
+
     private let emailRegex = try? NSRegularExpression(
         pattern: "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}",
         options: .caseInsensitive
@@ -338,7 +340,7 @@ final class PersonalDataViewController: UIViewController {
         present(pickerVC, animated: true)
     }
 
-    func formatPhoneNumber(phoneNumber: String, removeLastDigit: Bool) -> String {
+    func formatPhoneNumberWithRegex(phoneNumber: String, removeLastDigit: Bool) -> String {
         guard
             let phoneNumberRegex,
             !(
@@ -385,6 +387,72 @@ final class PersonalDataViewController: UIViewController {
         }
 
         return "+" + number
+    }
+
+    func formatPhoneNumber(phoneNumber: String, removeLastDigit: Bool) -> String {
+        var numbers: [String] = phoneNumber.replacingOccurrences(of: " ", with: "")
+            .filter { !["+", "(", ")", "-", " "].contains($0) }
+            .map { String($0) }
+        guard !(numbers.count == .zero) else { return "" }
+        if removeLastDigit {
+            numbers.removeLast()
+        }
+
+        numbers.insert("+", at: 0)
+        switch numbers.count - 1 {
+        case 0:
+            numbers += [" (", "   ) ", "   -", "  -  "]
+        case 1:
+            numbers.insert("(", at: 2)
+            numbers += ["   ) ", "   -", "  -  "]
+        case 2:
+            numbers.insert("(", at: 2)
+            numbers += ["  ) ", "   -", "  -  "]
+        case 3:
+            numbers.insert("(", at: 2)
+            numbers += [" ) ", "   -", "  -  "]
+        case 4:
+            numbers.insert("(", at: 2)
+            numbers.insert(") ", at: 6)
+            numbers += ["   -", "  -  "]
+        case 5:
+            numbers.insert("(", at: 2)
+            numbers.insert(") ", at: 6)
+            numbers += ["  -", "  -  "]
+        case 6:
+            numbers.insert("(", at: 2)
+            numbers.insert(") ", at: 6)
+            numbers += [" -", "  -  "]
+        case 7:
+            numbers.insert("(", at: 2)
+            numbers.insert(") ", at: 6)
+            numbers.insert("-", at: 10)
+            numbers += ["  -  "]
+        case 8:
+            numbers.insert("(", at: 2)
+            numbers.insert(") ", at: 6)
+            numbers.insert("-", at: 10)
+            numbers += [" -  "]
+        case 9:
+            numbers.insert("(", at: 2)
+            numbers.insert(") ", at: 6)
+            numbers.insert("-", at: 10)
+            numbers.insert("-", at: 13)
+            numbers += [" "]
+        case 10:
+            numbers.insert("(", at: 2)
+            numbers.insert(") ", at: 6)
+            numbers.insert("-", at: 10)
+            numbers.insert("-", at: 13)
+            numbers += [" "]
+        case 11:
+            numbers.insert("(", at: 2)
+            numbers.insert(") ", at: 6)
+            numbers.insert("-", at: 10)
+            numbers.insert("-", at: 13)
+        default: return phoneNumber.map { String($0) }.dropLast().joined(separator: "")
+        }
+        return numbers.joined(separator: "")
     }
 
     @objc private func datePickerValueChanged(sender: UIDatePicker) {
@@ -439,8 +507,8 @@ extension PersonalDataViewController: UITextFieldDelegate {
         replacementString string: String
     ) -> Bool {
         if textField.isEqual(phoneNumberTextField) {
-            let fulString = (textField.text ?? "") + string
-            textField.text = formatPhoneNumber(phoneNumber: fulString, removeLastDigit: range.length == 1)
+            let fullString = (textField.text ?? "") + string
+            textField.text = formatPhoneNumber(phoneNumber: fullString, removeLastDigit: range.length == 1)
             return false
         }
         return true

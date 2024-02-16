@@ -186,7 +186,7 @@ class BasketCellView: UIView {
 
     // MARK: Public Properties
 
-    var goodDeletedHandle: ((String, String) -> ())?
+    var goodDeletedHandle: ((String) -> Void)?
 
     // MARK: Initializers
 
@@ -337,6 +337,6 @@ class BasketCellView: UIView {
     }
 
     @objc private func deleteGood() {
-        goodDeletedHandle?(goodNameLabel.text ?? "", goodNameLabel.text ?? "")
+        goodDeletedHandle?(goodNameLabel.text ?? "")
     }
 }
