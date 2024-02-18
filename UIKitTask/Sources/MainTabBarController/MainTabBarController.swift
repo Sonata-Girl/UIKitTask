@@ -19,8 +19,6 @@ final class MainTabBarController: UITabBarController {
         static let profileVCTitle = "Профиль"
         static let profileVCImage = UIImage(named: "profile")
         static let profileVCSelectedImage = UIImage(named: "profileRose")
-
-        static let appPinkColor = UIColor(red: 225 / 255, green: 24 / 255, blue: 131 / 255, alpha: 1)
     }
 
     // MARK: - Lifecycle
@@ -35,9 +33,9 @@ final class MainTabBarController: UITabBarController {
 
     private func setupTabBarController() {
         view.backgroundColor = .white
-        tabBar.tintColor = Constants.appPinkColor
+        tabBar.tintColor = .appPinkColor()
         tabBar.isTranslucent = false
-        tabBar.layer.borderColor = UIColor(red: 229 / 255, green: 229 / 255, blue: 229 / 255, alpha: 1).cgColor
+        tabBar.layer.borderColor = .appTabBarBorderColor()
         tabBar.layer.borderWidth = 1
     }
 

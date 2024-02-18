@@ -5,7 +5,6 @@ import UIKit
 
 /// Стартовый экран с каталогом одежды
 final class CatalogViewController: UIViewController {
-    
     // MARK: - Constants
 
     enum Constants {
@@ -19,8 +18,9 @@ final class CatalogViewController: UIViewController {
         static let bagsViewLabelTitle = "Сумки"
         static let brendsImageViewTitle = "brends"
     }
-    
-// MARK: - Private Properties
+
+    // MARK: - Private Properties
+
     private var clothes: [Clothes] = [
         Clothes(
             type: "Женщинам",
@@ -134,7 +134,7 @@ final class CatalogViewController: UIViewController {
 
     private let brendsView: UIView = {
         let view = UIImageView()
-        view.backgroundColor = UIColor(red: 248 / 255, green: 248 / 255, blue: 248 / 255, alpha: 1)
+        view.backgroundColor = .appBackgroundViewColor()
         view.layer.cornerRadius = 12
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -158,7 +158,7 @@ final class CatalogViewController: UIViewController {
 
     private lazy var shoesView: UIView = {
         let view = UIImageView()
-        view.backgroundColor = UIColor(red: 248 / 255, green: 248 / 255, blue: 248 / 255, alpha: 1)
+        view.backgroundColor = .appBackgroundViewColor()
         view.layer.cornerRadius = 12
         let gesture = UITapGestureRecognizer(target: self, action: #selector(shoesViewTapped(_:)))
         view.addGestureRecognizer(gesture)
@@ -184,7 +184,7 @@ final class CatalogViewController: UIViewController {
 
     private let bagsView: UIView = {
         let view = UIImageView()
-        view.backgroundColor = UIColor(red: 248 / 255, green: 248 / 255, blue: 248 / 255, alpha: 1)
+        view.backgroundColor = .appBackgroundViewColor()
         view.layer.cornerRadius = 12
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -204,18 +204,18 @@ final class CatalogViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    
+
     // MARK: - Lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupHierarchy()
         setConstraints()
         clotherChanged(sender: typeClotherSegmented)
     }
-    
+
     // MARK: - Private methods
-    
+
     private func setupHierarchy() {
         view.addSubview(catalogLabel)
         view.addSubview(cameraView)
@@ -251,11 +251,7 @@ final class CatalogViewController: UIViewController {
     @objc private func shoesViewTapped(_ gesture: UITapGestureRecognizer) {
         navigationController?.pushViewController(ShoesViewController(), animated: true)
     }
-}
 
-// MARK: - Extensions
-
-extension CatalogViewController {
     private func setConstraints() {
         NSLayoutConstraint.activate([
             catalogLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),

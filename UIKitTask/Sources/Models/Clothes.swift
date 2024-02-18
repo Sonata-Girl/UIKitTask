@@ -1,8 +1,6 @@
 // Clothes.swift
 // Copyright © RoadMap. All rights reserved.
 
-import Foundation
-
 /// Одежда
 struct Clothes {
     /// Для кого одежда

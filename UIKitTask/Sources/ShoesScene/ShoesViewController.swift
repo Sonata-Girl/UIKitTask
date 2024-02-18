@@ -5,9 +5,8 @@ import UIKit
 
 /// Экран с выбором обуви
 final class ShoesViewController: UIViewController {
-    
     // MARK: - Constants
-    
+
     enum Constants {
         static let titleOfNavigation = "Обувь"
         static let shoesOneViewCost = "2250 ₽"
@@ -25,10 +24,10 @@ final class ShoesViewController: UIViewController {
     }
 
     // MARK: - Private Properties
-    
+
     private let shoesOneView: UIView = {
         let view = UIImageView()
-        view.backgroundColor = UIColor(red: 248 / 255, green: 248 / 255, blue: 248 / 255, alpha: 1)
+        view.backgroundColor = .appBackgroundViewColor()
         view.layer.cornerRadius = 20
         view.isUserInteractionEnabled = true
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -60,7 +59,7 @@ final class ShoesViewController: UIViewController {
 
     private let shoesTwoView: UIView = {
         let view = UIImageView()
-        view.backgroundColor = UIColor(red: 248 / 255, green: 248 / 255, blue: 248 / 255, alpha: 1)
+        view.backgroundColor = .appBackgroundViewColor()
         view.layer.cornerRadius = 20
         view.isUserInteractionEnabled = true
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -92,7 +91,7 @@ final class ShoesViewController: UIViewController {
 
     private let shoesThreeView: UIView = {
         let view = UIImageView()
-        view.backgroundColor = UIColor(red: 248 / 255, green: 248 / 255, blue: 248 / 255, alpha: 1)
+        view.backgroundColor = .appBackgroundViewColor()
         view.layer.cornerRadius = 20
         view.isUserInteractionEnabled = true
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -124,7 +123,7 @@ final class ShoesViewController: UIViewController {
 
     private let shoesFourView: UIView = {
         let view = UIImageView()
-        view.backgroundColor = UIColor(red: 248 / 255, green: 248 / 255, blue: 248 / 255, alpha: 1)
+        view.backgroundColor = .appBackgroundViewColor()
         view.layer.cornerRadius = 20
         view.isUserInteractionEnabled = true
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -156,7 +155,7 @@ final class ShoesViewController: UIViewController {
 
     private let shoesFiveView: UIView = {
         let view = UIImageView()
-        view.backgroundColor = UIColor(red: 248 / 255, green: 248 / 255, blue: 248 / 255, alpha: 1)
+        view.backgroundColor = .appBackgroundViewColor()
         view.layer.cornerRadius = 20
         view.isUserInteractionEnabled = true
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -185,7 +184,7 @@ final class ShoesViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
+
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
@@ -194,7 +193,7 @@ final class ShoesViewController: UIViewController {
         setConstraints()
         setNavigationBar()
     }
-    
+
     // MARK: - Private methods
 
     private func setupHierarchy() {
@@ -238,11 +237,7 @@ final class ShoesViewController: UIViewController {
             sender.setImage(Constants.basket, for: .normal)
         }
     }
-}
 
-// MARK: - Extensions
-
-extension ShoesViewController {
     private func setConstraints() {
         NSLayoutConstraint.activate([
             shoesOneView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 33),

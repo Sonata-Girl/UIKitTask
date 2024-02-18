@@ -5,9 +5,8 @@ import UIKit
 
 /// Экран с выбором размера обуви
 final class SizeShoesViewController: UIViewController {
-    
     // MARK: - Constants
-    
+
     enum Constants {
         static let closeImage = UIImage(named: "close")
         static let sizeLabel = "Выберите размер"
@@ -17,7 +16,7 @@ final class SizeShoesViewController: UIViewController {
         static let size38 = "38 EU"
         static let size39 = "39 EU"
     }
-    
+
     // MARK: - Private Properties
 
     private lazy var closeButton: UIButton = {
@@ -88,39 +87,39 @@ final class SizeShoesViewController: UIViewController {
 
     private let lineView: UIView = {
         let view = UIImageView()
-        view.backgroundColor = UIColor(red: 236 / 255, green: 235 / 255, blue: 235 / 255, alpha: 1)
+        view.backgroundColor = .appBackgroundLineViewColor()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
     private let lineViewTwo: UIView = {
         let view = UIImageView()
-        view.backgroundColor = UIColor(red: 236 / 255, green: 235 / 255, blue: 235 / 255, alpha: 1)
+        view.backgroundColor = .appBackgroundLineViewColor()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
     private let lineViewThree: UIView = {
         let view = UIImageView()
-        view.backgroundColor = UIColor(red: 236 / 255, green: 235 / 255, blue: 235 / 255, alpha: 1)
+        view.backgroundColor = .appBackgroundLineViewColor()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
     private let lineViewFour: UIView = {
         let view = UIImageView()
-        view.backgroundColor = UIColor(red: 236 / 255, green: 235 / 255, blue: 235 / 255, alpha: 1)
+        view.backgroundColor = .appBackgroundLineViewColor()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
     private let lineViewFive: UIView = {
         let view = UIImageView()
-        view.backgroundColor = UIColor(red: 236 / 255, green: 235 / 255, blue: 235 / 255, alpha: 1)
+        view.backgroundColor = .appBackgroundLineViewColor()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
@@ -128,7 +127,7 @@ final class SizeShoesViewController: UIViewController {
         setupHierarchy()
         setConstraints()
     }
-    
+
     // MARK: - Private methods
 
     private func setupHierarchy() {
@@ -146,15 +145,11 @@ final class SizeShoesViewController: UIViewController {
         view.addSubview(lineViewFour)
         view.addSubview(lineViewFive)
     }
-    
+
     @objc private func closeButtonTapped() {
         dismiss(animated: true)
     }
-}
 
-// MARK: - Extensions
-
-extension SizeShoesViewController {
     private func setConstraints() {
         NSLayoutConstraint.activate([
             closeButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 26),
@@ -181,20 +176,20 @@ extension SizeShoesViewController {
 
             size37Button.topAnchor.constraint(equalTo: lineViewTwo.bottomAnchor, constant: 5),
             size37Button.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            
+
             lineViewThree.topAnchor.constraint(equalTo: size37Button.bottomAnchor, constant: 5),
             lineViewThree.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             lineViewThree.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             lineViewThree.heightAnchor.constraint(equalToConstant: 1),
-            
+
             size38Button.topAnchor.constraint(equalTo: lineViewThree.bottomAnchor, constant: 5),
             size38Button.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            
+
             lineViewFour.topAnchor.constraint(equalTo: size38Button.bottomAnchor, constant: 5),
             lineViewFour.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             lineViewFour.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             lineViewFour.heightAnchor.constraint(equalToConstant: 1),
-            
+
             size39Button.topAnchor.constraint(equalTo: lineViewFour.bottomAnchor, constant: 5),
             size39Button.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
 
