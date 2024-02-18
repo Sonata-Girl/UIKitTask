@@ -5,6 +5,8 @@ import UIKit
 
 /// Экран с выбором обуви
 final class ShoesViewController: UIViewController {
+    weak var delegate: ShoesDelegate?
+
     // MARK: - Constants
 
     enum Constants {
@@ -228,11 +230,27 @@ final class ShoesViewController: UIViewController {
         navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
     }
 
+    private func addShoes(sender: UIButton) {
+        if sender == basketOneButton {
+            print("Добавлена обувь 1")
+        } else if sender == basketTwoButton {
+            print("Добавлена обувь 2")
+        } else if sender == basketThreeButton {
+            print("Добавлена обувь 3")
+        } else if sender == basketFourButton {
+            print("Добавлена обувь 4")
+        } else if sender == basketFiveButton {
+            print("Добавлена обувь 5")
+        }
+        delegate?.addShoes(sender: sender)
+    }
+
     @objc private func basketButtonTapped(sender: UIButton) {
         if sender.currentImage == Constants.basket {
             sender.setImage(Constants.basketActive, for: .normal)
             present(SizeShoesViewController(), animated: true)
             SizeShoesViewController().modalPresentationStyle = .automatic
+            addShoes(sender: sender)
         } else {
             sender.setImage(Constants.basket, for: .normal)
         }

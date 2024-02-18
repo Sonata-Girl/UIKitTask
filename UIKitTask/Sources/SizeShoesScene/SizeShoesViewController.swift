@@ -5,6 +5,8 @@ import UIKit
 
 /// Экран с выбором размера обуви
 final class SizeShoesViewController: UIViewController {
+    weak var delegate: ShoesDelegate?
+
     // MARK: - Constants
 
     enum Constants {
@@ -39,7 +41,7 @@ final class SizeShoesViewController: UIViewController {
         let button = UIButton(type: .system)
         button.tintColor = .black
         button.setTitle(Constants.size35, for: .normal)
-        button.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(choiceSize), for: .touchUpInside)
         button.titleLabel?.font = .setVerdana(withSize: 16)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -50,7 +52,7 @@ final class SizeShoesViewController: UIViewController {
         button.tintColor = .black
         button.setTitle(Constants.size36, for: .normal)
         button.titleLabel?.font = .setVerdana(withSize: 16)
-        button.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(choiceSize), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -60,7 +62,7 @@ final class SizeShoesViewController: UIViewController {
         button.tintColor = .black
         button.setTitle(Constants.size37, for: .normal)
         button.titleLabel?.font = .setVerdana(withSize: 16)
-        button.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(choiceSize), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -70,7 +72,7 @@ final class SizeShoesViewController: UIViewController {
         button.tintColor = .black
         button.setTitle(Constants.size38, for: .normal)
         button.titleLabel?.font = .setVerdana(withSize: 16)
-        button.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(choiceSize), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -80,7 +82,7 @@ final class SizeShoesViewController: UIViewController {
         button.tintColor = .black
         button.setTitle(Constants.size39, for: .normal)
         button.titleLabel?.font = .setVerdana(withSize: 16)
-        button.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(choiceSize), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -147,6 +149,22 @@ final class SizeShoesViewController: UIViewController {
     }
 
     @objc private func closeButtonTapped() {
+        dismiss(animated: true)
+    }
+
+    @objc private func choiceSize(sender: UIButton) {
+        if sender == size35Button {
+            print("35 размера")
+        } else if sender == size36Button {
+            print("36 размера")
+        } else if sender == size37Button {
+            print("37 размера")
+        } else if sender == size38Button {
+            print("38 размера")
+        } else if sender == size39Button {
+            print("39 размера")
+        }
+        delegate?.addShoes(sender: sender)
         dismiss(animated: true)
     }
 
