@@ -4,7 +4,7 @@
 import UIKit
 
 /// Экран для показа пикера с выбором
-class PickerViewController: UIViewController {
+final class PickerViewController: UIViewController {
     // MARK: Constants
 
     private enum Constants {

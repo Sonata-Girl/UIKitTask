@@ -4,7 +4,7 @@
 import UIKit
 
 /// Кастомный вью ячейка товара в корзине
-class BasketCellView: UIView {
+final class BasketCellView: UIView {
     // MARK: Types
 
     private enum Constants {
@@ -202,6 +202,33 @@ class BasketCellView: UIView {
         setupUI()
     }
 
+    // MARK: Public methods
+
+    func configureView(
+        nameProduct: String,
+        countProduct: Int,
+        sizeProduct: Int,
+        priceProduct: Int
+    ) {
+        goodNameLabel.text = nameProduct
+        countGoodsLabel.text = String(countProduct)
+        priceLabel.text = String(priceProduct)
+
+        switch sizeProduct {
+        case 35:
+            setStateOfCell(cell: firstSizeLabel)
+        case 36:
+            setStateOfCell(cell: secondSizeLabel)
+        case 37:
+            setStateOfCell(cell: thirdSizeLabel)
+        case 38:
+            setStateOfCell(cell: fourthSizeLabel)
+        case 39:
+            setStateOfCell(cell: fifthSizeLabel)
+        default: break
+        }
+    }
+
     // MARK: Private methods
 
     private func setupHierarchy() {
@@ -230,14 +257,14 @@ class BasketCellView: UIView {
             goodImage.topAnchor.constraint(equalTo: topAnchor),
             bottomAnchor.constraint(equalTo: goodImage.bottomAnchor),
             goodImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            goodImage.widthAnchor.constraint(equalToConstant: 157),
-            goodImage.heightAnchor.constraint(equalToConstant: 157)
+//            goodImage.widthAnchor.constraint(equalToConstant: 157),
+//            goodImage.heightAnchor.constraint(equalToConstant: 157)
         ])
 
         NSLayoutConstraint.activate([
             basketButton.topAnchor.constraint(equalTo: goodImage.topAnchor, constant: 13),
             goodImage.trailingAnchor.constraint(equalTo: basketButton.trailingAnchor, constant: 10),
-            basketButton.widthAnchor.constraint(equalToConstant: 20),
+//            basketButton.widthAnchor.constraint(equalToConstant: 20),
             basketButton.heightAnchor.constraint(equalToConstant: 20)
         ])
 
@@ -251,7 +278,7 @@ class BasketCellView: UIView {
         NSLayoutConstraint.activate([
             countTitleLabel.topAnchor.constraint(equalTo: goodNameLabel.bottomAnchor, constant: 12),
             countTitleLabel.leadingAnchor.constraint(equalTo: goodImage.trailingAnchor, constant: 16),
-            countTitleLabel.widthAnchor.constraint(equalToConstant: 40),
+//            countTitleLabel.widthAnchor.constraint(equalToConstant: 40),
             countTitleLabel.heightAnchor.constraint(equalToConstant: 15)
         ])
 
@@ -332,8 +359,13 @@ class BasketCellView: UIView {
             priceLabel.leadingAnchor.constraint(equalTo: priceTitleLabel.trailingAnchor, constant: 90),
             trailingAnchor.constraint(equalTo: priceLabel.trailingAnchor, constant: 2),
             priceLabel.heightAnchor.constraint(equalToConstant: 12),
-            priceLabel.widthAnchor.constraint(equalToConstant: 63)
+//            priceLabel.widthAnchor.constraint(equalToConstant: 63)
         ])
+    }
+
+    private func setStateOfCell(cell: UILabel) {
+        cell.layer.borderColor = UIColor.appPink.cgColor
+        cell.layer.borderWidth = 1
     }
 
     @objc private func deleteGood() {

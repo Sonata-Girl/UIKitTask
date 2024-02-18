@@ -21,6 +21,7 @@
 		672E5B022B7E790F00E1213E /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672E5B012B7E790F00E1213E /* PickerViewController.swift */; };
 		672E5B042B7EB88900E1213E /* PersonalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672E5B032B7EB88900E1213E /* PersonalData.swift */; };
 		672E5B072B7EC45100E1213E /* BasketCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672E5B062B7EC45100E1213E /* BasketCellView.swift */; };
+		67CC43642B822FC900013BDE /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CC43632B822FC900013BDE /* Product.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		672E5B012B7E790F00E1213E /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
 		672E5B032B7EB88900E1213E /* PersonalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PersonalData.swift; path = UIKitTask/Sources/Models/PersonalData.swift; sourceTree = SOURCE_ROOT; };
 		672E5B062B7EC45100E1213E /* BasketCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketCellView.swift; sourceTree = "<group>"; };
+		67CC43632B822FC900013BDE /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				672E5B032B7EB88900E1213E /* PersonalData.swift */,
+				67CC43632B822FC900013BDE /* Product.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				672748692B725827004CFDBE /* AppDelegate.swift in Sources */,
 				672E5B022B7E790F00E1213E /* PickerViewController.swift in Sources */,
 				672E5B072B7EC45100E1213E /* BasketCellView.swift in Sources */,
+				67CC43642B822FC900013BDE /* Product.swift in Sources */,
 				67192F1B2B7CD0D3004A7152 /* MainTabBarController.swift in Sources */,
 				67192F192B7CD038004A7152 /* ProfileViewController.swift in Sources */,
 				67192F172B7CD02E004A7152 /* BasketViewController.swift in Sources */,

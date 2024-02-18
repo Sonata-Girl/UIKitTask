@@ -4,7 +4,7 @@
 import UIKit
 
 /// Экран корзины для товаров
-class BasketViewController: UIViewController {
+final class BasketViewController: UIViewController {
     // MARK: - Types
 
     private enum Constants {
@@ -14,13 +14,9 @@ class BasketViewController: UIViewController {
         static let backButtonImage = UIImage(systemName: "chevron.left")
     }
 
-    // MARK: - Constants
-
-    // MARK: - IBOutlet
-
     // MARK: - Visual Components
 
-    private lazy var orderDataButton: UIButton = {
+    private let orderDataButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .appPink
@@ -31,7 +27,6 @@ class BasketViewController: UIViewController {
         button.layer.shadowOpacity = 0.5
         button.layer.cornerRadius = 10
         button.isHidden = true
-//        button.addTarget(self, action: #selector(saveData), for: .touchUpInside)
         return button
     }()
 
@@ -41,16 +36,16 @@ class BasketViewController: UIViewController {
         return view
     }()
 
-    // MARK: - Public Properties
-
     // MARK: - Private Properties
 
-    // MARK: - Initializers
+    private var products: [Product] = []
+    private var lastProductCellConstraint: NSLayoutYAxisAnchor?
 
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        addNotification()
         configureNavigationBar()
         setupHierarchy()
         setupUI()
@@ -62,6 +57,15 @@ class BasketViewController: UIViewController {
     // MARK: - IBAction или @objc (not private)
 
     // MARK: - Private Methods
+
+    private func addNotification() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(getDataFromCatalog),
+            name: Notification.Name("productAddedInBasket"),
+            object: nil
+        )
+    }
 
     private func configureNavigationBar() {
         navigationItem.title = Constants.screenTitle
@@ -80,7 +84,6 @@ class BasketViewController: UIViewController {
             cellGoodView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             view.safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: cellGoodView.trailingAnchor),
             cellGoodView.heightAnchor.constraint(equalToConstant: 157),
-            cellGoodView.widthAnchor.constraint(equalToConstant: view.bounds.width)
         ])
 
         NSLayoutConstraint.activate([
@@ -99,11 +102,45 @@ class BasketViewController: UIViewController {
             ),
             orderDataButton.heightAnchor.constraint(equalToConstant: 44)
         ])
+
+        lastProductCellConstraint = cellGoodView.bottomAnchor
+    }
+
+    private func setupUIFromData() {
+        guard let newProduct = products.last,
+              let lastProductCellConstraint
+        else { return }
+        let view = BasketCellView()
+        view.configureView(
+            nameProduct: newProduct.name,
+            countProduct: newProduct.count,
+            sizeProduct: newProduct.size,
+            priceProduct: newProduct.price
+        )
+        view.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            cellGoodView.topAnchor.constraint(equalTo: lastProductCellConstraint, constant: 10),
+            cellGoodView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            view.safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: cellGoodView.trailingAnchor),
+            cellGoodView.heightAnchor.constraint(equalToConstant: 157),
+//            cellGoodView.widthAnchor.constraint(equalToConstant: view.bounds.width)
+        ])
+
+        self.lastProductCellConstraint = cellGoodView.bottomAnchor
     }
 
     private func setupHandle() {
         cellGoodView.goodDeletedHandle = { _ in
             self.cellGoodView.removeFromSuperview()
+        }
+    }
+
+    @objc private func getDataFromCatalog(notification: Notification) {
+        if notification.name == Notification.Name("productAddedInBasket") {
+            guard let product = notification.userInfo?["product"] as? Product else { return }
+            products.append(product)
+            setupUIFromData()
         }
     }
 }
