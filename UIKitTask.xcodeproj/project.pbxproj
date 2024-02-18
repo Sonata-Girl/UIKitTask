@@ -22,6 +22,11 @@
 		C42D33E02B8249D900770501 /* Clothes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42D33DF2B8249D900770501 /* Clothes.swift */; };
 		C4923CF42B7EC51F0080F3DA /* SizeShoesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4923CF32B7EC51F0080F3DA /* SizeShoesViewController.swift */; };
 		C4DBB6E92B7E75C700F2DBC4 /* ShoesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DBB6E82B7E75C700F2DBC4 /* ShoesViewController.swift */; };
+		672E5AFE2B7E475400E1213E /* PersonalDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672E5AFD2B7E475400E1213E /* PersonalDataViewController.swift */; };
+		672E5B022B7E790F00E1213E /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672E5B012B7E790F00E1213E /* PickerViewController.swift */; };
+		672E5B042B7EB88900E1213E /* PersonalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672E5B032B7EB88900E1213E /* PersonalData.swift */; };
+		672E5B072B7EC45100E1213E /* BasketCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672E5B062B7EC45100E1213E /* BasketCellView.swift */; };
+		67CC43642B822FC900013BDE /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CC43632B822FC900013BDE /* Product.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +47,11 @@
 		C42D33DF2B8249D900770501 /* Clothes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clothes.swift; sourceTree = "<group>"; };
 		C4923CF32B7EC51F0080F3DA /* SizeShoesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeShoesViewController.swift; sourceTree = "<group>"; };
 		C4DBB6E82B7E75C700F2DBC4 /* ShoesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoesViewController.swift; sourceTree = "<group>"; };
+		672E5AFD2B7E475400E1213E /* PersonalDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDataViewController.swift; sourceTree = "<group>"; };
+		672E5B012B7E790F00E1213E /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
+		672E5B032B7EB88900E1213E /* PersonalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PersonalData.swift; path = UIKitTask/Sources/Models/PersonalData.swift; sourceTree = SOURCE_ROOT; };
+		672E5B062B7EC45100E1213E /* BasketCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketCellView.swift; sourceTree = "<group>"; };
+		67CC43632B822FC900013BDE /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,8 +90,8 @@
 			children = (
 				67192F0C2B7CCC3D004A7152 /* App */,
 				67192F1C2B7CD50F004A7152 /* Helpers */,
-				C4DBB6E42B7E5E7C00F2DBC4 /* Models */,
-				C42D33E12B82596600770501 /* Scenes */,
+				672E5B052B7EB89100E1213E /* Models */,
+				672E5B002B7E759800E1213E /* Scenes */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -105,6 +115,7 @@
 		67192F132B7CCFE0004A7152 /* BasketScene */ = {
 			isa = PBXGroup;
 			children = (
+				672E5B082B7EC45D00E1213E /* Cell */,
 				67192F162B7CD02E004A7152 /* BasketViewController.swift */,
 			);
 			path = BasketScene;
@@ -161,7 +172,16 @@
 			path = UIKitTask;
 			sourceTree = "<group>";
 		};
-		C42D33E12B82596600770501 /* Scenes */ = {
+		672E5AFC2B7E472E00E1213E /* PersonalDataScene */ = {
+			isa = PBXGroup;
+			children = (
+				672E5AFD2B7E475400E1213E /* PersonalDataViewController.swift */,
+				672E5B012B7E790F00E1213E /* PickerViewController.swift */,
+			);
+			path = PersonalDataScene;
+			sourceTree = "<group>";
+		};
+		672E5B002B7E759800E1213E /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
 				67192F152B7CD000004A7152 /* MainTabBarController */,
@@ -179,6 +199,16 @@
 			isa = PBXGroup;
 			children = (
 				C42D33DF2B8249D900770501 /* Clothes.swift */,
+				672E5AFC2B7E472E00E1213E /* PersonalDataScene */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		672E5B052B7EB89100E1213E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				672E5B032B7EB88900E1213E /* PersonalData.swift */,
+				67CC43632B822FC900013BDE /* Product.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -197,6 +227,14 @@
 				C4923CF32B7EC51F0080F3DA /* SizeShoesViewController.swift */,
 			);
 			path = SizeShoesScene;
+   			sourceTree = "<group>";
+		};         
+		672E5B082B7EC45D00E1213E /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				672E5B062B7EC45100E1213E /* BasketCellView.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -317,9 +355,13 @@
 			files = (
 				C4923CF42B7EC51F0080F3DA /* SizeShoesViewController.swift in Sources */,
 				C4DBB6E92B7E75C700F2DBC4 /* ShoesViewController.swift in Sources */,
+				672E5AFE2B7E475400E1213E /* PersonalDataViewController.swift in Sources */,
 				6727486D2B725827004CFDBE /* CatalogViewController.swift in Sources */,
 				C42D33DE2B81ED1D00770501 /* CGColor+Extensions.swift in Sources */,
 				672748692B725827004CFDBE /* AppDelegate.swift in Sources */,
+				672E5B022B7E790F00E1213E /* PickerViewController.swift in Sources */,
+				672E5B072B7EC45100E1213E /* BasketCellView.swift in Sources */,
+				67CC43642B822FC900013BDE /* Product.swift in Sources */,
 				67192F1B2B7CD0D3004A7152 /* MainTabBarController.swift in Sources */,
 				67192F192B7CD038004A7152 /* ProfileViewController.swift in Sources */,
 				67192F172B7CD02E004A7152 /* BasketViewController.swift in Sources */,
@@ -327,6 +369,7 @@
 				C42D33E02B8249D900770501 /* Clothes.swift in Sources */,
 				C42D33DC2B81E8C700770501 /* UIColor+Extensions.swift in Sources */,
 				67192F1E2B7CD524004A7152 /* UIFont+Extensions.swift in Sources */,
+				672E5B042B7EB88900E1213E /* PersonalData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

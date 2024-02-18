@@ -16,12 +16,4 @@ extension UIFont {
     static func setVerdanaBoldItalic(withSize: CGFloat) -> UIFont? {
         UIFont(name: "Verdana-BoldItalic", size: withSize)
     }
-
-    static func setAmaticBold(withSize: CGFloat) -> UIFont? {
-        UIFont(name: "AmaticSC-Bold", size: withSize)
-    }
-
-    static func setAmaticRegular(withSize: CGFloat) -> UIFont? {
-        UIFont(name: "AmaticSC-Regular", size: withSize)
-    }
 }

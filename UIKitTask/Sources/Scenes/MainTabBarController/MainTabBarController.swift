@@ -5,8 +5,11 @@ import UIKit
 
 /// Таб бар контроллер, инициализирует запуск стартовых экранов приложения по вкладкам
 final class MainTabBarController: UITabBarController {
-
+<<<<<<<< HEAD:UIKitTask/Sources/Helpers/Scenes/MainTabBarController/MainTabBarController.swift
     // MARK: - Constants
+========
+    // MARK: Constants
+>>>>>>>> bffb9b313505b49632a71c5a7c340cb2fa8e9ecb:UIKitTask/Sources/Scenes/MainTabBarController/MainTabBarController.swift
 
     enum Constants {
         static let catalogVCTitle = "Каталог"
