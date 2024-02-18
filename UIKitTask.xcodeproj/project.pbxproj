@@ -81,12 +81,7 @@
 				67192F0C2B7CCC3D004A7152 /* App */,
 				67192F1C2B7CD50F004A7152 /* Helpers */,
 				C4DBB6E42B7E5E7C00F2DBC4 /* Models */,
-				67192F152B7CD000004A7152 /* MainTabBarController */,
-				67192F122B7CCFD8004A7152 /* CatalogScene */,
-				C4DBB6E72B7E756600F2DBC4 /* ShoesScene */,
-				C4DBB6EA2B7EC3B300F2DBC4 /* SizeShoesScene */,
-				67192F132B7CCFE0004A7152 /* BasketScene */,
-				67192F142B7CCFF0004A7152 /* ProfileScene */,
+				C42D33E12B82596600770501 /* Scenes */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -164,6 +159,20 @@
 				67192F0D2B7CCC53004A7152 /* Resources */,
 			);
 			path = UIKitTask;
+			sourceTree = "<group>";
+		};
+		C42D33E12B82596600770501 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				67192F152B7CD000004A7152 /* MainTabBarController */,
+				67192F122B7CCFD8004A7152 /* CatalogScene */,
+				67192F132B7CCFE0004A7152 /* BasketScene */,
+				67192F142B7CCFF0004A7152 /* ProfileScene */,
+				C4DBB6EA2B7EC3B300F2DBC4 /* SizeShoesScene */,
+				C4DBB6E72B7E756600F2DBC4 /* ShoesScene */,
+			);
+			name = Scenes;
+			path = Helpers/Scenes;
 			sourceTree = "<group>";
 		};
 		C4DBB6E42B7E5E7C00F2DBC4 /* Models */ = {
