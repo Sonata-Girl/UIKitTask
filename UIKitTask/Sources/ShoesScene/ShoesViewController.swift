@@ -3,6 +3,11 @@
 
 import UIKit
 
+/// Протокол для передачи данных
+protocol ShoesDelegate: AnyObject {
+    func addShoes(sender: UIButton)
+}
+
 /// Экран с выбором обуви
 final class ShoesViewController: UIViewController {
     weak var delegate: ShoesDelegate?
