@@ -42,12 +42,12 @@
 		672748762B725829004CFDBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		672E5B032B7EB88900E1213E /* PersonalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PersonalData.swift; path = UIKitTask/Sources/Models/PersonalData.swift; sourceTree = SOURCE_ROOT; };
 		67CC43632B822FC900013BDE /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
-		67CC43682B82737C00013BDE /* PickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PickerViewController.swift; path = UIKitTask/Sources/Helpers/Scenes/ProfileScene/PickerViewController.swift; sourceTree = SOURCE_ROOT; };
+		67CC43682B82737C00013BDE /* PickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PickerViewController.swift; path = UIKitTask/Sources/ProfileScene/PickerViewController.swift; sourceTree = SOURCE_ROOT; };
 		67CC436C2B8273EF00013BDE /* Clothes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clothes.swift; sourceTree = "<group>"; };
 		67CC436E2B82742C00013BDE /* PersonalDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalDataViewController.swift; sourceTree = "<group>"; };
-		67CC43702B82781F00013BDE /* BasketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BasketViewController.swift; path = UIKitTask/Sources/Scenes/BasketScene/BasketViewController.swift; sourceTree = SOURCE_ROOT; };
+		67CC43702B82781F00013BDE /* BasketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BasketViewController.swift; path = UIKitTask/Sources/BasketScene/BasketViewController.swift; sourceTree = SOURCE_ROOT; };
 		67CC43722B827A7500013BDE /* BasketCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketCellView.swift; sourceTree = "<group>"; };
-		67CC43752B827AE400013BDE /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = UIKitTask/Sources/Scenes/ProfileScene/ProfileViewController.swift; sourceTree = SOURCE_ROOT; };
+		67CC43752B827AE400013BDE /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = UIKitTask/Sources/ProfileScene/ProfileViewController.swift; sourceTree = SOURCE_ROOT; };
 		C42D33DB2B81E8C700770501 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		C42D33DD2B81ED1D00770501 /* CGColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGColor+Extensions.swift"; sourceTree = "<group>"; };
 		C4923CF32B7EC51F0080F3DA /* SizeShoesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeShoesViewController.swift; sourceTree = "<group>"; };
@@ -91,7 +91,7 @@
 				67192F0C2B7CCC3D004A7152 /* App */,
 				67192F1C2B7CD50F004A7152 /* Helpers */,
 				672E5B052B7EB89100E1213E /* Models */,
-				672E5B002B7E759800E1213E /* Scenes */,
+				67CC43812B8373AC00013BDE /* Scenes */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -174,20 +174,6 @@
 			path = UIKitTask;
 			sourceTree = "<group>";
 		};
-		672E5B002B7E759800E1213E /* Scenes */ = {
-			isa = PBXGroup;
-			children = (
-				67192F152B7CD000004A7152 /* MainTabBarController */,
-				67192F122B7CCFD8004A7152 /* CatalogScene */,
-				67192F132B7CCFE0004A7152 /* BasketScene */,
-				67192F142B7CCFF0004A7152 /* ProfileScene */,
-				C4DBB6EA2B7EC3B300F2DBC4 /* SizeShoesScene */,
-				C4DBB6E72B7E756600F2DBC4 /* ShoesScene */,
-			);
-			name = Scenes;
-			path = Helpers/Scenes;
-			sourceTree = "<group>";
-		};
 		672E5B052B7EB89100E1213E /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -206,12 +192,25 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		C4DBB6E72B7E756600F2DBC4 /* ShoesScene */ = {
+		67CC437F2B83735F00013BDE /* ShoesScene */ = {
 			isa = PBXGroup;
 			children = (
 				C4DBB6E82B7E75C700F2DBC4 /* ShoesViewController.swift */,
 			);
 			path = ShoesScene;
+			sourceTree = "<group>";
+		};
+		67CC43812B8373AC00013BDE /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				67192F152B7CD000004A7152 /* MainTabBarController */,
+				67192F122B7CCFD8004A7152 /* CatalogScene */,
+				67192F132B7CCFE0004A7152 /* BasketScene */,
+				67192F142B7CCFF0004A7152 /* ProfileScene */,
+				C4DBB6EA2B7EC3B300F2DBC4 /* SizeShoesScene */,
+				67CC437F2B83735F00013BDE /* ShoesScene */,
+			);
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 		C4DBB6EA2B7EC3B300F2DBC4 /* SizeShoesScene */ = {
