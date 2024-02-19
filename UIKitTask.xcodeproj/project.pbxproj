@@ -14,9 +14,9 @@
 		672748752B725829004CFDBE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 672748732B725829004CFDBE /* LaunchScreen.storyboard */; };
 		67CC438C2B83A2DC00013BDE /* PostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CC438B2B83A2DC00013BDE /* PostsViewController.swift */; };
 		67CC438F2B83A33800013BDE /* NewNotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CC438E2B83A33800013BDE /* NewNotificationsViewController.swift */; };
-		67CC43932B83A68400013BDE /* StoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CC43922B83A68400013BDE /* StoryCell.swift */; };
+		67CC43932B83A68400013BDE /* StoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CC43922B83A68400013BDE /* StoryView.swift */; };
 		67CC43952B83A69A00013BDE /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CC43942B83A69A00013BDE /* PostCell.swift */; };
-		67CC43972B83A6A600013BDE /* RecomendationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CC43962B83A6A600013BDE /* RecomendationCell.swift */; };
+		67CC43972B83A6A600013BDE /* RecommendationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CC43962B83A6A600013BDE /* RecommendationCell.swift */; };
 		67CC43992B83A6C500013BDE /* NewCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CC43982B83A6C500013BDE /* NewCommentCell.swift */; };
 		67CC439B2B83A6ED00013BDE /* NewUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CC439A2B83A6ED00013BDE /* NewUserCell.swift */; };
 		67CC439F2B83AB1100013BDE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CC439E2B83AB1100013BDE /* User.swift */; };
@@ -24,6 +24,9 @@
 		67CC43A32B83ACFF00013BDE /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CC43A22B83ACFF00013BDE /* Post.swift */; };
 		67CC43A52B83AD5800013BDE /* NewComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CC43A42B83AD5800013BDE /* NewComment.swift */; };
 		67DF4C262B83B180000963E5 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DF4C252B83B180000963E5 /* UIFont+Extension.swift */; };
+		67DF4C292B83C268000963E5 /* StoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DF4C282B83C268000963E5 /* StoriesCell.swift */; };
+		67DF4C2B2B83F2A1000963E5 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67DF4C2A2B83F2A1000963E5 /* Colors.xcassets */; };
+		67DF4C2E2B83FB3E000963E5 /* RecommendationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DF4C2D2B83FB3E000963E5 /* RecommendationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,9 +39,9 @@
 		672748762B725829004CFDBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		67CC438B2B83A2DC00013BDE /* PostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewController.swift; sourceTree = "<group>"; };
 		67CC438E2B83A33800013BDE /* NewNotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNotificationsViewController.swift; sourceTree = "<group>"; };
-		67CC43922B83A68400013BDE /* StoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCell.swift; sourceTree = "<group>"; };
+		67CC43922B83A68400013BDE /* StoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryView.swift; sourceTree = "<group>"; };
 		67CC43942B83A69A00013BDE /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
-		67CC43962B83A6A600013BDE /* RecomendationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecomendationCell.swift; sourceTree = "<group>"; };
+		67CC43962B83A6A600013BDE /* RecommendationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationCell.swift; sourceTree = "<group>"; };
 		67CC43982B83A6C500013BDE /* NewCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCommentCell.swift; sourceTree = "<group>"; };
 		67CC439A2B83A6ED00013BDE /* NewUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserCell.swift; sourceTree = "<group>"; };
 		67CC439E2B83AB1100013BDE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -46,6 +49,9 @@
 		67CC43A22B83ACFF00013BDE /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		67CC43A42B83AD5800013BDE /* NewComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewComment.swift; sourceTree = "<group>"; };
 		67DF4C252B83B180000963E5 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		67DF4C282B83C268000963E5 /* StoriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesCell.swift; sourceTree = "<group>"; };
+		67DF4C2A2B83F2A1000963E5 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		67DF4C2D2B83FB3E000963E5 /* RecommendationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				672748712B725829004CFDBE /* Assets.xcassets */,
+				67DF4C2A2B83F2A1000963E5 /* Colors.xcassets */,
 				672748732B725829004CFDBE /* LaunchScreen.storyboard */,
 				672748762B725829004CFDBE /* Info.plist */,
 			);
@@ -153,8 +160,8 @@
 		67CC43912B83A66A00013BDE /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				67CC43922B83A68400013BDE /* StoryCell.swift */,
-				67CC43962B83A6A600013BDE /* RecomendationCell.swift */,
+				67DF4C2C2B83FB28000963E5 /* StoryCell */,
+				67DF4C2F2B83FB42000963E5 /* RecommendationCell */,
 				67CC43942B83A69A00013BDE /* PostCell.swift */,
 			);
 			path = Cells;
@@ -186,6 +193,24 @@
 				67DF4C252B83B180000963E5 /* UIFont+Extension.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		67DF4C2C2B83FB28000963E5 /* StoryCell */ = {
+			isa = PBXGroup;
+			children = (
+				67CC43922B83A68400013BDE /* StoryView.swift */,
+				67DF4C282B83C268000963E5 /* StoriesCell.swift */,
+			);
+			path = StoryCell;
+			sourceTree = "<group>";
+		};
+		67DF4C2F2B83FB42000963E5 /* RecommendationCell */ = {
+			isa = PBXGroup;
+			children = (
+				67DF4C2D2B83FB3E000963E5 /* RecommendationView.swift */,
+				67CC43962B83A6A600013BDE /* RecommendationCell.swift */,
+			);
+			path = RecommendationCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,6 +273,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67DF4C2B2B83F2A1000963E5 /* Colors.xcassets in Resources */,
 				672748752B725829004CFDBE /* LaunchScreen.storyboard in Resources */,
 				672748722B725829004CFDBE /* Assets.xcassets in Resources */,
 			);
@@ -305,9 +331,10 @@
 			files = (
 				67CC43952B83A69A00013BDE /* PostCell.swift in Sources */,
 				67CC438C2B83A2DC00013BDE /* PostsViewController.swift in Sources */,
-				67CC43972B83A6A600013BDE /* RecomendationCell.swift in Sources */,
+				67CC43972B83A6A600013BDE /* RecommendationCell.swift in Sources */,
 				67DF4C262B83B180000963E5 /* UIFont+Extension.swift in Sources */,
 				67CC439B2B83A6ED00013BDE /* NewUserCell.swift in Sources */,
+				67DF4C292B83C268000963E5 /* StoriesCell.swift in Sources */,
 				67CC43A32B83ACFF00013BDE /* Post.swift in Sources */,
 				67CC438F2B83A33800013BDE /* NewNotificationsViewController.swift in Sources */,
 				6727486D2B725827004CFDBE /* TabBarController.swift in Sources */,
@@ -316,7 +343,8 @@
 				67CC43992B83A6C500013BDE /* NewCommentCell.swift in Sources */,
 				672748692B725827004CFDBE /* AppDelegate.swift in Sources */,
 				6727486B2B725827004CFDBE /* SceneDelegate.swift in Sources */,
-				67CC43932B83A68400013BDE /* StoryCell.swift in Sources */,
+				67DF4C2E2B83FB3E000963E5 /* RecommendationView.swift in Sources */,
+				67CC43932B83A68400013BDE /* StoryView.swift in Sources */,
 				67CC43A12B83ABDD00013BDE /* Story.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

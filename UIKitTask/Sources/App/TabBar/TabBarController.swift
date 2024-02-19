@@ -9,16 +9,8 @@ final class TabBarController: UITabBarController {
 
     enum Constants {
         static let postsVCTitle = "Лента"
-
-//        static let postsVCSelectedImage = UIImage(systemName: "catalogRose")
-
         static let newNotificationsVCTitle = "Уведомления"
-
-//        static let basketVCSelectedImage = UIImage(systemName: "basketRose")
-
         static let profileVCTitle = "Профиль"
-
-//        static let profileVCSelectedImage = UIImage(systemName: "profileRose")
     }
 
     // MARK: - Lifecycle
@@ -33,7 +25,6 @@ final class TabBarController: UITabBarController {
 
     private func setupTabBarController() {
         view.backgroundColor = .white
-//        tabBar.tintColor = .b
         tabBar.isTranslucent = false
     }
 

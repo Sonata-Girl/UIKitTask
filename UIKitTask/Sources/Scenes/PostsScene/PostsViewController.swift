@@ -5,13 +5,24 @@ import UIKit
 
 /// Стартовый экран, список постов , сторис, рекомендации
 final class PostsViewController: UIViewController {
-    // MARK: - Types
+    // MARK: Types
 
-    // MARK: - Constants
+    private enum TableSections {
+        case firstPost
+        case stories
+        case posts
+        case recommendations
+    }
 
-    // MARK: - IBOutlet
+    // MARK: Constants
 
-    // MARK: - Visual Components
+    private enum Constants {
+        static let titleRoastingScreen = "Уточните обжарку зеренъ"
+    }
+
+    // MARK: IBOutlet
+
+    // MARK: Visual Components
 
     private let appLogoBarImage: UIImageView = {
         let imageView = UIImageView()
@@ -29,27 +40,46 @@ final class PostsViewController: UIViewController {
         return button
     }()
 
-    // MARK: - Public Properties
+    private lazy var mainTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.backgroundColor = .clear
+        tableView.register(StoriesCell.self, forCellReuseIdentifier: StoriesCell.identifier)
+        tableView.register(RecommendationCell.self, forCellReuseIdentifier: RecommendationCell.identifier)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.separatorStyle = .none
+        return tableView
+    }()
 
-    // MARK: - Private Properties
+    // MARK: Public Properties
 
-    // MARK: - Initializers
+    // MARK: Private Properties
 
-    // MARK: - Life Cycle
+    private let tableSections: [TableSections] = [.stories, .firstPost, .recommendations, .posts]
+    private var stories: [Story] = []
+    private var posts: [Post] = []
+    private var recommendations: [User] = []
+
+    // MARK: Initializers
+
+    // MARK: Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        getDataFromBackEnd()
+
         configureNavigationBar()
         configureView()
         setupHierarchy()
         setupUI()
     }
 
-    // MARK: - Public methods
+    // MARK: Public methods
 
-    // MARK: - IBAction или @objc (not private)
+    // MARK: IBAction или @objc (not private)
 
-    // MARK: - Private Methods
+    // MARK: Private Methods
 
     private func configureNavigationBar() {
         var tabBarItem = UIBarButtonItem(customView: appLogoBarImage)
@@ -60,9 +90,112 @@ final class PostsViewController: UIViewController {
 
     private func configureView() {}
 
-    private func setupHierarchy() {}
+    private func setupHierarchy() {
+        view.addSubview(mainTableView)
+    }
 
-    private func setupUI() {}
+    private func setupUI() {
+        NSLayoutConstraint.activate([
+            mainTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            mainTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            mainTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            mainTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+        ])
+    }
 
-    // MARK: - IBAction или @objc (private)
+    private func getDataFromBackEnd() {
+        let userMe = User(name: "Ваша история", avatarImage: "myAvatar")
+        let userLavanda = User(name: "lavanda123", avatarImage: "avatarLavanda")
+
+        stories.append(Story(user: userMe, isYour: true))
+        stories.append(Story(user: userLavanda, isYour: false))
+        stories.append(Story(user: userLavanda, isYour: false))
+        stories.append(Story(user: userLavanda, isYour: false))
+        stories.append(Story(user: userLavanda, isYour: false))
+        stories.append(Story(user: userLavanda, isYour: false))
+        stories.append(Story(user: userLavanda, isYour: false))
+        stories.append(Story(user: userLavanda, isYour: false))
+
+        recommendations.append(User(name: "сrimea_082", avatarImage: "recommendOne"))
+        recommendations.append(User(name: "mary_pol", avatarImage: "recommendTwo"))
+    }
+
+    // MARK: IBAction или @objc (private)
+}
+
+// MARK: UITableViewDataSource
+
+extension PostsViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        getNumberOfRowsInSection(section)
+    }
+
+    private func getNumberOfRowsInSection(_ section: Int) -> Int {
+        switch tableSections[section] {
+        case .stories:
+            return 1
+        case .firstPost:
+            return 1
+        case .recommendations:
+            return 1
+        case .posts:
+            return posts.dropFirst().count
+        }
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch tableSections[indexPath.section] {
+        case .stories:
+            return getStoryCell(for: tableView, from: indexPath)
+        case .firstPost:
+            return UITableViewCell()
+        case .recommendations:
+            return getRecommendationCell(for: tableView, from: indexPath)
+        case .posts:
+            return UITableViewCell()
+        }
+    }
+
+    private func getStoryCell(for tableView: UITableView, from indexPath: IndexPath) -> UITableViewCell {
+        guard
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: StoriesCell.identifier,
+                for: indexPath
+            ) as? StoriesCell else { return UITableViewCell() }
+
+        cell.configureView(stories: stories)
+        return cell
+    }
+
+    private func getPostsCell(for tableView: UITableView, from indexPath: IndexPath) -> UITableViewCell {
+        guard
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: StoriesCell.identifier,
+                for: indexPath
+            ) as? StoriesCell else { return UITableViewCell() }
+
+        cell.configureView(stories: stories)
+        return cell
+    }
+
+    private func getRecommendationCell(for tableView: UITableView, from indexPath: IndexPath) -> UITableViewCell {
+        guard
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: RecommendationCell.identifier,
+                for: indexPath
+            ) as? RecommendationCell else { return UITableViewCell() }
+
+        cell.configureView(recommendations: recommendations)
+        return cell
+    }
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        tableSections.count - 1
+    }
+}
+
+extension PostsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        NotificationCenter.default.post(name: NSNotification.Name("TableDidFinishRendering"), object: nil)
+    }
 }

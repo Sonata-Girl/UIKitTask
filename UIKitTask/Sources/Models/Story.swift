@@ -9,4 +9,10 @@ struct Story {
     let isNew: Bool
     /// Это ваша история
     let isYour: Bool
+
+    init(user: User, isYour: Bool) {
+        self.user = user
+        isNew = !isYour
+        self.isYour = isYour
+    }
 }
