@@ -5,7 +5,7 @@ import UIKit
 
 /// Таб бар контроллер, инициализирует запуск стартовых экранов приложения по вкладкам
 final class MainTabBarController: UITabBarController {
-    // MARK: Constants
+    // MARK: - Constants
 
     enum Constants {
         static let catalogVCTitle = "Каталог"
@@ -33,8 +33,10 @@ final class MainTabBarController: UITabBarController {
 
     private func setupTabBarController() {
         view.backgroundColor = .white
-        tabBar.tintColor = .appPink
+        tabBar.tintColor = .appPinkColor()
         tabBar.isTranslucent = false
+        tabBar.layer.borderColor = .appTabBarBorderColor()
+        tabBar.layer.borderWidth = 1
     }
 
     private func setupTabBarViewControllers() {
