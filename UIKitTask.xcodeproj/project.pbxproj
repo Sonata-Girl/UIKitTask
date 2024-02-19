@@ -23,6 +23,7 @@
 		67CC43A12B83ABDD00013BDE /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CC43A02B83ABDD00013BDE /* Story.swift */; };
 		67CC43A32B83ACFF00013BDE /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CC43A22B83ACFF00013BDE /* Post.swift */; };
 		67CC43A52B83AD5800013BDE /* NewComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CC43A42B83AD5800013BDE /* NewComment.swift */; };
+		67DF4C262B83B180000963E5 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DF4C252B83B180000963E5 /* UIFont+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		67CC43A02B83ABDD00013BDE /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 		67CC43A22B83ACFF00013BDE /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		67CC43A42B83AD5800013BDE /* NewComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewComment.swift; sourceTree = "<group>"; };
+		67DF4C252B83B180000963E5 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +98,9 @@
 			isa = PBXGroup;
 			children = (
 				67CC43862B8386B800013BDE /* App */,
+				67CC439D2B83A70B00013BDE /* Models */,
 				67CC43892B83A22F00013BDE /* Scenes */,
+				67DF4C272B83B1AF000963E5 /* Helpers */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -114,7 +118,6 @@
 		67CC43892B83A22F00013BDE /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				67CC439D2B83A70B00013BDE /* Models */,
 				67CC438D2B83A2DF00013BDE /* PostsScene */,
 				67CC43902B83A33C00013BDE /* NewNotificationsScene */,
 			);
@@ -175,6 +178,14 @@
 				67CC43A42B83AD5800013BDE /* NewComment.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		67DF4C272B83B1AF000963E5 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				67DF4C252B83B180000963E5 /* UIFont+Extension.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -295,6 +306,7 @@
 				67CC43952B83A69A00013BDE /* PostCell.swift in Sources */,
 				67CC438C2B83A2DC00013BDE /* PostsViewController.swift in Sources */,
 				67CC43972B83A6A600013BDE /* RecomendationCell.swift in Sources */,
+				67DF4C262B83B180000963E5 /* UIFont+Extension.swift in Sources */,
 				67CC439B2B83A6ED00013BDE /* NewUserCell.swift in Sources */,
 				67CC43A32B83ACFF00013BDE /* Post.swift in Sources */,
 				67CC438F2B83A33800013BDE /* NewNotificationsViewController.swift in Sources */,

@@ -7,4 +7,6 @@ struct Story {
     let user: User
     /// Новый сторис (просмотренный или нет)
     let isNew: Bool
+    /// Это ваша история
+    let isYour: Bool
 }
