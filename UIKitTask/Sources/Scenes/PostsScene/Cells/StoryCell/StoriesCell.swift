@@ -45,11 +45,17 @@ final class StoriesCell: UITableViewCell {
         setupHierarchy()
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        stories.removeAll()
+        clearScrollView()
+    }
+
     // MARK: Public methods
 
     func configureView(stories: [Story]) {
         self.stories = stories
-        updateUI()
+        fillScrollView()
     }
 
     // MARK: - Private methods
@@ -82,7 +88,7 @@ final class StoriesCell: UITableViewCell {
         ])
     }
 
-    private func updateUI() {
+    private func fillScrollView() {
         guard !stories.isEmpty else { return }
         var lastStoryViewLeftAnchor = contentContainerView.leadingAnchor
 
@@ -107,5 +113,9 @@ final class StoriesCell: UITableViewCell {
             lastStoryViewLeftAnchor = newView.trailingAnchor
             storyCells.append(newView)
         }
+    }
+
+    private func clearScrollView() {
+        contentContainerView.subviews.forEach { $0.removeFromSuperview() }
     }
 }

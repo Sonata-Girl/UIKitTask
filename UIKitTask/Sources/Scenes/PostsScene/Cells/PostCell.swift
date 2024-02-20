@@ -165,20 +165,21 @@ final class PostCell: UITableViewCell {
         setupHierarchy()
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        model = nil
+        clearCellForReuse()
+    }
+
     // MARK: Public methods
 
     func configureView(post: Post) {
         model = post
-        updateUIInScroll()
         fillCell()
+        fillScrollView()
     }
 
     // MARK: - Private methods
-
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        clearCellForReuse()
-    }
 
     private func setupHierarchy() {
         [
@@ -392,7 +393,7 @@ final class PostCell: UITableViewCell {
         ])
     }
 
-    private func updateUIInScroll() {
+    private func fillScrollView() {
         guard let images = model?.images,
               !images.isEmpty
         else { return }
@@ -425,23 +426,6 @@ final class PostCell: UITableViewCell {
         }
     }
 
-    private func fillCell() {
-        guard let model else { return }
-        userImage.image = UIImage(named: model.user.avatarImage)
-        userNameLabel.text = model.user.name
-        likesCountLabel.text = "\(Constants.likeCountTitle) \(model.likes)"
-        currentUserAvatarImage.image = UIImage(named: model.currentUser.avatarImage)
-        setTextComment(model: model)
-    }
-
-    private func clearCellForReuse() {
-        userImage.image = nil
-        userNameLabel.text = nil
-        likesCountLabel.text = nil
-        currentUserAvatarImage.image = nil
-        commentLabel.attributedText = nil
-    }
-
     private func setTextComment(model: Post) {
         let text = "\(model.user.name) \(model.comment)"
         let myRange = NSRange(
@@ -457,22 +441,28 @@ final class PostCell: UITableViewCell {
         commentLabel.attributedText = attributedString
     }
 
-    private func setupDescriptionLabelText() {
-        let nicknameString = "tur_v_abudabi"
-        let boldFont = UIFont.setVerdanaBold(withSize: 10) ?? UIFont()
-        let boldAttributes = [NSAttributedString.Key.font: boldFont]
-        let nicknameBold = NSMutableAttributedString(
-            string: nicknameString,
-            attributes: boldAttributes as [NSAttributedString.Key: Any]
-        )
-        let description = "Насладитесь красотой природы. Забронировать тур в Дагестан можно уже сейчас!"
-        let regularAttribute = [NSAttributedString.Key.font: UIFont.setVerdana(withSize: 10)]
-        let descriptionRegular = NSAttributedString(
-            string: description,
-            attributes: regularAttribute as [NSAttributedString.Key: Any]
-        )
-        nicknameBold.append(descriptionRegular)
-        commentLabel.attributedText = nicknameBold
+    private func fillCell() {
+        guard let model else { return }
+        userImage.image = UIImage(named: model.user.avatarImage)
+        userNameLabel.text = model.user.name
+        likesCountLabel.text = "\(Constants.likeCountTitle) \(model.likes)"
+        currentUserAvatarImage.image = UIImage(named: model.currentUser.avatarImage)
+        setTextComment(model: model)
+    }
+
+    private func clearCellForReuse() {
+        model = nil
+        userImage.image = nil
+        userNameLabel.text = nil
+        likesCountLabel.text = nil
+        currentUserAvatarImage.image = nil
+        commentLabel.attributedText = nil
+        imagePageControl.numberOfPages = 0
+        clearScrollView()
+    }
+
+    private func clearScrollView() {
+        scrollImagesView.subviews.forEach { $0.removeFromSuperview() }
     }
 }
 

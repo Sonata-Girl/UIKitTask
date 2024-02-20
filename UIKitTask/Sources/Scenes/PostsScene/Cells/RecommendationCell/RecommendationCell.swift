@@ -58,7 +58,6 @@ final class RecommendationCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupHierarchy()
         setupScrollView()
-        updateUI()
     }
 
     @available(*, unavailable)
@@ -67,11 +66,17 @@ final class RecommendationCell: UITableViewCell {
         setupHierarchy()
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        recommendations.removeAll()
+        clearScrollView()
+    }
+
     // MARK: Public methods
 
     func configureView(recommendations: [User]) {
         self.recommendations = recommendations
-        updateUI()
+        fillScrolView()
     }
 
     // MARK: - Private methods
@@ -111,7 +116,7 @@ final class RecommendationCell: UITableViewCell {
         ])
     }
 
-    private func updateUI() {
+    private func fillScrolView() {
         guard !recommendations.isEmpty else { return }
         var lastStoryViewLeftAnchor = scrollView.leadingAnchor
 
@@ -137,5 +142,9 @@ final class RecommendationCell: UITableViewCell {
             lastStoryViewLeftAnchor = newView.trailingAnchor
             recommendationCells.append(newView)
         }
+    }
+
+    private func clearScrollView() {
+        scrollView.subviews.forEach { $0.removeFromSuperview() }
     }
 }
