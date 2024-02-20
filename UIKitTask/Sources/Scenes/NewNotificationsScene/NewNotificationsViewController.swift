@@ -109,7 +109,8 @@ final class NewNotificationsViewController: UIViewController {
     }
 
     @objc private func refreshTable(control: UIRefreshControl) {
-        //        mainTableView.backgroundColor =
+        getDataFromBackEnd()
+        mainTableView.reloadData()
         control.endRefreshing()
     }
 }
@@ -165,7 +166,7 @@ extension NewNotificationsViewController: UITableViewDataSource {
         switch tableSections[indexPath.section] {
         case .subscribeRequests:
             let cell = UITableViewCell()
-            cell.heightAnchor.constraint(equalToConstant: 2).isActive = true
+            cell.heightAnchor.constraint(equalToConstant: 1).isActive = true
             return cell
         case .today:
             return getNewNotificationCell(for: tableView, from: indexPath, source: todayNews)
