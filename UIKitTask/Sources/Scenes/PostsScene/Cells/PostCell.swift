@@ -148,6 +148,7 @@ final class PostCell: UITableViewCell {
 
     // MARK: Private Properties
 
+    private let dataBase = DataStorageService.shared
     private var model: Post?
     private var pageImageNumber = 0
 
@@ -156,7 +157,7 @@ final class PostCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupHierarchy()
-        setupScrollView()
+        setupUI()
     }
 
     @available(*, unavailable)
@@ -200,7 +201,7 @@ final class PostCell: UITableViewCell {
         ].forEach { contentView.addSubview($0) }
     }
 
-    private func setupScrollView() {
+    private func setupUI() {
         contentView.heightAnchor.constraint(equalToConstant: 420).isActive = true
         contentView.widthAnchor.constraint(equalToConstant: 375).isActive = true
 

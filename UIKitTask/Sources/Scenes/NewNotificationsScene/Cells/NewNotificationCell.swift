@@ -1,24 +1,14 @@
-// NewUserCell.swift
-// Copyright © RoadMap. All rights reserved.
-
 // NewNotificationCell.swift
 // Copyright © RoadMap. All rights reserved.
 
 import UIKit
 
 /// Ячейка для отображения новых лайков от пользователей и упоминаний
-final class NewUserCell: UITableViewCell {
+final class NewNotificationCell: UITableViewCell {
     // MARK: Types
 
     static var identifier: String {
         String(describing: self)
-    }
-
-    // MARK: Constants
-
-    private enum Constants {
-        static let subscribeButtonActiveTitle = "Подписаться"
-        static let subscribeButtonInactiveTitle = "Вы подписаны"
     }
 
     // MARK: Visual Components
@@ -41,16 +31,12 @@ final class NewUserCell: UITableViewCell {
         return label
     }()
 
-    private let subscribeButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.titleLabel?.font = .setVerdanaBold(withSize: 10)
-        button.setTitle(Constants.subscribeButtonActiveTitle, for: .normal)
-        button.tintColor = .white
-        button.backgroundColor = .appBlue
-        button.layer.cornerRadius = 8
-        button.layer.borderColor = UIColor.systemGray3.cgColor
-        return button
+    private let postImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        return imageView
     }()
 
     // MARK: Private Properties
@@ -75,12 +61,9 @@ final class NewUserCell: UITableViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        newNotification = nil
-        currentUser = nil
-
         mainImageView.image = nil
         commentLabel.text = nil
-        changeStateSubscribeButton()
+        postImage.image = nil
     }
 
     // MARK: Public methods
@@ -92,7 +75,8 @@ final class NewUserCell: UITableViewCell {
         mainImageView.image = UIImage(named: newNotification.user.avatarImage)
         setTextComment()
 
-        changeStateSubscribeButton(subscribed: newNotification.isYouSigned)
+        guard let imagePost = newNotification.postImage else { return }
+        postImage.image = UIImage(named: imagePost)
     }
 
     // MARK: - Private methods
@@ -101,13 +85,13 @@ final class NewUserCell: UITableViewCell {
         [
             mainImageView,
             commentLabel,
-            subscribeButton
+            postImage
         ].forEach { contentView.addSubview($0) }
     }
 
     private func setupUI() {
         contentView.backgroundColor = .white
-        contentView.heightAnchor.constraint(equalToConstant: 55).isActive = true
+        contentView.heightAnchor.constraint(equalToConstant: 50).isActive = true
 
         NSLayoutConstraint.activate([
             mainImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
@@ -119,29 +103,17 @@ final class NewUserCell: UITableViewCell {
         NSLayoutConstraint.activate([
             commentLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
             commentLabel.leadingAnchor.constraint(equalTo: mainImageView.trailingAnchor, constant: 7),
-            commentLabel.widthAnchor.constraint(equalToConstant: 154),
+            commentLabel.widthAnchor.constraint(equalToConstant: 240),
         ])
 
         NSLayoutConstraint.activate([
-            subscribeButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-            subscribeButton.leadingAnchor.constraint(equalTo: commentLabel.trailingAnchor, constant: 9),
-            subscribeButton.widthAnchor.constraint(equalToConstant: 140),
-            subscribeButton.heightAnchor.constraint(equalToConstant: 30)
-        ])
-    }
+            postImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
 
-    private func changeStateSubscribeButton(subscribed: Bool = true) {
-        if subscribed {
-            subscribeButton.setTitle(Constants.subscribeButtonInactiveTitle, for: .normal)
-            subscribeButton.setTitleColor(.systemGray3, for: .normal)
-            subscribeButton.backgroundColor = .white
-            subscribeButton.layer.borderWidth = 1
-        } else {
-            subscribeButton.setTitle(Constants.subscribeButtonActiveTitle, for: .normal)
-            subscribeButton.tintColor = .white
-            subscribeButton.backgroundColor = .appBlue
-            subscribeButton.layer.borderWidth = 0
-        }
+            postImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
+
+            postImage.widthAnchor.constraint(equalToConstant: 40),
+            postImage.heightAnchor.constraint(equalToConstant: 40)
+        ])
     }
 
     private func setTextComment() {
@@ -174,6 +146,7 @@ final class NewUserCell: UITableViewCell {
     }
 
     private func getSignatureForCell(newNotification: NewNotification, currentUserName: String) -> (String, String) {
+        var textComment = "\(newNotification.user.name)"
         let dateFromNotification = Date().timeIntervalSince1970 - newNotification.date.timeIntervalSince1970
 
         let minutes = Int(dateFromNotification / 60)
@@ -182,7 +155,21 @@ final class NewUserCell: UITableViewCell {
 
         let dateString = days == .zero ? hours == .zero ? " \(minutes)м." : " \(hours)ч." : " \(days)д."
 
-        let textComment = "\(newNotification.user.name) \(newNotification.type.mainTextComment)" + dateString
+        if case .newLikeOnComment = newNotification.type {
+            textComment += "\(newNotification.type.mainTextComment)"
+            textComment += "\"\(newNotification.userComment ?? "")\" "
+            textComment += dateString
+            return (textComment, dateString)
+        }
+
+        if case .userCallYou = newNotification.type {
+            textComment += "\(newNotification.type.mainTextComment)"
+            textComment += "@\(currentUserName)"
+            textComment += " \"\(newNotification.userComment ?? "")\""
+            textComment += dateString
+            return (textComment, dateString)
+        }
+
         return (textComment, dateString)
     }
 }

@@ -14,14 +14,6 @@ final class PostsViewController: UIViewController {
         case recommendations
     }
 
-    // MARK: Constants
-
-    private enum Constants {
-        static let titleRoastingScreen = "Уточните обжарку зеренъ"
-    }
-
-    // MARK: IBOutlet
-
     // MARK: Visual Components
 
     private let appLogoBarImage: UIImageView = {
@@ -52,16 +44,20 @@ final class PostsViewController: UIViewController {
         return tableView
     }()
 
-    // MARK: Public Properties
+    private lazy var refreshTableControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.translatesAutoresizingMaskIntoConstraints = false
+        refreshControl.addTarget(self, action: #selector(refreshTable), for: .valueChanged)
+        return refreshControl
+    }()
 
     // MARK: Private Properties
 
+    private let dataBase = DataStorageService.shared
     private let tableSections: [TableSections] = [.stories, .firstPost, .recommendations, .posts]
     private var stories: [Story] = []
     private var posts: [Post] = []
     private var recommendations: [User] = []
-
-    // MARK: Initializers
 
     // MARK: Life Cycle
 
@@ -70,14 +66,9 @@ final class PostsViewController: UIViewController {
         getDataFromBackEnd()
 
         configureNavigationBar()
-        configureView()
         setupHierarchy()
         setupUI()
     }
-
-    // MARK: Public methods
-
-    // MARK: IBAction или @objc (not private)
 
     // MARK: Private Methods
 
@@ -88,10 +79,9 @@ final class PostsViewController: UIViewController {
         navigationItem.rightBarButtonItem = tabBarItem
     }
 
-    private func configureView() {}
-
     private func setupHierarchy() {
         view.addSubview(mainTableView)
+        mainTableView.addSubview(refreshTableControl)
     }
 
     private func setupUI() {
@@ -104,48 +94,15 @@ final class PostsViewController: UIViewController {
     }
 
     private func getDataFromBackEnd() {
-        let userMe = User(name: "Ваша история", avatarImage: "myAvatar")
-        let userLavanda = User(name: "lavanda123", avatarImage: "avatarLavanda")
-        let userTur = User(name: "tur_v_dagestan", avatarImage: "avatarTurDagestan")
-        let userMary = User(name: "mary_pol", avatarImage: "recommendTwo")
-        let userMiho = User(name: "12miho", avatarImage: "avatarMiho")
-
-        stories.append(Story(user: userMe, isYour: true))
-        stories.append(Story(user: userLavanda, isYour: false))
-        stories.append(Story(user: userTur, isYour: false))
-        stories.append(Story(user: userMary, isYour: false))
-        stories.append(Story(user: userLavanda, isYour: false))
-        stories.append(Story(user: userMiho, isYour: false))
-        stories.append(Story(user: userLavanda, isYour: false))
-        stories.append(Story(user: userLavanda, isYour: false))
-
-        recommendations.append(User(name: "сrimea_082", avatarImage: "recommendOne"))
-        recommendations.append(User(name: "mary_pol", avatarImage: "recommendTwo"))
-
-        let imagesTur: [String] = ["postOne", "postTwo", "postOne", "postTwo"]
-        var comment = "Отдохните от РМ и насладитесь красотой природы. Забронировать тур в Дагестан можно уже сейчас!"
-        posts.append(Post(user: userTur, images: imagesTur, comment: comment, likes: 201, currentUser: userMe))
-
-        comment = "Забронировать тур в Дагестан можно уже сейчас!"
-        posts.append(Post(user: userTur, images: ["postTwo"], comment: comment, likes: 1000, currentUser: userMe))
-
-        comment = "Путешествие в замок на рефлексии! Всем советую, прекрасное место для отдыха от РМ!"
-        posts.append(
-            Post(user: userLavanda, images: ["recommendOne"], comment: comment, likes: 100_500, currentUser: userMe)
-        )
-
-        comment = "Наконец-то выехала на отдых за город и можно немного поспать!"
-        posts.append(
-            Post(user: userMary, images: ["recommendTwo"], comment: comment, likes: 10000, currentUser: userMe)
-        )
-
-        comment = "Ура выходные!"
-        posts.append(
-            Post(user: userMiho, images: ["avatarMiho"], comment: comment, likes: 100, currentUser: userMe)
-        )
+        stories = dataBase.getStories()
+        posts = dataBase.getPosts()
+        recommendations = dataBase.getRecommendations()
     }
 
-    // MARK: IBAction или @objc (private)
+    @objc private func refreshTable(control: UIRefreshControl) {
+//        mainTableView.backgroundColor =
+        control.endRefreshing()
+    }
 }
 
 // MARK: UITableViewDataSource

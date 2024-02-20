@@ -5,6 +5,12 @@ import UIKit
 
 /// Ячейка для отображения сторис
 final class StoryView: UIView {
+    // MARK: Constants
+
+    private enum Constants {
+        static let yourStories = "Ваша история"
+    }
+
     // MARK: Visual Components
 
     private let mainImage: UIImageView = {
@@ -68,6 +74,7 @@ final class StoryView: UIView {
         if model.isYour {
             plusButton.isHidden = false
             userNameLabel.textColor = .gray
+            userNameLabel.text = Constants.yourStories
         }
     }
 
