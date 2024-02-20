@@ -37,7 +37,7 @@ struct NewNotification {
     /// Картинка поста
     let postImage: String?
     /// Подписаны ли вы на пользователя
-    let isYouSigned: Bool
+    var isYouSigned: Bool
 
     init(
         type: NotificationType,

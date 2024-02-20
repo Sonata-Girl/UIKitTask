@@ -41,7 +41,7 @@ final class NewUserCell: UITableViewCell {
         return label
     }()
 
-    private let subscribeButton: UIButton = {
+    private lazy var subscribeButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = .setVerdanaBold(withSize: 10)
@@ -49,7 +49,8 @@ final class NewUserCell: UITableViewCell {
         button.tintColor = .white
         button.backgroundColor = .appBlue
         button.layer.cornerRadius = 8
-        button.layer.borderColor = UIColor.systemGray3.cgColor
+        button.layer.borderColor = UIColor.systemGray2.cgColor
+        button.addTarget(self, action: #selector(subscribeButtonPressed), for: .touchUpInside)
         return button
     }()
 
@@ -133,12 +134,12 @@ final class NewUserCell: UITableViewCell {
     private func changeStateSubscribeButton(subscribed: Bool = true) {
         if subscribed {
             subscribeButton.setTitle(Constants.subscribeButtonInactiveTitle, for: .normal)
-            subscribeButton.setTitleColor(.systemGray3, for: .normal)
+            subscribeButton.setTitleColor(.systemGray2, for: .normal)
             subscribeButton.backgroundColor = .white
             subscribeButton.layer.borderWidth = 1
         } else {
             subscribeButton.setTitle(Constants.subscribeButtonActiveTitle, for: .normal)
-            subscribeButton.tintColor = .white
+            subscribeButton.setTitleColor(.white, for: .normal)
             subscribeButton.backgroundColor = .appBlue
             subscribeButton.layer.borderWidth = 0
         }
@@ -184,5 +185,11 @@ final class NewUserCell: UITableViewCell {
 
         let textComment = "\(newNotification.user.name) \(newNotification.type.mainTextComment)" + dateString
         return (textComment, dateString)
+    }
+
+    @objc private func subscribeButtonPressed() {
+        newNotification?.isYouSigned.toggle()
+        guard let newNotification else { return }
+        changeStateSubscribeButton(subscribed: newNotification.isYouSigned)
     }
 }
