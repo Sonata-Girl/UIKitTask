@@ -8,6 +8,7 @@ final class NewNotificationsViewController: UIViewController {
     // MARK: Types
 
     private enum TableSections: String {
+        case subscribeRequests = "Запросы на подписку"
         case today = "Today"
         case week = "На этой неделе"
     }
@@ -57,7 +58,7 @@ final class NewNotificationsViewController: UIViewController {
     // MARK: Private Properties
 
     private let dataBase = DataStorageService.shared
-    private let tableSections: [TableSections] = [.today, .week]
+    private let tableSections: [TableSections] = [.subscribeRequests, .today, .week]
     private var todayNews: [NewNotification] = []
     private var weekNews: [NewNotification] = []
 
@@ -122,6 +123,8 @@ extension NewNotificationsViewController: UITableViewDelegate {
     ) {
         if editingStyle == .delete {
             switch tableSections[indexPath.section] {
+            case
+                .subscribeRequests: break
             case .today:
                 todayNews.remove(at: indexPath.row)
             case .week:
@@ -136,11 +139,22 @@ extension NewNotificationsViewController: UITableViewDelegate {
 
 extension NewNotificationsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        getNumberOfRowsInSection(section)
+        switch tableSections[section] {
+        case .subscribeRequests:
+            return 1
+        case .today:
+            return todayNews.count
+        case .week:
+            return weekNews.count
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch tableSections[indexPath.section] {
+        case .subscribeRequests:
+            let cell = UITableViewCell()
+            cell.heightAnchor.constraint(equalToConstant: 2).isActive = true
+            return cell
         case .today:
             return getNewNotificationCell(for: tableView, from: indexPath, source: todayNews)
         case .week:
@@ -150,15 +164,6 @@ extension NewNotificationsViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         tableSections[section].rawValue
-    }
-
-    private func getNumberOfRowsInSection(_ section: Int) -> Int {
-        switch tableSections[section] {
-        case .today:
-            return todayNews.count
-        case .week:
-            return weekNews.count
-        }
     }
 
     private func getNewNotificationCell(
