@@ -11,6 +11,12 @@ final class NewNotificationCell: UITableViewCell {
         String(describing: self)
     }
 
+    // MARK: Constants
+
+    private enum Constants {
+        static let titleAnswerPlaceholder = "Ответить"
+    }
+
     // MARK: Visual Components
 
     private let mainImageView: UIImageView = {
@@ -37,6 +43,29 @@ final class NewNotificationCell: UITableViewCell {
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
         return imageView
+    }()
+
+    private let likeButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(.miniHeart, for: .normal)
+        button.tintColor = .label
+        return button
+    }()
+
+    private let answerTextField: UITextField = {
+        let textField = UITextField()
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.font = .setVerdana(withSize: 10)
+        textField.placeholder = Constants.titleAnswerPlaceholder
+        textField.borderStyle = .none
+        return textField
+    }()
+
+    private let answerView: UIView = {
+        let label = UIView()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
 
     // MARK: Private Properties
@@ -85,8 +114,14 @@ final class NewNotificationCell: UITableViewCell {
         [
             mainImageView,
             commentLabel,
-            postImage
+            postImage,
+            answerView
         ].forEach { contentView.addSubview($0) }
+
+        [
+            likeButton,
+            answerTextField
+        ].forEach { answerView.addSubview($0) }
     }
 
     private func setupUI() {
@@ -108,11 +143,29 @@ final class NewNotificationCell: UITableViewCell {
 
         NSLayoutConstraint.activate([
             postImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-
             postImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
-
             postImage.widthAnchor.constraint(equalToConstant: 40),
             postImage.heightAnchor.constraint(equalToConstant: 40)
+        ])
+
+        NSLayoutConstraint.activate([
+            likeButton.topAnchor.constraint(equalTo: answerView.topAnchor, constant: 2),
+            likeButton.leadingAnchor.constraint(equalTo: answerView.leadingAnchor),
+            likeButton.widthAnchor.constraint(equalToConstant: 12),
+            likeButton.heightAnchor.constraint(equalToConstant: 10)
+        ])
+
+        NSLayoutConstraint.activate([
+            answerTextField.topAnchor.constraint(equalTo: answerView.topAnchor),
+            answerTextField.leadingAnchor.constraint(equalTo: likeButton.leadingAnchor, constant: 15),
+            answerTextField.trailingAnchor.constraint(equalTo: answerView.trailingAnchor)
+        ])
+
+        NSLayoutConstraint.activate([
+            answerView.topAnchor.constraint(equalTo: commentLabel.bottomAnchor, constant: 5),
+            answerView.leadingAnchor.constraint(equalTo: commentLabel.leadingAnchor),
+            answerView.trailingAnchor.constraint(equalTo: commentLabel.trailingAnchor),
+            answerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
 

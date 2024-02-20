@@ -44,6 +44,7 @@ final class NewNotificationsViewController: UIViewController {
         tableView.register(NewNotificationCell.self, forCellReuseIdentifier: NewNotificationCell.identifier)
         tableView.register(NewUserCell.self, forCellReuseIdentifier: NewUserCell.identifier)
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.separatorStyle = .none
         return tableView
     }()
@@ -133,11 +134,22 @@ extension NewNotificationsViewController: UITableViewDelegate {
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = UITableViewHeaderFooterView()
+        header.textLabel?.text = tableSections[section].rawValue
+        header.textLabel?.textColor = .black
+        return header
+    }
 }
 
 // MARK: UITableViewDataSource
 
 extension NewNotificationsViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        tableSections.count
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch tableSections[section] {
         case .subscribeRequests:
@@ -160,10 +172,6 @@ extension NewNotificationsViewController: UITableViewDataSource {
         case .week:
             return getNewNotificationCell(for: tableView, from: indexPath, source: weekNews)
         }
-    }
-
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        tableSections[section].rawValue
     }
 
     private func getNewNotificationCell(
@@ -189,9 +197,5 @@ extension NewNotificationsViewController: UITableViewDataSource {
             cell.configureCell(newNotification: source[indexPath.row], currentUser: dataBase.getCurrentUser())
             return cell
         }
-    }
-
-    func numberOfSections(in tableView: UITableView) -> Int {
-        tableSections.count
     }
 }
