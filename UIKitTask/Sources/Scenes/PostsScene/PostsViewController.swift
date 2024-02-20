@@ -46,8 +46,8 @@ final class PostsViewController: UIViewController {
         tableView.backgroundColor = .clear
         tableView.register(StoriesCell.self, forCellReuseIdentifier: StoriesCell.identifier)
         tableView.register(RecommendationCell.self, forCellReuseIdentifier: RecommendationCell.identifier)
+        tableView.register(PostCell.self, forCellReuseIdentifier: PostCell.identifier)
         tableView.dataSource = self
-        tableView.delegate = self
         tableView.separatorStyle = .none
         return tableView
     }()
@@ -118,6 +118,11 @@ final class PostsViewController: UIViewController {
 
         recommendations.append(User(name: "сrimea_082", avatarImage: "recommendOne"))
         recommendations.append(User(name: "mary_pol", avatarImage: "recommendTwo"))
+
+        let userTur = User(name: "tur_v_dagestan", avatarImage: "avatarTurDagestan")
+        let imagesTur: [String] = ["postOne", "postTwo", "postOne", "postTwo"]
+        let comment = "Насладитесь красотой природы. Забронировать тур в Дагестан можно уже сейчас!"
+        posts.append(Post(user: userTur, images: imagesTur, comment: comment, likes: 201))
     }
 
     // MARK: IBAction или @objc (private)
@@ -148,11 +153,11 @@ extension PostsViewController: UITableViewDataSource {
         case .stories:
             return getStoryCell(for: tableView, from: indexPath)
         case .firstPost:
-            return UITableViewCell()
+            return getPostsCell(for: tableView, from: indexPath, firstPost: true)
         case .recommendations:
             return getRecommendationCell(for: tableView, from: indexPath)
         case .posts:
-            return UITableViewCell()
+            return getPostsCell(for: tableView, from: indexPath, firstPost: false)
         }
     }
 
@@ -167,14 +172,22 @@ extension PostsViewController: UITableViewDataSource {
         return cell
     }
 
-    private func getPostsCell(for tableView: UITableView, from indexPath: IndexPath) -> UITableViewCell {
-        guard
-            let cell = tableView.dequeueReusableCell(
-                withIdentifier: StoriesCell.identifier,
-                for: indexPath
-            ) as? StoriesCell else { return UITableViewCell() }
+    private func getPostsCell(
+        for tableView: UITableView,
+        from indexPath: IndexPath,
+        firstPost: Bool
+    ) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: PostCell.identifier,
+            for: indexPath
+        ) as? PostCell else { return UITableViewCell() }
 
-        cell.configureView(stories: stories)
+        if firstPost {
+            cell.configureView(post: posts[indexPath.row])
+        } else {
+            guard posts.count > 1 else { return UITableViewCell() }
+            cell.configureView(post: posts.dropFirst()[indexPath.row])
+        }
         return cell
     }
 
@@ -191,11 +204,5 @@ extension PostsViewController: UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
         tableSections.count - 1
-    }
-}
-
-extension PostsViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        NotificationCenter.default.post(name: NSNotification.Name("TableDidFinishRendering"), object: nil)
     }
 }

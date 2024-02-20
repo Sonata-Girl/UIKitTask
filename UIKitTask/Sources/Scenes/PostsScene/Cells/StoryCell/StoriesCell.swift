@@ -20,6 +20,12 @@ final class StoriesCell: UITableViewCell {
         return scrollView
     }()
 
+    private let contentContainerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     // MARK: Private Properties
 
     private var stories: [Story] = []
@@ -31,7 +37,6 @@ final class StoriesCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupHierarchy()
         setupScrollView()
-        updateUI()
     }
 
     @available(*, unavailable)
@@ -45,13 +50,13 @@ final class StoriesCell: UITableViewCell {
     func configureView(stories: [Story]) {
         self.stories = stories
         updateUI()
-        // TODO: storyCells.forEach { $0.updateGradient() }
     }
 
     // MARK: - Private methods
 
     private func setupHierarchy() {
         contentView.addSubview(scrollView)
+        scrollView.addSubview(contentContainerView)
     }
 
     private func setupScrollView() {
@@ -64,28 +69,39 @@ final class StoriesCell: UITableViewCell {
             scrollView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
+
+        let widthConstraint = contentContainerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+        widthConstraint.priority = UILayoutPriority(250)
+        NSLayoutConstraint.activate([
+            contentContainerView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentContainerView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentContainerView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentContainerView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentContainerView.heightAnchor.constraint(equalTo: scrollView.heightAnchor),
+            widthConstraint,
+        ])
     }
 
     private func updateUI() {
         guard !stories.isEmpty else { return }
-        var lastStoryViewLeftAnchor = scrollView.leadingAnchor
+        var lastStoryViewLeftAnchor = contentContainerView.leadingAnchor
 
         for (index, story) in stories.enumerated() {
             let newView = StoryView()
             newView.translatesAutoresizingMaskIntoConstraints = false
 
             newView.configureView(storyModel: story)
-            scrollView.addSubview(newView)
+            contentContainerView.addSubview(newView)
 
             NSLayoutConstraint.activate([
-                newView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
+                newView.topAnchor.constraint(equalTo: contentContainerView.topAnchor),
                 newView.leadingAnchor.constraint(equalTo: lastStoryViewLeftAnchor, constant: 3),
                 newView.widthAnchor.constraint(equalToConstant: 80),
-                newView.heightAnchor.constraint(equalToConstant: 83)
+                newView.bottomAnchor.constraint(equalTo: contentContainerView.bottomAnchor)
             ])
 
             if index == stories.count - 1 {
-                newView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor).isActive = true
+                newView.trailingAnchor.constraint(equalTo: contentContainerView.trailingAnchor).isActive = true
             }
 
             lastStoryViewLeftAnchor = newView.trailingAnchor

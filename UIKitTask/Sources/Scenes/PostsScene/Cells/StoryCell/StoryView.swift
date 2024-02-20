@@ -30,7 +30,7 @@ final class StoryView: UIView {
     private let plusButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setBackgroundImage(.plus, for: .normal)
+        button.setImage(.plusMini, for: .normal)
         button.tintColor = .white
         button.backgroundColor = .appRed
         button.isHidden = true
@@ -50,17 +50,6 @@ final class StoryView: UIView {
         super.init(frame: frame)
         setupHierarchy()
         setupUI()
-
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(tableDidFinishRendering),
-            name: NSNotification.Name("TableDidFinishRendering"),
-            object: nil
-        )
-    }
-
-    @objc func tableDidFinishRendering() {
-        updateGradient()
     }
 
     required init?(coder: NSCoder) {
@@ -79,8 +68,6 @@ final class StoryView: UIView {
         if model.isYour {
             plusButton.isHidden = false
             userNameLabel.textColor = .gray
-        } else {
-            updateGradient()
         }
     }
 
@@ -92,6 +79,11 @@ final class StoryView: UIView {
     }
 
     // MARK: Private methods
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        updateGradient()
+    }
 
     private func setupHierarchy() {
         [

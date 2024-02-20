@@ -119,7 +119,6 @@ final class RecommendationView: UIView {
             subscribeButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
             subscribeButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -14),
             subscribeButton.widthAnchor.constraint(equalToConstant: 165),
-//            subscribeButton.heightAnchor.constraint(equalToConstant: 30),
         ])
     }
 }
