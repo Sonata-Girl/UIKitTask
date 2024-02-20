@@ -106,23 +106,43 @@ final class PostsViewController: UIViewController {
     private func getDataFromBackEnd() {
         let userMe = User(name: "Ваша история", avatarImage: "myAvatar")
         let userLavanda = User(name: "lavanda123", avatarImage: "avatarLavanda")
+        let userTur = User(name: "tur_v_dagestan", avatarImage: "avatarTurDagestan")
+        let userMary = User(name: "mary_pol", avatarImage: "recommendTwo")
+        let userMiho = User(name: "12miho", avatarImage: "avatarMiho")
 
         stories.append(Story(user: userMe, isYour: true))
         stories.append(Story(user: userLavanda, isYour: false))
+        stories.append(Story(user: userTur, isYour: false))
+        stories.append(Story(user: userMary, isYour: false))
         stories.append(Story(user: userLavanda, isYour: false))
-        stories.append(Story(user: userLavanda, isYour: false))
-        stories.append(Story(user: userLavanda, isYour: false))
-        stories.append(Story(user: userLavanda, isYour: false))
+        stories.append(Story(user: userMiho, isYour: false))
         stories.append(Story(user: userLavanda, isYour: false))
         stories.append(Story(user: userLavanda, isYour: false))
 
         recommendations.append(User(name: "сrimea_082", avatarImage: "recommendOne"))
         recommendations.append(User(name: "mary_pol", avatarImage: "recommendTwo"))
 
-        let userTur = User(name: "tur_v_dagestan", avatarImage: "avatarTurDagestan")
         let imagesTur: [String] = ["postOne", "postTwo", "postOne", "postTwo"]
-        let comment = "Насладитесь красотой природы. Забронировать тур в Дагестан можно уже сейчас!"
-        posts.append(Post(user: userTur, images: imagesTur, comment: comment, likes: 201))
+        var comment = "Отдохните от РМ и насладитесь красотой природы. Забронировать тур в Дагестан можно уже сейчас!"
+        posts.append(Post(user: userTur, images: imagesTur, comment: comment, likes: 201, currentUser: userMe))
+
+        comment = "Забронировать тур в Дагестан можно уже сейчас!"
+        posts.append(Post(user: userTur, images: ["postTwo"], comment: comment, likes: 1000, currentUser: userMe))
+
+        comment = "Путешествие в замок на рефлексии! Всем советую, прекрасное место для отдыха от РМ!"
+        posts.append(
+            Post(user: userLavanda, images: ["recommendOne"], comment: comment, likes: 100_500, currentUser: userMe)
+        )
+
+        comment = "Наконец-то выехала на отдых за город и можно немного поспать!"
+        posts.append(
+            Post(user: userMary, images: ["recommendTwo"], comment: comment, likes: 10000, currentUser: userMe)
+        )
+
+        comment = "Ура выходные!"
+        posts.append(
+            Post(user: userMiho, images: ["avatarMiho"], comment: comment, likes: 100, currentUser: userMe)
+        )
     }
 
     // MARK: IBAction или @objc (private)
@@ -186,7 +206,7 @@ extension PostsViewController: UITableViewDataSource {
             cell.configureView(post: posts[indexPath.row])
         } else {
             guard posts.count > 1 else { return UITableViewCell() }
-            cell.configureView(post: posts.dropFirst()[indexPath.row])
+            cell.configureView(post: posts.dropFirst()[indexPath.row + 1])
         }
         return cell
     }
@@ -203,6 +223,6 @@ extension PostsViewController: UITableViewDataSource {
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        tableSections.count - 1
+        tableSections.count
     }
 }

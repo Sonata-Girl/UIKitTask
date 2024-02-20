@@ -11,4 +11,6 @@ struct Post {
     let comment: String
     /// Количество лайков поста
     let likes: Int
+    /// Текущий пользователь системы
+    let currentUser: User
 }

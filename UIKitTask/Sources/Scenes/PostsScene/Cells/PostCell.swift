@@ -200,11 +200,14 @@ final class PostCell: UITableViewCell {
     }
 
     private func setupScrollView() {
-        contentView.heightAnchor.constraint(equalToConstant: 411).isActive = true
+        contentView.heightAnchor.constraint(equalToConstant: 420).isActive = true
         contentView.widthAnchor.constraint(equalToConstant: 375).isActive = true
 
         NSLayoutConstraint.activate([
-            userImage.topAnchor.constraint(equalTo: contentView.topAnchor),
+            userImage.topAnchor.constraint(
+                equalTo: contentView.topAnchor,
+                constant: 10
+            ),
             userImage.leadingAnchor.constraint(
                 equalTo: contentView.leadingAnchor,
                 constant: 12
@@ -214,7 +217,10 @@ final class PostCell: UITableViewCell {
         ])
 
         NSLayoutConstraint.activate([
-            userNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+            userNameLabel.topAnchor.constraint(
+                equalTo: contentView.topAnchor,
+                constant: 10
+            ),
             userNameLabel.leadingAnchor.constraint(
                 equalTo: userImage.trailingAnchor,
                 constant: 6
@@ -224,7 +230,10 @@ final class PostCell: UITableViewCell {
         ])
 
         NSLayoutConstraint.activate([
-            menuButton.topAnchor.constraint(equalTo: contentView.topAnchor),
+            menuButton.topAnchor.constraint(
+                equalTo: contentView.topAnchor,
+                constant: 10
+            ),
             menuButton.trailingAnchor.constraint(
                 equalTo: contentView.trailingAnchor,
                 constant: -5
@@ -421,7 +430,7 @@ final class PostCell: UITableViewCell {
         userImage.image = UIImage(named: model.user.avatarImage)
         userNameLabel.text = model.user.name
         likesCountLabel.text = "\(Constants.likeCountTitle) \(model.likes)"
-        currentUserAvatarImage.image = UIImage(named: model.user.avatarImage)
+        currentUserAvatarImage.image = UIImage(named: model.currentUser.avatarImage)
         setTextComment(model: model)
     }
 
