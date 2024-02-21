@@ -51,7 +51,7 @@ final class NewNotificationsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        getDataFromBackEnd()
+        fillSourcesFromBackEnd()
         configureNavigationBar()
         setupHierarchy()
         setupConstraints()
@@ -78,7 +78,7 @@ final class NewNotificationsViewController: UIViewController {
         ])
     }
 
-    private func getDataFromBackEnd() {
+    private func fillSourcesFromBackEnd() {
         todayNews = sourceStorage.getNews()
             .filter { Date().timeIntervalSince($0.date) < 86400 }
             .sorted { $0.date > $1.date }
@@ -89,7 +89,7 @@ final class NewNotificationsViewController: UIViewController {
     }
 
     @objc private func refreshTableView(control: UIRefreshControl) {
-        getDataFromBackEnd()
+        fillSourcesFromBackEnd()
         mainTableView.reloadData()
         control.endRefreshing()
     }

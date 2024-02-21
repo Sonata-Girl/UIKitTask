@@ -149,7 +149,6 @@ final class PostViewCell: UITableViewCell {
 
     // MARK: Private Properties
 
-    private let dataBase = StorageService()
     private var model: Post?
     private var pageImageNumber = 0
 

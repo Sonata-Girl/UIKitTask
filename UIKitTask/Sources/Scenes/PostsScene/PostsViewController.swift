@@ -68,7 +68,7 @@ final class PostsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        getDataFromBackEnd()
+        fillSourcesFromBackEnd()
         configureNavigationBar()
         setupHierarchy()
         setupConstraints()
@@ -97,7 +97,7 @@ final class PostsViewController: UIViewController {
         ])
     }
 
-    private func getDataFromBackEnd() {
+    private func fillSourcesFromBackEnd() {
         stories = sourceStorage.getStories()
         posts = sourceStorage.getPosts()
         recommendations = sourceStorage.getRecommendations()
