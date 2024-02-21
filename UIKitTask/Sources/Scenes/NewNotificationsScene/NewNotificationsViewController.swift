@@ -167,7 +167,7 @@ extension NewNotificationsViewController: UITableViewDataSource {
                     withIdentifier: NewNotificationViewCell.identifier,
                     for: indexPath
                 ) as? NewNotificationViewCell else { return UITableViewCell() }
-            cell.configureCell(newNotification: source[indexPath.row], currentUser: dataBase.getCurrentUser())
+            cell.configureCell(newNotification: source[indexPath.row], currentUser: dataStorage.getCurrentUser())
             return cell
         case .newFollower, .newUser:
             guard
@@ -175,7 +175,7 @@ extension NewNotificationsViewController: UITableViewDataSource {
                     withIdentifier: NewUserViewCell.identifier,
                     for: indexPath
                 ) as? NewUserViewCell else { return UITableViewCell() }
-            cell.configureCell(newNotification: source[indexPath.row], currentUser: dataBase.getCurrentUser())
+            cell.configureCell(newNotification: source[indexPath.row], currentUser: dataStorage.getCurrentUser())
             return cell
         }
     }
