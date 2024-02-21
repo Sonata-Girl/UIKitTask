@@ -13,7 +13,7 @@ final class StoryView: UIView {
 
     // MARK: Visual Components
 
-    private let mainImage: UIImageView = {
+    private let mainImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
@@ -46,25 +46,27 @@ final class StoryView: UIView {
 
     // MARK: Privates Properties
 
-    private var layersInView: [CALayer] = []
-    private var model: Story?
-    private let imageGradient = CAGradientLayer()
-
+    private var viewLayers: [CALayer] = []
+    private var story: Story?
+ 
     // MARK: Initializers
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        configureView()
         setupHierarchy()
-        setupUI()
+        setupConstraints()
     }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        configureView()
         setupHierarchy()
-        setupUI()
+        setupConstraints()
     }
 
-// MARK: Life Cycle
+    // MARK: Life Cycle
+
     override func layoutSubviews() {
         super.layoutSubviews()
         updateGradient()
@@ -73,11 +75,11 @@ final class StoryView: UIView {
     // MARK: Public methods
 
     func configureView(storyModel: Story) {
-        model = storyModel
-        guard let model else { return }
-        mainImage.image = UIImage(named: model.user.avatarImage)
-        userNameLabel.text = model.user.name
-        if model.isYour {
+        story = storyModel
+        guard let story else { return }
+        mainImageView.image = UIImage(named: story.user.avatarImage)
+        userNameLabel.text = story.user.name
+        if story.isYour {
             plusButton.isHidden = false
             userNameLabel.textColor = .gray
             userNameLabel.text = Constants.yourStories
@@ -85,44 +87,45 @@ final class StoryView: UIView {
     }
 
     func updateGradient() {
-        guard let model,
-              !model.isYour
+        guard let story,
+              !story.isYour
         else { return }
-        addGradient(view: mainImage)
+        addGradient(view: mainImageView)
     }
 
     // MARK: Private methods
 
+    private func configureView() {
+        backgroundColor = .white
+    }
 
     private func setupHierarchy() {
         [
-            mainImage,
+            mainImageView,
             userNameLabel,
         ].forEach { addSubview($0) }
 
         addSubview(plusButton)
     }
 
-    private func setupUI() {
-        backgroundColor = .white
-
+    private func setupConstraints() {
         NSLayoutConstraint.activate([
-            mainImage.topAnchor.constraint(equalTo: topAnchor, constant: 3),
-            mainImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            mainImage.heightAnchor.constraint(equalToConstant: 60),
-            mainImage.widthAnchor.constraint(equalToConstant: 60)
+            mainImageView.topAnchor.constraint(equalTo: topAnchor, constant: 3),
+            mainImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            mainImageView.heightAnchor.constraint(equalToConstant: 60),
+            mainImageView.widthAnchor.constraint(equalToConstant: 60)
         ])
 
         NSLayoutConstraint.activate([
-            userNameLabel.topAnchor.constraint(equalTo: mainImage.bottomAnchor, constant: 5),
+            userNameLabel.topAnchor.constraint(equalTo: mainImageView.bottomAnchor, constant: 5),
             userNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             userNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
             userNameLabel.heightAnchor.constraint(equalToConstant: 7)
         ])
 
         NSLayoutConstraint.activate([
-            plusButton.trailingAnchor.constraint(equalTo: mainImage.trailingAnchor),
-            plusButton.bottomAnchor.constraint(equalTo: mainImage.bottomAnchor),
+            plusButton.trailingAnchor.constraint(equalTo: mainImageView.trailingAnchor),
+            plusButton.bottomAnchor.constraint(equalTo: mainImageView.bottomAnchor),
             plusButton.widthAnchor.constraint(equalToConstant: 20),
             plusButton.heightAnchor.constraint(equalToConstant: 20),
         ])
@@ -133,7 +136,7 @@ final class StoryView: UIView {
     }
 
     private func deleteGradient() {
-        layersInView.forEach { $0.removeFromSuperlayer() }
+        viewLayers.forEach { $0.removeFromSuperlayer() }
     }
 
     private func addGradient(view: UIView) {
@@ -147,6 +150,6 @@ final class StoryView: UIView {
         imageGradient.cornerRadius = imageGradient.frame.size.height / 2
         imageGradient.masksToBounds = true
         layer.insertSublayer(imageGradient, at: 0)
-        layersInView.append(imageGradient)
+        viewLayers.append(imageGradient)
     }
 }

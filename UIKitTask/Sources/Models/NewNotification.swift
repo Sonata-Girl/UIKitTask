@@ -3,27 +3,6 @@
 
 import Foundation
 
-/// Тип уведомления
-enum NotificationType {
-    case newLikeOnComment
-    case newUser
-    case newFollower
-    case userCallYou
-
-    var mainTextComment: String {
-        switch self {
-        case .newFollower:
-            return " подписался(-ась) на ваши новости "
-        case .newLikeOnComment:
-            return " понравился ваш комментарий: "
-        case .newUser:
-            return " появился(-ась) в RMLink. Вы можете быть знакомы. "
-        case .userCallYou:
-            return " упомянул(-а) вас в комментарии: "
-        }
-    }
-}
-
 /// Уведомление
 struct NewNotification {
     /// Тип уведомления

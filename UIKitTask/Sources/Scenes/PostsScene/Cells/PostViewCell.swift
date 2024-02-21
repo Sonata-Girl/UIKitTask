@@ -4,7 +4,7 @@
 import UIKit
 
 /// Ячейка для отображения поста пользователя
-final class PostCell: UITableViewCell {
+final class PostViewCell: UITableViewCell {
     // MARK: Types
 
     static var identifier: String {
@@ -22,7 +22,7 @@ final class PostCell: UITableViewCell {
 
     // MARK: Visual Components
 
-    private let userImage: UIImageView = {
+    private let userImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
@@ -119,7 +119,7 @@ final class PostCell: UITableViewCell {
         return label
     }()
 
-    private let currentUserAvatarImage: UIImageView = {
+    private let currentUserAvatarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
@@ -149,7 +149,7 @@ final class PostCell: UITableViewCell {
 
     // MARK: Private Properties
 
-    private let dataBase = DataStorageService.shared
+    private let dataBase = DataStorageService()
     private var model: Post?
     private var pageImageNumber = 0
 
@@ -158,13 +158,14 @@ final class PostCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupHierarchy()
-        setupUI()
+        setupConstraints()
     }
 
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupHierarchy()
+        setupConstraints()
     }
 
     override func prepareForReuse() {
@@ -185,7 +186,7 @@ final class PostCell: UITableViewCell {
 
     private func setupHierarchy() {
         [
-            userImage,
+            userImageView,
             userNameLabel,
             menuButton,
             scrollImagesView,
@@ -196,27 +197,27 @@ final class PostCell: UITableViewCell {
             bookmarkButton,
             likesCountLabel,
             commentLabel,
-            currentUserAvatarImage,
+            currentUserAvatarImageView,
             currentUserCommentLabel,
             lastSeenCurrentUserLabel
         ].forEach { contentView.addSubview($0) }
     }
 
-    private func setupUI() {
+    private func setupConstraints() {
         contentView.heightAnchor.constraint(equalToConstant: 420).isActive = true
         contentView.widthAnchor.constraint(equalToConstant: 375).isActive = true
 
         NSLayoutConstraint.activate([
-            userImage.topAnchor.constraint(
+            userImageView.topAnchor.constraint(
                 equalTo: contentView.topAnchor,
                 constant: 10
             ),
-            userImage.leadingAnchor.constraint(
+            userImageView.leadingAnchor.constraint(
                 equalTo: contentView.leadingAnchor,
                 constant: 12
             ),
-            userImage.widthAnchor.constraint(equalToConstant: 30),
-            userImage.heightAnchor.constraint(equalToConstant: 30)
+            userImageView.widthAnchor.constraint(equalToConstant: 30),
+            userImageView.heightAnchor.constraint(equalToConstant: 30)
         ])
 
         NSLayoutConstraint.activate([
@@ -225,7 +226,7 @@ final class PostCell: UITableViewCell {
                 constant: 10
             ),
             userNameLabel.leadingAnchor.constraint(
-                equalTo: userImage.trailingAnchor,
+                equalTo: userImageView.trailingAnchor,
                 constant: 6
             ),
             userNameLabel.widthAnchor.constraint(equalToConstant: 107),
@@ -247,7 +248,7 @@ final class PostCell: UITableViewCell {
 
         NSLayoutConstraint.activate([
             scrollImagesView.topAnchor.constraint(
-                equalTo: userImage.bottomAnchor,
+                equalTo: userImageView.bottomAnchor,
                 constant: 10
             ),
             scrollImagesView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
@@ -347,16 +348,16 @@ final class PostCell: UITableViewCell {
         ])
 
         NSLayoutConstraint.activate([
-            currentUserAvatarImage.topAnchor.constraint(
+            currentUserAvatarImageView.topAnchor.constraint(
                 equalTo: commentLabel.bottomAnchor,
                 constant: 4
             ),
-            currentUserAvatarImage.leadingAnchor.constraint(
+            currentUserAvatarImageView.leadingAnchor.constraint(
                 equalTo: contentView.leadingAnchor,
                 constant: 12
             ),
-            currentUserAvatarImage.heightAnchor.constraint(equalToConstant: 20),
-            currentUserAvatarImage.widthAnchor.constraint(equalToConstant: 20),
+            currentUserAvatarImageView.heightAnchor.constraint(equalToConstant: 20),
+            currentUserAvatarImageView.widthAnchor.constraint(equalToConstant: 20),
         ])
 
         NSLayoutConstraint.activate([
@@ -365,7 +366,7 @@ final class PostCell: UITableViewCell {
                 constant: 4
             ),
             currentUserCommentLabel.leadingAnchor.constraint(
-                equalTo: currentUserAvatarImage.trailingAnchor,
+                equalTo: currentUserAvatarImageView.trailingAnchor,
                 constant: 3
             ),
             currentUserCommentLabel.trailingAnchor.constraint(
@@ -445,19 +446,19 @@ final class PostCell: UITableViewCell {
 
     private func fillCell() {
         guard let model else { return }
-        userImage.image = UIImage(named: model.user.avatarImage)
+        userImageView.image = UIImage(named: model.user.avatarImage)
         userNameLabel.text = model.user.name
         likesCountLabel.text = "\(Constants.likeCountTitle) \(model.likes)"
-        currentUserAvatarImage.image = UIImage(named: model.currentUser.avatarImage)
+        currentUserAvatarImageView.image = UIImage(named: model.currentUser.avatarImage)
         setTextComment(model: model)
     }
 
     private func clearCellForReuse() {
         model = nil
-        userImage.image = nil
+        userImageView.image = nil
         userNameLabel.text = nil
         likesCountLabel.text = nil
-        currentUserAvatarImage.image = nil
+        currentUserAvatarImageView.image = nil
         commentLabel.attributedText = nil
         imagePageControl.numberOfPages = 0
         clearScrollView()

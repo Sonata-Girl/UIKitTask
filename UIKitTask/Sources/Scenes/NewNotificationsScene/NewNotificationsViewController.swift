@@ -5,6 +5,12 @@ import UIKit
 
 /// Экран новых уведомлений и событий
 final class NewNotificationsViewController: UIViewController {
+    // MARK: Constants
+
+    private enum Constants {
+        static let titleScreen = "Уведомления"
+    }
+
     // MARK: Types
 
     private enum TableSections: String {
@@ -13,36 +19,14 @@ final class NewNotificationsViewController: UIViewController {
         case week = "На этой неделе"
     }
 
-    // MARK: Constants
-
-    private enum Constants {
-        static let titleScreen = "Уведомления"
-    }
-
     // MARK: Visual Components
-
-    private let appLogoBarImage: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFill
-        imageView.image = .appLogo
-        return imageView
-    }()
-
-    private let messagesBarButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.contentMode = .scaleAspectFill
-        button.setImage(.messagesButtonBar, for: .normal)
-        return button
-    }()
 
     private lazy var mainTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .clear
-        tableView.register(NewNotificationCell.self, forCellReuseIdentifier: NewNotificationCell.identifier)
-        tableView.register(NewUserCell.self, forCellReuseIdentifier: NewUserCell.identifier)
+        tableView.register(NewNotificationViewCell.self, forCellReuseIdentifier: NewNotificationViewCell.identifier)
+        tableView.register(NewUserViewCell.self, forCellReuseIdentifier: NewUserViewCell.identifier)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none
@@ -52,13 +36,13 @@ final class NewNotificationsViewController: UIViewController {
     private lazy var refreshTableControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.translatesAutoresizingMaskIntoConstraints = false
-        refreshControl.addTarget(self, action: #selector(refreshTable), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(refreshTableView), for: .valueChanged)
         return refreshControl
     }()
 
     // MARK: Private Properties
 
-    private let dataBase = DataStorageService.shared
+    private let dataStorage = DataStorageService()
     private let tableSections: [TableSections] = [.subscribeRequests, .today, .week]
     private var todayNews: [NewNotification] = []
     private var weekNews: [NewNotification] = []
@@ -67,12 +51,10 @@ final class NewNotificationsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         getDataFromBackEnd()
-
         configureNavigationBar()
         setupHierarchy()
-        setupUI()
+        setupConstraints()
     }
 
     // MARK: Private Methods
@@ -87,7 +69,7 @@ final class NewNotificationsViewController: UIViewController {
         mainTableView.addSubview(refreshTableControl)
     }
 
-    private func setupUI() {
+    private func setupConstraints() {
         NSLayoutConstraint.activate([
             mainTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             mainTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -97,16 +79,16 @@ final class NewNotificationsViewController: UIViewController {
     }
 
     private func getDataFromBackEnd() {
-        todayNews = dataBase.getNews()
+        todayNews = dataStorage.getNews()
             .filter { Date().timeIntervalSince($0.date) < 86400 }
             .sorted { $0.date > $1.date }
 
-        weekNews = dataBase.getNews()
+        weekNews = dataStorage.getNews()
             .filter { Date().timeIntervalSince($0.date) > 86400 }
             .sorted { $0.date > $1.date }
     }
 
-    @objc private func refreshTable(control: UIRefreshControl) {
+    @objc private func refreshTableView(control: UIRefreshControl) {
         getDataFromBackEnd()
         mainTableView.reloadData()
         control.endRefreshing()
@@ -182,17 +164,17 @@ extension NewNotificationsViewController: UITableViewDataSource {
         case .newLikeOnComment, .userCallYou:
             guard
                 let cell = tableView.dequeueReusableCell(
-                    withIdentifier: NewNotificationCell.identifier,
+                    withIdentifier: NewNotificationViewCell.identifier,
                     for: indexPath
-                ) as? NewNotificationCell else { return UITableViewCell() }
+                ) as? NewNotificationViewCell else { return UITableViewCell() }
             cell.configureCell(newNotification: source[indexPath.row], currentUser: dataBase.getCurrentUser())
             return cell
         case .newFollower, .newUser:
             guard
                 let cell = tableView.dequeueReusableCell(
-                    withIdentifier: NewUserCell.identifier,
+                    withIdentifier: NewUserViewCell.identifier,
                     for: indexPath
-                ) as? NewUserCell else { return UITableViewCell() }
+                ) as? NewUserViewCell else { return UITableViewCell() }
             cell.configureCell(newNotification: source[indexPath.row], currentUser: dataBase.getCurrentUser())
             return cell
         }

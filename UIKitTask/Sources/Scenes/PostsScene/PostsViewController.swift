@@ -3,20 +3,25 @@
 
 import UIKit
 
-/// Стартовый экран, список постов , сторис, рекомендаций
+/// Экран, список постов, сторис, рекомендаций
 final class PostsViewController: UIViewController {
     // MARK: Types
 
+    /// Секции таблицы в контроллере
     private enum TableSections {
+        ///  Первый пост
         case firstPost
+        ///  Сторисы
         case stories
+        ///  Все остальные посты
         case posts
+        /// Рекоммендации
         case recommendations
     }
 
     // MARK: Visual Components
 
-    private let appLogoBarImage: UIImageView = {
+    private let appLogoBarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
@@ -36,9 +41,9 @@ final class PostsViewController: UIViewController {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .clear
-        tableView.register(StoriesCell.self, forCellReuseIdentifier: StoriesCell.identifier)
-        tableView.register(RecommendationCell.self, forCellReuseIdentifier: RecommendationCell.identifier)
-        tableView.register(PostCell.self, forCellReuseIdentifier: PostCell.identifier)
+        tableView.register(StoriesViewCell.self, forCellReuseIdentifier: StoriesViewCell.identifier)
+        tableView.register(RecommendationViewCell.self, forCellReuseIdentifier: RecommendationViewCell.identifier)
+        tableView.register(PostViewCell.self, forCellReuseIdentifier: PostViewCell.identifier)
         tableView.dataSource = self
         tableView.separatorStyle = .none
         return tableView
@@ -47,13 +52,13 @@ final class PostsViewController: UIViewController {
     private lazy var refreshTableControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.translatesAutoresizingMaskIntoConstraints = false
-        refreshControl.addTarget(self, action: #selector(refreshTable), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(refreshTableView), for: .valueChanged)
         return refreshControl
     }()
 
     // MARK: Private Properties
 
-    private let dataBase = DataStorageService.shared
+    private let dataStorage = DataStorageService()
     private let tableSections: [TableSections] = [.stories, .firstPost, .recommendations, .posts]
     private var stories: [Story] = []
     private var posts: [Post] = []
@@ -64,16 +69,15 @@ final class PostsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getDataFromBackEnd()
-
         configureNavigationBar()
         setupHierarchy()
-        setupUI()
+        setupConstraints()
     }
 
     // MARK: Private Methods
 
     private func configureNavigationBar() {
-        var tabBarItem = UIBarButtonItem(customView: appLogoBarImage)
+        var tabBarItem = UIBarButtonItem(customView: appLogoBarImageView)
         navigationItem.leftBarButtonItem = tabBarItem
         tabBarItem = UIBarButtonItem(customView: messagesBarButton)
         navigationItem.rightBarButtonItem = tabBarItem
@@ -84,7 +88,7 @@ final class PostsViewController: UIViewController {
         mainTableView.addSubview(refreshTableControl)
     }
 
-    private func setupUI() {
+    private func setupConstraints() {
         NSLayoutConstraint.activate([
             mainTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             mainTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -94,12 +98,12 @@ final class PostsViewController: UIViewController {
     }
 
     private func getDataFromBackEnd() {
-        stories = dataBase.getStories()
-        posts = dataBase.getPosts()
-        recommendations = dataBase.getRecommendations()
+        stories = dataStorage.getStories()
+        posts = dataStorage.getPosts()
+        recommendations = dataStorage.getRecommendations()
     }
 
-    @objc private func refreshTable(control: UIRefreshControl) {
+    @objc private func refreshTableView(control: UIRefreshControl) {
         control.endRefreshing()
     }
 }
@@ -140,9 +144,9 @@ extension PostsViewController: UITableViewDataSource {
     private func getStoryCell(for tableView: UITableView, from indexPath: IndexPath) -> UITableViewCell {
         guard
             let cell = tableView.dequeueReusableCell(
-                withIdentifier: StoriesCell.identifier,
+                withIdentifier: StoriesViewCell.identifier,
                 for: indexPath
-            ) as? StoriesCell else { return UITableViewCell() }
+            ) as? StoriesViewCell else { return UITableViewCell() }
 
         cell.configureView(stories: stories)
         return cell
@@ -154,9 +158,9 @@ extension PostsViewController: UITableViewDataSource {
         firstPost: Bool
     ) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: PostCell.identifier,
+            withIdentifier: PostViewCell.identifier,
             for: indexPath
-        ) as? PostCell else { return UITableViewCell() }
+        ) as? PostViewCell else { return UITableViewCell() }
 
         if firstPost {
             cell.configureView(post: posts[indexPath.row])
@@ -170,9 +174,9 @@ extension PostsViewController: UITableViewDataSource {
     private func getRecommendationCell(for tableView: UITableView, from indexPath: IndexPath) -> UITableViewCell {
         guard
             let cell = tableView.dequeueReusableCell(
-                withIdentifier: RecommendationCell.identifier,
+                withIdentifier: RecommendationViewCell.identifier,
                 for: indexPath
-            ) as? RecommendationCell else { return UITableViewCell() }
+            ) as? RecommendationViewCell else { return UITableViewCell() }
 
         cell.configureView(recommendations: recommendations)
         return cell

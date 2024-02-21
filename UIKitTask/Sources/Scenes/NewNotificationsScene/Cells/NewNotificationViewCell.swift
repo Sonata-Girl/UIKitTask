@@ -1,20 +1,19 @@
-// NewNotificationCell.swift
+// NewNotificationViewCell.swift
 // Copyright © RoadMap. All rights reserved.
 
 import UIKit
 
 /// Ячейка для отображения новых лайков от пользователей и упоминаний
-final class NewNotificationCell: UITableViewCell {
-    // MARK: Types
-
-    static var identifier: String {
-        String(describing: self)
-    }
+final class NewNotificationViewCell: UITableViewCell {
 
     // MARK: Constants
 
     private enum Constants {
         static let titleAnswerPlaceholder = "Ответить"
+    }
+
+    static var identifier: String {
+        String(describing: self)
     }
 
     // MARK: Visual Components
@@ -77,15 +76,17 @@ final class NewNotificationCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        configureView()
         setupHierarchy()
-        setupUI()
+        setupConstraints()
     }
 
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        configureView()
         setupHierarchy()
-        setupUI()
+        setupConstraints()
     }
 
     override func prepareForReuse() {
@@ -110,6 +111,10 @@ final class NewNotificationCell: UITableViewCell {
 
     // MARK: - Private methods
 
+    private func configureView() {
+        contentView.backgroundColor = .white
+    }
+
     private func setupHierarchy() {
         [
             mainImageView,
@@ -124,8 +129,7 @@ final class NewNotificationCell: UITableViewCell {
         ].forEach { answerView.addSubview($0) }
     }
 
-    private func setupUI() {
-        contentView.backgroundColor = .white
+    private func setupConstraints() {
         contentView.heightAnchor.constraint(equalToConstant: 50).isActive = true
 
         NSLayoutConstraint.activate([

@@ -1,24 +1,20 @@
-// NewUserCell.swift
-// Copyright © RoadMap. All rights reserved.
-
-// NewNotificationCell.swift
+// NewUserViewCell.swift
 // Copyright © RoadMap. All rights reserved.
 
 import UIKit
 
 /// Ячейка для отображения новых лайков от пользователей и упоминаний
-final class NewUserCell: UITableViewCell {
-    // MARK: Types
-
-    static var identifier: String {
-        String(describing: self)
-    }
+final class NewUserViewCell: UITableViewCell {
 
     // MARK: Constants
 
     private enum Constants {
         static let subscribeButtonActiveTitle = "Подписаться"
         static let subscribeButtonInactiveTitle = "Вы подписаны"
+    }
+    
+    static var identifier: String {
+        String(describing: self)
     }
 
     // MARK: Visual Components
@@ -63,15 +59,17 @@ final class NewUserCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        configureView()
         setupHierarchy()
-        setupUI()
+        setupConstraints()
     }
 
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        configureView()
         setupHierarchy()
-        setupUI()
+        setupConstraints()
     }
 
     override func prepareForReuse() {
@@ -98,6 +96,10 @@ final class NewUserCell: UITableViewCell {
 
     // MARK: - Private methods
 
+    private func configureView() {
+        contentView.backgroundColor = .white
+    }
+
     private func setupHierarchy() {
         [
             mainImageView,
@@ -106,8 +108,7 @@ final class NewUserCell: UITableViewCell {
         ].forEach { contentView.addSubview($0) }
     }
 
-    private func setupUI() {
-        contentView.backgroundColor = .white
+    private func setupConstraints() {
         contentView.heightAnchor.constraint(equalToConstant: 55).isActive = true
 
         NSLayoutConstraint.activate([

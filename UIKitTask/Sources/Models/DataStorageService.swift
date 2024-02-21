@@ -3,12 +3,8 @@
 
 import Foundation
 
-/// Тестовые данные,  заглушки. Имитация сети
+/// Тестовые данные для ленты постов и списка новых уведомлений,  заглушки. Имитация сети
 final class DataStorageService {
-    // MARK: Constants
-
-    static let shared = DataStorageService()
-
     // MARK: Private Properties
 
     private var currentUser: User?
@@ -19,8 +15,8 @@ final class DataStorageService {
 
     // MARK: Initializers
 
-    private init() {
-        fillData()
+    init() {
+        fillTestSources()
     }
 
     // MARK: Public Methods
@@ -47,7 +43,7 @@ final class DataStorageService {
 
     // MARK: Private Methods
 
-    private func fillData() {
+    private func fillTestSources() {
         /// Заполнение пользователей
         let userMe = User(name: "Conata", avatarImage: "myAvatar")
         let userLavanda = User(name: "lavanda123", avatarImage: "avatarLavanda")
@@ -76,9 +72,9 @@ final class DataStorageService {
         recommendations.append(userMiho)
 
         /// Заполнение ленты постов
-        let imagesTur: [String] = ["postOne", "postTwo", "postOne", "postTwo"]
+        let turImageNames: [String] = ["postOne", "postTwo", "postOne", "postTwo"]
         var comment = "Отдохните от РМ и насладитесь красотой природы. Забронировать тур в Дагестан можно уже сейчас!"
-        posts.append(Post(user: userTur, images: imagesTur, comment: comment, likes: 201, currentUser: userMe))
+        posts.append(Post(user: userTur, images: turImageNames, comment: comment, likes: 201, currentUser: userMe))
 
         comment = "Забронировать тур в Дагестан можно уже сейчас!"
         posts.append(Post(user: userTur, images: ["postTwo"], comment: comment, likes: 1000, currentUser: userMe))
@@ -145,7 +141,7 @@ final class DataStorageService {
         ))
 
         news.append(NewNotification(
-            type: .newUser, date: Date() - TimeInterval(60 * 60 * (24 * 6)), 
+            type: .newUser, date: Date() - TimeInterval(60 * 60 * (24 * 6)),
             user: userSvNeit
         ))
     }

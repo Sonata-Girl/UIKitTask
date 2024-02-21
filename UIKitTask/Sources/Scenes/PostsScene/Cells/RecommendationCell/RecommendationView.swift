@@ -13,7 +13,7 @@ final class RecommendationView: UIView {
 
     // MARK: Visual Components
 
-    private let mainImage: UIImageView = {
+    private let mainImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
@@ -52,29 +52,31 @@ final class RecommendationView: UIView {
 
     // MARK: Privates Properties
 
-    private var model: User?
+    private var user: User?
 
     // MARK: Initializers
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        configureView()
         setupHierarchy()
-        setupUI()
+        setupConstraints()
     }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        configureView()
         setupHierarchy()
-        setupUI()
+        setupConstraints()
     }
 
     // MARK: Public methods
 
     func configureView(recommendation: User) {
-        model = recommendation
-        guard let model else { return }
-        mainImage.image = UIImage(named: model.avatarImage)
-        userNameLabel.text = model.name
+        user = recommendation
+        guard let user else { return }
+        mainImageView.image = UIImage(named: user.avatarImage)
+        userNameLabel.text = user.name
     }
 
     // MARK: Private methods
@@ -82,15 +84,17 @@ final class RecommendationView: UIView {
     private func setupHierarchy() {
         [
             closeButton,
-            mainImage,
+            mainImageView,
             userNameLabel,
             subscribeButton
         ].forEach { addSubview($0) }
     }
 
-    private func setupUI() {
+    private func configureView() {
         backgroundColor = .white
+    }
 
+    private func setupConstraints() {
         NSLayoutConstraint.activate([
             closeButton.topAnchor.constraint(equalTo: topAnchor, constant: 8),
             closeButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
@@ -99,19 +103,19 @@ final class RecommendationView: UIView {
         ])
 
         NSLayoutConstraint.activate([
-            mainImage.topAnchor.constraint(equalTo: topAnchor, constant: 15),
-            mainImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 35),
-            mainImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -35),
-            mainImage.heightAnchor.constraint(equalToConstant: 115),
-            mainImage.widthAnchor.constraint(equalToConstant: 115)
+            mainImageView.topAnchor.constraint(equalTo: topAnchor, constant: 15),
+            mainImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 35),
+            mainImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -35),
+            mainImageView.heightAnchor.constraint(equalToConstant: 115),
+            mainImageView.widthAnchor.constraint(equalToConstant: 115)
         ])
 
         NSLayoutConstraint.activate([
-            userNameLabel.topAnchor.constraint(equalTo: mainImage.bottomAnchor, constant: 5),
+            userNameLabel.topAnchor.constraint(equalTo: mainImageView.bottomAnchor, constant: 5),
             userNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 35),
             userNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -35),
             userNameLabel.heightAnchor.constraint(equalToConstant: 12),
-            userNameLabel.widthAnchor.constraint(equalTo: mainImage.widthAnchor)
+            userNameLabel.widthAnchor.constraint(equalTo: mainImageView.widthAnchor)
         ])
 
         NSLayoutConstraint.activate([

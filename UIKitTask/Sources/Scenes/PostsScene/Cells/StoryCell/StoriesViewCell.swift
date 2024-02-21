@@ -4,7 +4,8 @@
 import UIKit
 
 /// Ячейка для отображения сторисов
-final class StoriesCell: UITableViewCell {
+final class StoriesViewCell: UITableViewCell {
+
     // MARK: Constants
 
     static var identifier: String {
@@ -35,6 +36,7 @@ final class StoriesCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        configureView()
         setupHierarchy()
         setupScrollView()
     }
@@ -42,6 +44,7 @@ final class StoriesCell: UITableViewCell {
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        configureView()
         setupHierarchy()
     }
 
@@ -60,13 +63,16 @@ final class StoriesCell: UITableViewCell {
 
     // MARK: - Private methods
 
+    private func configureView() {
+        contentView.backgroundColor = .white
+    }
+
     private func setupHierarchy() {
         contentView.addSubview(scrollView)
         scrollView.addSubview(contentContainerView)
     }
 
     private func setupScrollView() {
-        contentView.backgroundColor = .white
         contentView.heightAnchor.constraint(equalToConstant: 83).isActive = true
 
         NSLayoutConstraint.activate([

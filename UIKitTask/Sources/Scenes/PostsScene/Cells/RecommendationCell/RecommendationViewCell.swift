@@ -4,18 +4,17 @@
 import UIKit
 
 /// Ячейка для отображения рекомендуемых пользователей
-final class RecommendationCell: UITableViewCell {
-    // MARK: Types
-
-    static var identifier: String {
-        String(describing: self)
-    }
+final class RecommendationViewCell: UITableViewCell {
 
     // MARK: Constants
 
     private enum Constants {
         static let titleView = "Рекомендуем вам"
         static let showAllButtonTitle = "Все"
+    }
+
+    static var identifier: String {
+        String(describing: self)
     }
 
     // MARK: Visual Components
@@ -56,6 +55,7 @@ final class RecommendationCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        configureView()
         setupHierarchy()
         setupScrollView()
     }
@@ -63,6 +63,7 @@ final class RecommendationCell: UITableViewCell {
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        configureView()
         setupHierarchy()
     }
 
@@ -81,6 +82,10 @@ final class RecommendationCell: UITableViewCell {
 
     // MARK: - Private methods
 
+    private func configureView() {
+        contentView.backgroundColor = .appLightBlue
+    }
+
     private func setupHierarchy() {
         [
             sectionTitleLabel,
@@ -90,7 +95,6 @@ final class RecommendationCell: UITableViewCell {
     }
 
     private func setupScrollView() {
-        contentView.backgroundColor = .appLightBlue
         contentView.heightAnchor.constraint(equalToConstant: 270).isActive = true
 
         NSLayoutConstraint.activate([
