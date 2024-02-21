@@ -64,6 +64,12 @@ final class StoryView: UIView {
         setupUI()
     }
 
+// MARK: Life Cycle
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        updateGradient()
+    }
+
     // MARK: Public methods
 
     func configureView(storyModel: Story) {
@@ -87,10 +93,6 @@ final class StoryView: UIView {
 
     // MARK: Private methods
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        updateGradient()
-    }
 
     private func setupHierarchy() {
         [

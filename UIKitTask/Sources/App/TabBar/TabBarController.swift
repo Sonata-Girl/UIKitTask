@@ -5,7 +5,7 @@ import UIKit
 
 /// Таббар приложения, разделение на основные экраны
 final class TabBarController: UITabBarController {
-    // MARK: - Constants
+    // MARK: Constants
 
     enum Constants {
         static let postsVCTitle = "Лента"
@@ -13,7 +13,7 @@ final class TabBarController: UITabBarController {
         static let profileVCTitle = "Профиль"
     }
 
-    // MARK: - Lifecycle
+    // MARK: Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +21,7 @@ final class TabBarController: UITabBarController {
         setupTabBarViewControllers()
     }
 
-    // MARK: - Private methods
+    // MARK: Private methods
 
     private func setupTabBarController() {
         view.backgroundColor = .white
