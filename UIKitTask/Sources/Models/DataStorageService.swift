@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// Тестовые данные,  заглушки
+/// Тестовые данные,  заглушки. Имитация сети
 final class DataStorageService {
     // MARK: Constants
 
@@ -145,7 +145,7 @@ final class DataStorageService {
         ))
 
         news.append(NewNotification(
-            type: .newUser, date: Date() - TimeInterval(60 * 60 * (24 * 6)),
+            type: .newUser, date: Date() - TimeInterval(60 * 60 * (24 * 6)), 
             user: userSvNeit
         ))
     }

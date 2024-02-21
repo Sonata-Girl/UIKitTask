@@ -3,7 +3,7 @@
 
 import UIKit
 
-/// Ячейка для отображения сторис
+/// Вью для отображения сторис
 final class StoryView: UIView {
     // MARK: Constants
 

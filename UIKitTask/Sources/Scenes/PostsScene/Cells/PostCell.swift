@@ -3,6 +3,7 @@
 
 import UIKit
 
+/// Ячейка для отображения поста пользователя
 final class PostCell: UITableViewCell {
     // MARK: Types
 

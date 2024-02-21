@@ -63,8 +63,6 @@ final class NewNotificationsViewController: UIViewController {
     private var todayNews: [NewNotification] = []
     private var weekNews: [NewNotification] = []
 
-    // MARK: Initializers
-
     // MARK: Life Cycle
 
     override func viewDidLoad() {

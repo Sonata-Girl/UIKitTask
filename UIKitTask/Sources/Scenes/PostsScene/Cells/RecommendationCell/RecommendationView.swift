@@ -3,7 +3,7 @@
 
 import UIKit
 
-/// Ячейка для отображения сторис
+/// Вью для отображения рекоммендации
 final class RecommendationView: UIView {
     // MARK: Constants
 

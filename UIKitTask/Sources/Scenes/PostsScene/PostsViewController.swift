@@ -3,7 +3,7 @@
 
 import UIKit
 
-/// Стартовый экран, список постов , сторис, рекомендации
+/// Стартовый экран, список постов , сторис, рекомендаций
 final class PostsViewController: UIViewController {
     // MARK: Types
 
@@ -100,7 +100,6 @@ final class PostsViewController: UIViewController {
     }
 
     @objc private func refreshTable(control: UIRefreshControl) {
-//        mainTableView.backgroundColor =
         control.endRefreshing()
     }
 }
