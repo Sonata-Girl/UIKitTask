@@ -1,11 +1,10 @@
-// StoriesCell.swift
+// StoriesViewCell.swift
 // Copyright © RoadMap. All rights reserved.
 
 import UIKit
 
 /// Ячейка для отображения сторисов
 final class StoriesViewCell: UITableViewCell {
-
     // MARK: Constants
 
     static var identifier: String {

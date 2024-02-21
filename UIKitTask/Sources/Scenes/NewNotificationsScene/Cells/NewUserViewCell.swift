@@ -5,14 +5,13 @@ import UIKit
 
 /// Ячейка для отображения новых лайков от пользователей и упоминаний
 final class NewUserViewCell: UITableViewCell {
-
     // MARK: Constants
 
     private enum Constants {
         static let subscribeButtonActiveTitle = "Подписаться"
         static let subscribeButtonInactiveTitle = "Вы подписаны"
     }
-    
+
     static var identifier: String {
         String(describing: self)
     }

@@ -1,10 +1,10 @@
-// DataStorageService.swift
+// StorageService.swift
 // Copyright © RoadMap. All rights reserved.
 
 import Foundation
 
 /// Тестовые данные для ленты постов и списка новых уведомлений,  заглушки. Имитация сети
-final class DataStorageService {
+final class StorageService {
     // MARK: Private Properties
 
     private var currentUser: User?

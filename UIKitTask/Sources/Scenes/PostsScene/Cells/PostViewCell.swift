@@ -1,4 +1,4 @@
-// PostCell.swift
+// PostViewCell.swift
 // Copyright © RoadMap. All rights reserved.
 
 import UIKit
@@ -149,7 +149,6 @@ final class PostViewCell: UITableViewCell {
 
     // MARK: Private Properties
 
-    private let dataBase = DataStorageService()
     private var model: Post?
     private var pageImageNumber = 0
 
@@ -469,7 +468,7 @@ final class PostViewCell: UITableViewCell {
     }
 }
 
-extension PostCell: UIScrollViewDelegate {
+extension PostViewCell: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         pageImageNumber = Int(round(scrollView.contentOffset.x / scrollView.frame.size.width))
         imagePageControl.currentPage = pageImageNumber

@@ -48,7 +48,7 @@ final class StoryView: UIView {
 
     private var viewLayers: [CALayer] = []
     private var story: Story?
- 
+
     // MARK: Initializers
 
     override init(frame: CGRect) {
