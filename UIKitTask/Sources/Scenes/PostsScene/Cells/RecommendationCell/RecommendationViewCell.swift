@@ -1,11 +1,10 @@
-// RecommendationCell.swift
+// RecommendationViewCell.swift
 // Copyright © RoadMap. All rights reserved.
 
 import UIKit
 
 /// Ячейка для отображения рекомендуемых пользователей
 final class RecommendationViewCell: UITableViewCell {
-
     // MARK: Constants
 
     private enum Constants {

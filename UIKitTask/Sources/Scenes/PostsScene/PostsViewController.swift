@@ -58,7 +58,7 @@ final class PostsViewController: UIViewController {
 
     // MARK: Private Properties
 
-    private let dataStorage = DataStorageService()
+    private let sourceStorage = StorageService()
     private let tableSections: [TableSections] = [.stories, .firstPost, .recommendations, .posts]
     private var stories: [Story] = []
     private var posts: [Post] = []
@@ -98,9 +98,9 @@ final class PostsViewController: UIViewController {
     }
 
     private func getDataFromBackEnd() {
-        stories = dataStorage.getStories()
-        posts = dataStorage.getPosts()
-        recommendations = dataStorage.getRecommendations()
+        stories = sourceStorage.getStories()
+        posts = sourceStorage.getPosts()
+        recommendations = sourceStorage.getRecommendations()
     }
 
     @objc private func refreshTableView(control: UIRefreshControl) {

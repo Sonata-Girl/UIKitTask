@@ -5,7 +5,6 @@ import UIKit
 
 /// Ячейка для отображения новых лайков от пользователей и упоминаний
 final class NewNotificationViewCell: UITableViewCell {
-
     // MARK: Constants
 
     private enum Constants {
