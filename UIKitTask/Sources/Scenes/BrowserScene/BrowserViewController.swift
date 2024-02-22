@@ -48,10 +48,6 @@ final class BrowserViewController: UIViewController {
         return button
     }()
 
-    // MARK: Private Properties
-
-    // MARK: Initializers
-
     // MARK: Life Cycle
 
     override func viewDidLoad() {
@@ -69,6 +65,7 @@ final class BrowserViewController: UIViewController {
     // MARK: Private Methods
 
     private func setupHierarchy() {
+        view.addSubview(webKitView)
         view.addSubview(bottomNavigationView)
         [
             backwardButton,
@@ -78,23 +75,71 @@ final class BrowserViewController: UIViewController {
     }
 
     private func setupConstraints() {
+        setupWebKitViewConstraint()
         setupBottomNavigationViewConstraint()
         setupBackwardButtonConstraint()
         setupForwardButtonConstraint()
         setupReloadButtonConstraint()
     }
 
-    private func setupBottomNavigationViewConstraint() {}
+    private func setupWebKitViewConstraint() {
+        NSLayoutConstraint.activate([
+            webKitView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            webKitView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            webKitView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+        ])
+    }
 
-    private func setupBackwardButtonConstraint() {}
+    private func setupBottomNavigationViewConstraint() {
+        NSLayoutConstraint.activate([
+            bottomNavigationView.topAnchor.constraint(equalTo: webKitView.bottomAnchor),
+            bottomNavigationView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            bottomNavigationView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            bottomNavigationView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            bottomNavigationView.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
 
-    private func setupForwardButtonConstraint() {}
+    private func setupBackwardButtonConstraint() {
+        NSLayoutConstraint.activate([
+            backwardButton.leadingAnchor.constraint(equalTo: bottomNavigationView.leadingAnchor, constant: 15),
+            backwardButton.centerYAnchor.constraint(equalTo: bottomNavigationView.centerYAnchor),
+            backwardButton.heightAnchor.constraint(equalToConstant: 24),
+            backwardButton.widthAnchor.constraint(equalToConstant: 24),
+        ])
+    }
 
-    private func setupReloadButtonConstraint() {}
+    private func setupForwardButtonConstraint() {
+        NSLayoutConstraint.activate([
+            forwardButton.leadingAnchor.constraint(equalTo: backwardButton.trailingAnchor, constant: 35),
+            forwardButton.centerYAnchor.constraint(equalTo: bottomNavigationView.centerYAnchor),
+            forwardButton.heightAnchor.constraint(equalToConstant: 24),
+            forwardButton.widthAnchor.constraint(equalToConstant: 24),
+        ])
+    }
 
-    @objc private func goPreviousPage() {}
+    private func setupReloadButtonConstraint() {
+        NSLayoutConstraint.activate([
+            reloadButton.trailingAnchor.constraint(equalTo: bottomNavigationView.trailingAnchor, constant: -30),
+            reloadButton.centerYAnchor.constraint(equalTo: bottomNavigationView.centerYAnchor),
+            reloadButton.heightAnchor.constraint(equalToConstant: 24),
+            reloadButton.widthAnchor.constraint(equalToConstant: 24),
+        ])
+    }
 
-    @objc private func goNextPage() {}
+    @objc private func goPreviousPage() {
+        guard webKitView.canGoBack else { return }
+        webKitView.goBack()
+    }
 
-    @objc private func reloadPage() {}
+    @objc private func goNextPage() {
+        guard webKitView.canGoForward else { return }
+        webKitView.goForward()
+    }
+
+    @objc private func reloadPage() {
+        webKitView.reload()
+    }
 }
+
+

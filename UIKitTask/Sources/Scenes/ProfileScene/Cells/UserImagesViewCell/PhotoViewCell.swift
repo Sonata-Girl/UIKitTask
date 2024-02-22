@@ -40,6 +40,11 @@ final class PhotoViewCell: UICollectionViewCell {
         setupConstraints()
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setupContentViewConstraints()
+    }
+
     // MARK: Public methods
 
     func configureCell(photoName: String) {
@@ -58,9 +63,16 @@ final class PhotoViewCell: UICollectionViewCell {
     }
 
     private func setupContentViewConstraints() {
+        for constraint in contentView.constraints {
+            if constraint.firstAttribute == .width || constraint.firstAttribute == .height {
+                contentView.removeConstraint(constraint)
+            }
+        }
+
         let screenWidth = UIScreen.main.bounds.width
         contentView.heightAnchor.constraint(
-            equalToConstant: (screenWidth - Constants.doubleInsetWidthScreen) / Constants.thirdWidthScreen
+            equalToConstant: (min(screenWidth, UIScreen.main.bounds.height) - Constants.doubleInsetWidthScreen) /
+                Constants.thirdWidthScreen
         ).isActive = true
         contentView.widthAnchor.constraint(
             equalToConstant: (screenWidth - Constants.doubleInsetWidthScreen) / Constants.thirdWidthScreen

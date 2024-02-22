@@ -102,6 +102,7 @@ class ProfileViewController: UIViewController {
     private func openSiteFromLink(link: String) {
         guard let url = URL(string: link) else { return }
         let browser = BrowserViewController()
+        browser.modalPresentationStyle = .fullScreen
         browser.setupLink(link: url)
         present(browser, animated: true)
     }

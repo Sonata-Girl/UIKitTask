@@ -400,7 +400,7 @@ final class UserInfoViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             changeButton.topAnchor.constraint(equalTo: bottomView.topAnchor),
             changeButton.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor),
-            changeButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 155),
+//            changeButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 155),
             changeButton.bottomAnchor.constraint(equalTo: bottomView.bottomAnchor)
         ])
     }
