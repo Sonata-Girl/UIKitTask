@@ -27,6 +27,10 @@ final class MyStoryView: UIView {
         return label
     }()
 
+    // MARK: Public Properties
+
+    var storySelectedHandler: ((MyStory) -> ())?
+
     // MARK: Privates Properties
 
     private var viewLayers: [CALayer] = []
@@ -36,6 +40,11 @@ final class MyStoryView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+
+        isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(storySelected))
+        addGestureRecognizer(tap)
+
         setupHierarchy()
         setupConstraints()
     }
@@ -114,5 +123,10 @@ final class MyStoryView: UIView {
         imageGradient.masksToBounds = true
         layer.insertSublayer(imageGradient, at: 0)
         viewLayers.append(imageGradient)
+    }
+
+    @objc private func storySelected() {
+        guard let myStory else { return }
+        storySelectedHandler?(myStory)
     }
 }

@@ -4,7 +4,7 @@
 import UIKit
 
 ///  Экран профиля пользователя с его сторисами и фотографиями
-class ProfileViewController: UIViewController {
+final class ProfileViewController: UIViewController {
     // MARK: Types
 
     /// Секции таблицы в контроллере
@@ -102,7 +102,7 @@ class ProfileViewController: UIViewController {
     private func openSiteFromLink(link: String) {
         guard let url = URL(string: link) else { return }
         let browser = BrowserViewController()
-        browser.modalPresentationStyle = .fullScreen
+        browser.modalPresentationStyle = .formSheet
         browser.setupLink(link: url)
         present(browser, animated: true)
     }
@@ -145,6 +145,20 @@ class ProfileViewController: UIViewController {
 
     @objc private func refreshTableView(control: UIRefreshControl) {
         control.endRefreshing()
+    }
+
+    private func openFullScreenStory(myStory: MyStory) {
+        let fullScreenStoryViewController = FullScreenStoryViewController()
+        fullScreenStoryViewController.configureView(myStory: myStory)
+        fullScreenStoryViewController.modalPresentationStyle = .formSheet
+        present(fullScreenStoryViewController, animated: true)
+    }
+
+    private func openFullScreenPostImage(postImageName: String) {
+        let fullPostImageViewController = FullScreenPostImageViewController()
+        fullPostImageViewController.configureView(postImageName: postImageName)
+        fullPostImageViewController.modalPresentationStyle = .formSheet
+        present(fullPostImageViewController, animated: true)
     }
 }
 
@@ -195,6 +209,9 @@ extension ProfileViewController: UITableViewDataSource {
         ) as? MyStoryViewCell else { return UITableViewCell() }
 
         cell.configureCell(myStories: myStories)
+        cell.storySelectedHandler = { [weak self] myStory in
+            self?.openFullScreenStory(myStory: myStory)
+        }
         return cell
     }
 
@@ -205,6 +222,9 @@ extension ProfileViewController: UITableViewDataSource {
         ) as? UserImagesViewCell else { return UITableViewCell() }
 
         cell.configureCell(photos: myPhotos)
+        cell.postSelectedHandler = { [weak self] postImageName in
+            self?.openFullScreenPostImage(postImageName: postImageName)
+        }
         return cell
     }
 

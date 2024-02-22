@@ -18,8 +18,13 @@ final class UserImagesViewCell: UITableViewCell {
         collection.translatesAutoresizingMaskIntoConstraints = false
         collection.register(PhotoViewCell.self, forCellWithReuseIdentifier: PhotoViewCell.identifier)
         collection.dataSource = self
+        collection.delegate = self
         return collection
     }()
+
+    // MARK: Public Properties
+
+    var postSelectedHandler: ((String) -> Void)?
 
     // MARK: Private Properties
 
@@ -56,7 +61,6 @@ final class UserImagesViewCell: UITableViewCell {
     private func setupCollectionLayout() -> UICollectionViewFlowLayout {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-//        flowLayout.itemSize = .init(width: 124, height: 124)
         flowLayout.minimumLineSpacing = 1.5
         flowLayout.minimumInteritemSpacing = 1.5
 
@@ -82,6 +86,8 @@ final class UserImagesViewCell: UITableViewCell {
     }
 }
 
+// MARK: - UICollectionViewDataSource
+
 /// UserImagesViewCell + UICollectionViewDataSource
 extension UserImagesViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -100,5 +106,14 @@ extension UserImagesViewCell: UICollectionViewDataSource {
         else { return UICollectionViewCell() }
         cell.configureCell(photoName: photos[indexPath.item].imageName)
         return cell
+    }
+}
+
+// MARK: - UICollectionViewDelegate
+
+/// UserImagesViewCell + UICollectionViewDelegate
+extension UserImagesViewCell: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        postSelectedHandler?(photos[indexPath.item].imageName)
     }
 }

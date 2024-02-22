@@ -11,7 +11,17 @@ final class BrowserViewController: UIViewController {
     private let webKitView: WKWebView = {
         let webKit = WKWebView()
         webKit.translatesAutoresizingMaskIntoConstraints = false
+        webKit.isUserInteractionEnabled = true
         return webKit
+    }()
+
+    private lazy var closeButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setBackgroundImage(.closeButton, for: .normal)
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(closeScreen), for: .touchUpInside)
+        return button
     }()
 
     private let bottomNavigationView: UIView = {
@@ -66,6 +76,7 @@ final class BrowserViewController: UIViewController {
 
     private func setupHierarchy() {
         view.addSubview(webKitView)
+        webKitView.addSubview(closeButton)
         view.addSubview(bottomNavigationView)
         [
             backwardButton,
@@ -76,6 +87,7 @@ final class BrowserViewController: UIViewController {
 
     private func setupConstraints() {
         setupWebKitViewConstraint()
+        setupCloseButtonConstraint()
         setupBottomNavigationViewConstraint()
         setupBackwardButtonConstraint()
         setupForwardButtonConstraint()
@@ -90,12 +102,21 @@ final class BrowserViewController: UIViewController {
         ])
     }
 
+    private func setupCloseButtonConstraint() {
+        NSLayoutConstraint.activate([
+            closeButton.topAnchor.constraint(equalTo: webKitView.topAnchor, constant: 33),
+            closeButton.leadingAnchor.constraint(equalTo: webKitView.leadingAnchor, constant: 22),
+            closeButton.heightAnchor.constraint(equalToConstant: 15),
+            closeButton.widthAnchor.constraint(equalToConstant: 15),
+        ])
+    }
+
     private func setupBottomNavigationViewConstraint() {
         NSLayoutConstraint.activate([
             bottomNavigationView.topAnchor.constraint(equalTo: webKitView.bottomAnchor),
             bottomNavigationView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             bottomNavigationView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            bottomNavigationView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            bottomNavigationView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             bottomNavigationView.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
@@ -140,6 +161,8 @@ final class BrowserViewController: UIViewController {
     @objc private func reloadPage() {
         webKitView.reload()
     }
+
+    @objc private func closeScreen() {
+        dismiss(animated: true)
+    }
 }
-
-

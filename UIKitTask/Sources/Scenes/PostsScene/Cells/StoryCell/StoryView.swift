@@ -53,6 +53,7 @@ final class StoryView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+
         setupHierarchy()
         setupConstraints()
     }

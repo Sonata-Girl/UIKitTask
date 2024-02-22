@@ -26,6 +26,10 @@ final class MyStoryViewCell: UITableViewCell {
         return view
     }()
 
+    // MARK: Public Properties
+
+    var storySelectedHandler: ((MyStory) -> ())?
+
     // MARK: Private Properties
 
     private var myStories: [MyStory] = []
@@ -68,7 +72,7 @@ final class MyStoryViewCell: UITableViewCell {
     }
 
     private func setupConstraints() {
-//        contentView.heightAnchor.constraint(equalToConstant: 73).isActive = true
+        contentView.heightAnchor.constraint(equalToConstant: 73).isActive = true
 
         setupFullCellSizeScrollViewConstraint()
         setupContainerViewConstraint()
@@ -102,6 +106,9 @@ final class MyStoryViewCell: UITableViewCell {
             newView.translatesAutoresizingMaskIntoConstraints = false
 
             newView.configureView(myStory: myStory)
+            newView.storySelectedHandler = { [weak self] myStory in
+                self?.storySelected(myStory: myStory)
+            }
             containerView.addSubview(newView)
 
             NSLayoutConstraint.activate([
@@ -122,5 +129,9 @@ final class MyStoryViewCell: UITableViewCell {
 
     private func clearScrollView() {
         containerView.subviews.forEach { $0.removeFromSuperview() }
+    }
+
+    private func storySelected(myStory: MyStory) {
+        storySelectedHandler?(myStory)
     }
 }
