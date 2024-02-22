@@ -35,15 +35,13 @@ final class StoriesViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        configureView()
         setupHierarchy()
-        setupScrollView()
+        setupConstraints()
     }
 
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        configureView()
         setupHierarchy()
     }
 
@@ -55,23 +53,19 @@ final class StoriesViewCell: UITableViewCell {
 
     // MARK: Public methods
 
-    func configureView(stories: [Story]) {
+    func configureCell(stories: [Story]) {
         self.stories = stories
         fillScrollView()
     }
 
     // MARK: - Private methods
 
-    private func configureView() {
-        contentView.backgroundColor = .white
-    }
-
     private func setupHierarchy() {
         contentView.addSubview(scrollView)
         scrollView.addSubview(contentContainerView)
     }
 
-    private func setupScrollView() {
+    private func setupConstraints() {
         contentView.heightAnchor.constraint(equalToConstant: 83).isActive = true
 
         NSLayoutConstraint.activate([
@@ -81,15 +75,12 @@ final class StoriesViewCell: UITableViewCell {
             scrollView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
 
-        let widthConstraint = contentContainerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
-        widthConstraint.priority = UILayoutPriority(250)
         NSLayoutConstraint.activate([
             contentContainerView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             contentContainerView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             contentContainerView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             contentContainerView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             contentContainerView.heightAnchor.constraint(equalTo: scrollView.heightAnchor),
-            widthConstraint,
         ])
     }
 

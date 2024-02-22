@@ -40,9 +40,14 @@ final class UserImagesViewCell: UITableViewCell {
         setupConstraints()
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        photos.removeAll()
+    }
+
     // MARK: Public Methods
 
-    func configureView(photos: [Photo]) {
+    func configureCell(photos: [Photo]) {
         self.photos = photos
     }
 
@@ -51,7 +56,9 @@ final class UserImagesViewCell: UITableViewCell {
     private func setupCollectionLayout() -> UICollectionViewFlowLayout {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        flowLayout.itemSize = .init(width: 124, height: 124)
+//        flowLayout.itemSize = .init(width: 124, height: 124)
+        flowLayout.minimumLineSpacing = 1.5
+        flowLayout.minimumInteritemSpacing = 1.5
 
         return flowLayout
     }

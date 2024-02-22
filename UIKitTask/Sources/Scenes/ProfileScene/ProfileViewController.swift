@@ -65,7 +65,7 @@ class ProfileViewController: UIViewController {
         tableView.backgroundColor = .clear
         tableView.register(UserImagesViewCell.self, forCellReuseIdentifier: UserImagesViewCell.identifier)
         tableView.register(UserInfoViewCell.self, forCellReuseIdentifier: UserInfoViewCell.identifier)
-//        tableView.register(PostViewCell.self, forCellReuseIdentifier: PostViewCell.identifier)
+        tableView.register(MyStoryViewCell.self, forCellReuseIdentifier: MyStoryViewCell.identifier)
         tableView.allowsSelection = false
         tableView.dataSource = self
         tableView.separatorStyle = .none
@@ -98,8 +98,12 @@ class ProfileViewController: UIViewController {
     }
 
     // MARK: Public Methods
+
     private func openSiteFromLink(link: String) {
         guard let url = URL(string: link) else { return }
+        let browser = BrowserViewController()
+        browser.setupLink(link: url)
+        present(browser, animated: true)
     }
 
     // MARK: Private Methods
@@ -162,20 +166,10 @@ extension ProfileViewController: UITableViewDataSource {
         case .profileInfo:
             return getUserInfoCell(for: tableView, from: indexPath)
         case .stories:
-            return UITableViewCell()
-        case .photos: return UITableViewCell()
-//            return getUserImagesCell(for: tableView, from: indexPath)
+            return getMyStoriesCell(for: tableView, from: indexPath)
+        case .photos:
+            return getUserImagesCell(for: tableView, from: indexPath)
         }
-    }
-
-    private func getUserImagesCell(for tableView: UITableView, from indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: UserImagesViewCell.identifier,
-            for: indexPath
-        ) as? UserImagesViewCell else { return UITableViewCell() }
-
-        cell.configureView(photos: myPhotos)
-        return cell
     }
 
     private func getUserInfoCell(for tableView: UITableView, from indexPath: IndexPath) -> UITableViewCell {
@@ -186,10 +180,30 @@ extension ProfileViewController: UITableViewDataSource {
                 for: indexPath
             ) as? UserInfoViewCell else { return UITableViewCell() }
 
-        cell.configureView(userPageInfo: userPageInfo)
-        cell.linkPressedHandler = { link in
-            openSiteFromLink(link: String)
+        cell.configureCell(userPageInfo: userPageInfo)
+        cell.linkPressedHandler = { [weak self] link in
+            self?.openSiteFromLink(link: link)
         }
+        return cell
+    }
+
+    private func getMyStoriesCell(for tableView: UITableView, from indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: MyStoryViewCell.identifier,
+            for: indexPath
+        ) as? MyStoryViewCell else { return UITableViewCell() }
+
+        cell.configureCell(myStories: myStories)
+        return cell
+    }
+
+    private func getUserImagesCell(for tableView: UITableView, from indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: UserImagesViewCell.identifier,
+            for: indexPath
+        ) as? UserImagesViewCell else { return UITableViewCell() }
+
+        cell.configureCell(photos: myPhotos)
         return cell
     }
 

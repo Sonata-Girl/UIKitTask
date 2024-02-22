@@ -175,7 +175,7 @@ final class PostViewCell: UITableViewCell {
 
     // MARK: Public methods
 
-    func configureView(post: Post) {
+    func configureCell(post: Post) {
         model = post
         fillCell()
         fillScrollView()
@@ -204,7 +204,6 @@ final class PostViewCell: UITableViewCell {
 
     private func setupConstraints() {
         contentView.heightAnchor.constraint(equalToConstant: 420).isActive = true
-        contentView.widthAnchor.constraint(equalToConstant: 375).isActive = true
 
         NSLayoutConstraint.activate([
             userImageView.topAnchor.constraint(

@@ -125,7 +125,7 @@ final class NewUserViewCell: UITableViewCell {
 
         NSLayoutConstraint.activate([
             subscribeButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-            subscribeButton.leadingAnchor.constraint(equalTo: commentLabel.trailingAnchor, constant: 9),
+            subscribeButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 77),
             subscribeButton.widthAnchor.constraint(equalToConstant: 140),
             subscribeButton.heightAnchor.constraint(equalToConstant: 30)
         ])

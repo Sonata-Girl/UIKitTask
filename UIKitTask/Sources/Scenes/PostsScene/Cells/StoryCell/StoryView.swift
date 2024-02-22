@@ -53,14 +53,12 @@ final class StoryView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configureView()
         setupHierarchy()
         setupConstraints()
     }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        configureView()
         setupHierarchy()
         setupConstraints()
     }
@@ -94,10 +92,6 @@ final class StoryView: UIView {
     }
 
     // MARK: Private methods
-
-    private func configureView() {
-        backgroundColor = .white
-    }
 
     private func setupHierarchy() {
         [
@@ -140,6 +134,7 @@ final class StoryView: UIView {
     }
 
     private func addGradient(view: UIView) {
+        guard viewLayers.isEmpty else { return }
         let imageGradient = CAGradientLayer()
         imageGradient.colors = [UIColor.yellow.cgColor, UIColor.orange.cgColor, UIColor.red.cgColor]
         imageGradient.startPoint = CGPoint(x: 0, y: 1)

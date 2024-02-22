@@ -74,9 +74,9 @@ final class RecommendationViewCell: UITableViewCell {
 
     // MARK: Public methods
 
-    func configureView(recommendations: [User]) {
+    func configureCell(recommendations: [User]) {
         self.recommendations = recommendations
-        fillScrolView()
+        fillScrollView()
     }
 
     // MARK: - Private methods
@@ -119,7 +119,7 @@ final class RecommendationViewCell: UITableViewCell {
         ])
     }
 
-    private func fillScrolView() {
+    private func fillScrollView() {
         guard !recommendations.isEmpty else { return }
         var lastStoryViewLeftAnchor = scrollView.leadingAnchor
 

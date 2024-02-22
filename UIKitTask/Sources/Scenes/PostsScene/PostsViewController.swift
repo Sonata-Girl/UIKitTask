@@ -148,7 +148,7 @@ extension PostsViewController: UITableViewDataSource {
                 for: indexPath
             ) as? StoriesViewCell else { return UITableViewCell() }
 
-        cell.configureView(stories: stories)
+        cell.configureCell(stories: stories)
         return cell
     }
 
@@ -163,10 +163,10 @@ extension PostsViewController: UITableViewDataSource {
         ) as? PostViewCell else { return UITableViewCell() }
 
         if firstPost {
-            cell.configureView(post: posts[indexPath.row])
+            cell.configureCell(post: posts[indexPath.row])
         } else {
             guard posts.count > 1 else { return UITableViewCell() }
-            cell.configureView(post: posts.dropFirst()[indexPath.row + 1])
+            cell.configureCell(post: posts.dropFirst()[indexPath.row + 1])
         }
         return cell
     }
@@ -178,7 +178,7 @@ extension PostsViewController: UITableViewDataSource {
                 for: indexPath
             ) as? RecommendationViewCell else { return UITableViewCell() }
 
-        cell.configureView(recommendations: recommendations)
+        cell.configureCell(recommendations: recommendations)
         return cell
     }
 

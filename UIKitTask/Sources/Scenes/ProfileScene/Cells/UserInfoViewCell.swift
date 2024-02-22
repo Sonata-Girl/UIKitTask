@@ -50,8 +50,7 @@ final class UserInfoViewCell: UITableViewCell {
         button.setImage(.plusMini, for: .normal)
         button.tintColor = .white
         button.backgroundColor = .appRed
-        button.isHidden = true
-        button.layer.cornerRadius = 10
+        button.layer.cornerRadius = 13
         return button
     }()
 
@@ -195,9 +194,20 @@ final class UserInfoViewCell: UITableViewCell {
         setupConstraints()
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        userImageView.image = nil
+        userNameLabel.text = nil
+        descriptionLabel.text = nil
+        postsCountLabel.text = nil
+        followersCountLabel.text = nil
+        subscriptionsCountLabel.text = nil
+        linkButton.setTitle("", for: .normal)
+    }
+
     // MARK: Public methods
 
-    func configureView(userPageInfo: UserPageInfo) {
+    func configureCell(userPageInfo: UserPageInfo) {
         userImageView.image = UIImage(named: userPageInfo.avatarImage)
         userNameLabel.text = userPageInfo.realName
         descriptionLabel.text = userPageInfo.aboutMe
@@ -205,12 +215,6 @@ final class UserInfoViewCell: UITableViewCell {
         followersCountLabel.text = "\(userPageInfo.followersCount)"
         subscriptionsCountLabel.text = "\(userPageInfo.subscriptionsCount)"
         linkButton.setTitle(userPageInfo.link, for: .normal)
-//        if let url = URL(string: userPageInfo.link) {
-//            linkButton.attributedText = NSAttributedString(
-//                string: userPageInfo.link,
-//                attributes: [NSAttributedString.Key.link: url]
-//            )
-//        }
     }
 
     // MARK: Private Methods
@@ -219,6 +223,7 @@ final class UserInfoViewCell: UITableViewCell {
         [
             topView,
             userNameLabel,
+            plusButton,
             descriptionLabel,
             linkButton,
             bottomView
@@ -238,8 +243,6 @@ final class UserInfoViewCell: UITableViewCell {
             countersContainerView
         ].forEach { topView.addSubview($0) }
 
-        userImageView.addSubview(plusButton)
-
         [
             changeButton,
             shareButton,
@@ -256,6 +259,7 @@ final class UserInfoViewCell: UITableViewCell {
         setupLinksLabelConstraint()
         setupBottomViewConstraint()
         setupUserImageViewConstraint()
+        setupPlusButtonConstraints()
         setupCountersContainerViewConstraint()
         setupPostsCountLabelConstraint()
         setupPostsCountTitleLabelConstraint()
@@ -290,6 +294,7 @@ final class UserInfoViewCell: UITableViewCell {
             descriptionLabel.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: 5),
             descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
             descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
+            descriptionLabel.heightAnchor.constraint(equalToConstant: 20)
         ])
     }
 
@@ -297,7 +302,8 @@ final class UserInfoViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             linkButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 5),
             linkButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
-            linkButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            linkButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            linkButton.heightAnchor.constraint(equalToConstant: 20)
         ])
     }
 
@@ -319,10 +325,18 @@ final class UserInfoViewCell: UITableViewCell {
         ])
     }
 
+    private func setupPlusButtonConstraints() {
+        NSLayoutConstraint.activate([
+            plusButton.trailingAnchor.constraint(equalTo: userImageView.trailingAnchor),
+            plusButton.bottomAnchor.constraint(equalTo: userImageView.bottomAnchor),
+            plusButton.heightAnchor.constraint(equalToConstant: 26),
+            plusButton.widthAnchor.constraint(equalToConstant: 26),
+        ])
+    }
+
     private func setupCountersContainerViewConstraint() {
         NSLayoutConstraint.activate([
             countersContainerView.topAnchor.constraint(equalTo: topView.topAnchor, constant: 10),
-            countersContainerView.leadingAnchor.constraint(equalTo: userImageView.trailingAnchor, constant: 46),
             countersContainerView.trailingAnchor.constraint(equalTo: topView.trailingAnchor, constant: -23),
             countersContainerView.heightAnchor.constraint(equalToConstant: 37)
         ])

@@ -1,17 +1,13 @@
-//
-//  BrowserViewController.swift
-//  UIKitTask
-//
-//  Created by Sonata Girl on 22.02.2024.
-//
+// BrowserViewController.swift
+// Copyright © RoadMap. All rights reserved.
 
 import UIKit
 import WebKit
 
 /// Экран для отображения ссылок, браузер
 final class BrowserViewController: UIViewController {
-
     // MARK: Visual Components
+
     private let webKitView: WKWebView = {
         let webKit = WKWebView()
         webKit.translatesAutoresizingMaskIntoConstraints = false
@@ -53,8 +49,11 @@ final class BrowserViewController: UIViewController {
     }()
 
     // MARK: Private Properties
+
     // MARK: Initializers
+
     // MARK: Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupHierarchy()
@@ -62,8 +61,8 @@ final class BrowserViewController: UIViewController {
     }
 
     // MARK: Public methods
-    
-    private func setupLink(link: URL) {
+
+    func setupLink(link: URL) {
         webKitView.load(URLRequest(url: link))
     }
 
@@ -85,32 +84,17 @@ final class BrowserViewController: UIViewController {
         setupReloadButtonConstraint()
     }
 
-    private func setupBottomNavigationViewConstraint() {
+    private func setupBottomNavigationViewConstraint() {}
 
-    }
+    private func setupBackwardButtonConstraint() {}
 
-    private func setupBackwardButtonConstraint() {
+    private func setupForwardButtonConstraint() {}
 
-    }
+    private func setupReloadButtonConstraint() {}
 
-    private func setupForwardButtonConstraint() {
+    @objc private func goPreviousPage() {}
 
-    }
+    @objc private func goNextPage() {}
 
-    private func setupReloadButtonConstraint() {
-
-    }
-
-
-    @objc private func goPreviousPage() {
-
-    }
-
-    @objc private func goNextPage() {
-
-    }
-
-    @objc private func reloadPage() {
-
-    }
+    @objc private func reloadPage() {}
 }

@@ -9,6 +9,7 @@ final class PhotoViewCell: UICollectionViewCell {
 
     private enum Constants {
         static let thirdWidthScreen: CGFloat = 3
+        static let doubleInsetWidthScreen: CGFloat = 1.5 * 2
     }
 
     static var identifier: String {
@@ -24,10 +25,6 @@ final class PhotoViewCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
-
-    // MARK: Private Properties
-
-    private let storageSource = StorageService()
 
     // MARK: Initializers
 
@@ -63,10 +60,10 @@ final class PhotoViewCell: UICollectionViewCell {
     private func setupContentViewConstraints() {
         let screenWidth = UIScreen.main.bounds.width
         contentView.heightAnchor.constraint(
-            equalToConstant: screenWidth / Constants.thirdWidthScreen
+            equalToConstant: (screenWidth - Constants.doubleInsetWidthScreen) / Constants.thirdWidthScreen
         ).isActive = true
         contentView.widthAnchor.constraint(
-            equalToConstant: screenWidth / Constants.thirdWidthScreen
+            equalToConstant: (screenWidth - Constants.doubleInsetWidthScreen) / Constants.thirdWidthScreen
         ).isActive = true
     }
 
