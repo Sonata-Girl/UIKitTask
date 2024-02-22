@@ -5,13 +5,17 @@ import UIKit
 
 /// Ячейка для отображения фотографии
 final class PhotoViewCell: UICollectionViewCell {
-    // MARK: - Constants
+    // MARK: Constants
+
+    private enum Constants {
+        static let thirdWidthScreen: CGFloat = 3
+    }
 
     static var identifier: String {
         String(describing: self)
     }
 
-    // MARK: - Visual Components
+    // MARK: Visual Components
 
     private let mainImageView: UIImageView = {
         let imageView = UIImageView()
@@ -21,11 +25,11 @@ final class PhotoViewCell: UICollectionViewCell {
         return imageView
     }()
 
-    // MARK: - Private Properties
+    // MARK: Private Properties
 
     private let storageSource = StorageService()
 
-    // MARK: - Initializers
+    // MARK: Initializers
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -39,20 +43,31 @@ final class PhotoViewCell: UICollectionViewCell {
         setupConstraints()
     }
 
-    // MARK: - Public methods
+    // MARK: Public methods
 
     func configureCell(photoName: String) {
         mainImageView.image = UIImage(named: photoName)
     }
 
-    // MARK: - Private Methods
+    // MARK: Private Methods
 
     private func setupHierarchy() {
         contentView.addSubview(mainImageView)
     }
 
     private func setupConstraints() {
+        setupContentViewConstraints()
         setupMainImageViewConstraint()
+    }
+
+    private func setupContentViewConstraints() {
+        let screenWidth = UIScreen.main.bounds.width
+        contentView.heightAnchor.constraint(
+            equalToConstant: screenWidth / Constants.thirdWidthScreen
+        ).isActive = true
+        contentView.widthAnchor.constraint(
+            equalToConstant: screenWidth / Constants.thirdWidthScreen
+        ).isActive = true
     }
 
     private func setupMainImageViewConstraint() {
@@ -60,7 +75,7 @@ final class PhotoViewCell: UICollectionViewCell {
             mainImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             mainImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             mainImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            mainImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            mainImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
         ])
     }
 }

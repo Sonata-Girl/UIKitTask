@@ -11,6 +11,10 @@ final class NewNotificationsViewController: UIViewController {
         static let titleScreen = "Уведомления"
     }
 
+    static var identifier: String {
+        String(describing: self)
+    }
+
     // MARK: Types
 
     private enum TableSections: String {

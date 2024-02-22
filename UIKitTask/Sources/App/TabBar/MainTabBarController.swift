@@ -44,7 +44,7 @@ final class MainTabBarController: UITabBarController {
             selectedImage: nil
         )
 
-        let profileViewController = UINavigationController(rootViewController: UIViewController())
+        let profileViewController = UINavigationController(rootViewController: ProfileViewController())
         profileViewController.tabBarItem = UITabBarItem(
             title: Constants.profileVCTitle,
             image: .profileTabBar,

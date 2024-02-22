@@ -8,12 +8,23 @@ final class StorageService {
     // MARK: Private Properties
 
     private var currentUser: User?
+    private let userPageInfo: UserPageInfo =
+        .init(
+            name: "mary_rmLink",
+            avatarImage: "myAvatar",
+            realName: "Роад Маповна",
+            postsCount: 67,
+            followersCount: 458,
+            subscriptionsCount: 120,
+            aboutMe: "Консультант",
+            link: "www.spacex.com"
+        )
     private var stories: [Story] = []
     private var posts: [Post] = []
     private var recommendations: [User] = []
     private var news: [NewNotification] = []
     private var myStories: [MyStory] = []
-    private var myImages: [Photo] = []
+    private var myPhotos: [Photo] = []
 
     // MARK: Initializers
 
@@ -25,6 +36,10 @@ final class StorageService {
 
     func getCurrentUser() -> User {
         currentUser ?? User(name: "none", avatarImage: "none")
+    }
+
+    func getUserPageInfo() -> UserPageInfo {
+        userPageInfo
     }
 
     func getPosts() -> [Post] {
@@ -47,8 +62,8 @@ final class StorageService {
         myStories
     }
 
-    func getMyImages() -> [Photo] {
-        myImages
+    func getMyPhotos() -> [Photo] {
+        myPhotos
     }
 
     // MARK: Private Methods
@@ -156,12 +171,12 @@ final class StorageService {
         ))
 
         /// Заполнение сторис текущего пользователя
-        myStories.append(MyStory(isNew: true, description: "Запуск", imageName: "myStoryOne"))
-        myStories.append(MyStory(isNew: true, description: "Луна", imageName: "myStoryTwo"))
-        myStories.append(MyStory(isNew: true, description: "Космонавт", imageName: "myStoryThree"))
-        myStories.append(MyStory(isNew: true, description: "Космос", imageName: "myStoryFour"))
-        myStories.append(MyStory(isNew: true, description: "Запуск", imageName: "myStoryOne"))
-        myStories.append(MyStory(isNew: true, description: "Луна", imageName: "myStoryTwo"))
+        myStories.append(MyStory(description: "Запуск", imageName: "myStoryOne"))
+        myStories.append(MyStory(description: "Луна", imageName: "myStoryTwo"))
+        myStories.append(MyStory(description: "Космонавт", imageName: "myStoryThree"))
+        myStories.append(MyStory(description: "Космос", imageName: "myStoryFour"))
+        myStories.append(MyStory(description: "Запуск", imageName: "myStoryOne"))
+        myStories.append(MyStory(description: "Луна", imageName: "myStoryTwo"))
 
         /// Заполнение картинок текущего пользователя
         [
@@ -186,6 +201,6 @@ final class StorageService {
             Photo(id: 19, imageName: "myPostThree"),
             Photo(id: 20, imageName: "myPostFour"),
 
-        ].forEach { myImages.append($0) }
+        ].forEach { myPhotos.append($0) }
     }
 }
