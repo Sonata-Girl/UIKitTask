@@ -17,7 +17,7 @@ final class StorageService {
             followersCount: 458,
             subscriptionsCount: 120,
             aboutMe: "Консультант",
-            link: "https://www.spacex.com/vehicles/starship/"
+            link: "www.spacex.com/vehicles/starship/"
         )
     private var stories: [Story] = []
     private var posts: [Post] = []

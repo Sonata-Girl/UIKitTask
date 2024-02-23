@@ -320,7 +320,7 @@ final class UserInfoViewCell: UITableViewCell {
     private func setupLinksLabelConstraint() {
         NSLayoutConstraint.activate([
             linkButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 5),
-            linkButton.leadingAnchor.constraint(equalTo: clipButton.trailingAnchor, constant: -2),
+            linkButton.leadingAnchor.constraint(equalTo: clipButton.trailingAnchor, constant: 2),
             linkButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
             linkButton.heightAnchor.constraint(equalToConstant: 20)
         ])
