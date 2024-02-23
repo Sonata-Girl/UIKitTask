@@ -12,9 +12,8 @@ final class MyStoryView: UIView {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
-        imageView.layer.borderWidth = 3
-        imageView.layer.borderColor = UIColor.white.cgColor
         imageView.layer.cornerRadius = 27
+        imageView.layer.masksToBounds = false
         return imageView
     }()
 
@@ -72,7 +71,7 @@ final class MyStoryView: UIView {
     }
 
     func updateGradient() {
-        addGradient(view: mainImageView)
+        addBorderLayer(view: mainImageView)
     }
 
     // MARK: Private methods
@@ -110,19 +109,17 @@ final class MyStoryView: UIView {
         viewLayers.forEach { $0.removeFromSuperlayer() }
     }
 
-    private func addGradient(view: UIView) {
+    private func addBorderLayer(view: UIView) {
         guard viewLayers.isEmpty else { return }
-        let imageGradient = CAGradientLayer()
-        imageGradient.colors = [UIColor.systemGray3.cgColor, UIColor.systemGray3.cgColor]
-        imageGradient.startPoint = CGPoint(x: 0, y: 1)
-        imageGradient.endPoint = CGPoint(x: 1, y: 0)
-        imageGradient.frame = view.frame.offsetBy(dx: -1, dy: -1)
-        imageGradient.frame.size.width = view.bounds.width + 2
-        imageGradient.frame.size.height = view.bounds.height + 2
-        imageGradient.cornerRadius = imageGradient.frame.size.height / 2
-        imageGradient.masksToBounds = true
-        layer.insertSublayer(imageGradient, at: 0)
-        viewLayers.append(imageGradient)
+        let backgroundLayer = CALayer()
+        backgroundLayer.backgroundColor = UIColor.clear.cgColor
+        backgroundLayer.borderColor = UIColor.systemGray3.cgColor
+        backgroundLayer.frame = view.bounds.insetBy(dx: -3, dy: -3)
+        backgroundLayer.cornerRadius = backgroundLayer.bounds.size.height / 2
+        backgroundLayer.masksToBounds = true
+        backgroundLayer.borderWidth = 1
+        view.layer.addSublayer(backgroundLayer)
+        viewLayers.append(backgroundLayer)
     }
 
     @objc private func storySelected() {

@@ -140,9 +140,7 @@ final class StoryView: UIView {
         imageGradient.colors = [UIColor.yellow.cgColor, UIColor.orange.cgColor, UIColor.red.cgColor]
         imageGradient.startPoint = CGPoint(x: 0, y: 1)
         imageGradient.endPoint = CGPoint(x: 1, y: 0)
-        imageGradient.frame = view.frame.offsetBy(dx: -1, dy: -1)
-        imageGradient.frame.size.width = view.bounds.width + 2
-        imageGradient.frame.size.height = view.bounds.height + 2
+        imageGradient.frame = view.frame.insetBy(dx: -1, dy: -1)
         imageGradient.cornerRadius = imageGradient.frame.size.height / 2
         imageGradient.masksToBounds = true
         layer.insertSublayer(imageGradient, at: 0)

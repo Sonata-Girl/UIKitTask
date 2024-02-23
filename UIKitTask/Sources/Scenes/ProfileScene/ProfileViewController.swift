@@ -100,7 +100,7 @@ final class ProfileViewController: UIViewController {
     // MARK: Public Methods
 
     private func openSiteFromLink(link: String) {
-        var link = "https://" + link.replacingOccurrences(of: "https://", with: "")
+        let link = "https://" + link.replacingOccurrences(of: "https://", with: "")
         guard let url = URL(string: link) else { return }
         let browser = BrowserViewController()
         browser.modalPresentationStyle = .formSheet
