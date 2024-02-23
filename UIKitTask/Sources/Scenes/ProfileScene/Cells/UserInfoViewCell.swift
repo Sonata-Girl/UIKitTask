@@ -133,6 +133,14 @@ final class UserInfoViewCell: UITableViewCell {
         return label
     }()
 
+    private lazy var clipButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setBackgroundImage(.clipButton, for: .normal)
+        button.tintColor = .white
+        return button
+    }()
+
     private lazy var linkButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -225,6 +233,7 @@ final class UserInfoViewCell: UITableViewCell {
             userNameLabel,
             plusButton,
             descriptionLabel,
+            clipButton,
             linkButton,
             bottomView
         ].forEach { contentView.addSubview($0) }
@@ -256,6 +265,7 @@ final class UserInfoViewCell: UITableViewCell {
         setupTopViewConstraint()
         setupUserNameLabelConstraint()
         setupDescriptionLabelConstraint()
+        setupClipButtonConstraint()
         setupLinksLabelConstraint()
         setupBottomViewConstraint()
         setupUserImageViewConstraint()
@@ -298,10 +308,19 @@ final class UserInfoViewCell: UITableViewCell {
         ])
     }
 
+    private func setupClipButtonConstraint() {
+        NSLayoutConstraint.activate([
+            clipButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 5),
+            clipButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
+            clipButton.heightAnchor.constraint(equalToConstant: 17),
+            clipButton.widthAnchor.constraint(equalToConstant: 17),
+        ])
+    }
+
     private func setupLinksLabelConstraint() {
         NSLayoutConstraint.activate([
             linkButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 5),
-            linkButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
+            linkButton.leadingAnchor.constraint(equalTo: clipButton.trailingAnchor, constant: -2),
             linkButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
             linkButton.heightAnchor.constraint(equalToConstant: 20)
         ])

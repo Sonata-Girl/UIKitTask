@@ -17,6 +17,7 @@ final class UserImagesViewCell: UITableViewCell {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: setupCollectionLayout())
         collection.translatesAutoresizingMaskIntoConstraints = false
         collection.register(PhotoViewCell.self, forCellWithReuseIdentifier: PhotoViewCell.identifier)
+        collection.isScrollEnabled = false
         collection.dataSource = self
         collection.delegate = self
         return collection
