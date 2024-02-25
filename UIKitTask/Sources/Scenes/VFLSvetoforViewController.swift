@@ -44,6 +44,13 @@ final class VFLSvetoforViewController: UIViewController {
         configureView()
         setupHierarchy()
         setupConstraints()
+        setCircles()
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        setupMainViewConstraint()
+        setCircles()
     }
 
     // MARK: Private Methods
@@ -54,6 +61,7 @@ final class VFLSvetoforViewController: UIViewController {
 
     private func setupHierarchy() {
         viewVLFMap = [
+            "superView": view,
             "mainView": mainView,
             "redView": redView,
             "yellowView": yellowView,
@@ -65,97 +73,175 @@ final class VFLSvetoforViewController: UIViewController {
         mainView.addSubview(greenView)
     }
 
+    private func setCircles() {
+        let isLandscape = view.bounds.size.width > view.bounds.size.height
+        let heightYellowView = isLandscape ? view.bounds.size.width * 0.13 : view.bounds.size.height * 0.3
+        redView.layer.cornerRadius = heightYellowView / 2
+        yellowView.layer.cornerRadius = heightYellowView / 2
+        greenView.layer.cornerRadius = heightYellowView / 2
+    }
+
     private func setupConstraints() {
         setupMainViewConstraint()
-//        setupRedViewConstraint()
-//        setupYellowViewConstraint()
-//        setupGreenViewConstraint()
     }
 
     private func setupMainViewConstraint() {
-        let widthScreen = view.bounds.size.width
-        let heightMainView = 308
-        let widthMainView = 308 * 0.38
+        deleteAllConstraints()
+
+        let isLandscape = view.bounds.size.width > view.bounds.size.height
+        let heightYellowView = isLandscape ? view.bounds.size.width * 0.13 : view.bounds.size.height * 0.3
+        let widthYellowView = heightYellowView
+        let heightMainView = heightYellowView * 3 + (10 * 4)
+        let widthMainView = widthYellowView + (10 * 2)
 
         let metrics = [
+            "heightYellowView": heightYellowView,
+            "widthYellowView": widthYellowView,
             "heightMainView": heightMainView,
-            "widthMainView": widthMainView,
-            "width": view.bounds.size.width / 3,
-            "top": view.bounds.size.height / 2
+            "widthMainView": widthMainView
         ] as [String: Any]
 
-        view.addConstraints(
+        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(
+            withVisualFormat: "V:[superView]-(<=1)-[yellowView(heightYellowView)]",
+            options: .alignAllCenterX,
+            metrics: metrics,
+            views: viewVLFMap
+        ))
+
+        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:[superView]-(<=1)-[yellowView(widthYellowView)]",
+            options: .alignAllCenterY,
+            metrics: metrics,
+            views: viewVLFMap
+        ))
+
+        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(
+            withVisualFormat: "V:[superView]-(<=1)-[mainView(heightMainView)]",
+            options: .alignAllCenterX,
+            metrics: metrics,
+            views: viewVLFMap
+        ))
+
+        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:[superView]-(<=1)-[mainView(widthMainView)]",
+            options: .alignAllCenterY,
+            metrics: metrics,
+            views: viewVLFMap
+        ))
+
+        var visualFormat = "V:[superView]-(<=1)-[redView(heightYellowView)]"
+        visualFormat += "-[yellowView(==redView)]"
+        visualFormat += "-[greenView(==redView)]-(<=1)-[superView]"
+        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(
+            withVisualFormat: visualFormat,
+            options: [],
+            metrics: metrics,
+            views: viewVLFMap
+        ))
+
+        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:[redView(==yellowView)]-(\(-(10 + widthYellowView)))-[mainView]",
+            options: [],
+            metrics: metrics,
+            views: viewVLFMap
+        ))
+
+        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:[greenView(==yellowView)]-(\(-(10 + widthYellowView)))-[mainView]",
+            options: [],
+            metrics: metrics,
+            views: viewVLFMap
+        ))
+    }
+
+    private func setupMainViewConstraintVariantTwo() {
+        deleteAllConstraints()
+
+        let isLandscape = view.bounds.size.width > view.bounds.size.height
+        let heightMainView = isLandscape ? view.bounds.size.width * 0.4 : view.bounds.size.height * 0.8
+        let widthMainView = heightMainView * 0.38
+        let heightViews = (heightMainView - (10 * 4)) / 3
+
+        let metrics = [
+            "heightViews": heightViews,
+            "heightMainView": heightMainView,
+            "widthMainView": widthMainView
+        ] as [String: Any]
+
+        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(
+            withVisualFormat: "V:[superView]-(<=1)-[mainView(heightMainView)]",
+            options: .alignAllCenterX,
+            metrics: metrics,
+            views: viewVLFMap
+        ))
+
+        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:[superView]-(<=1)-[mainView(widthMainView)]",
+            options: .alignAllCenterY,
+            metrics: metrics,
+            views: viewVLFMap
+        ))
+
+        var visualFormat = "V:|-(10)-[redView(heightViews)]"
+        visualFormat += "-[yellowView(heightViews)]"
+        visualFormat += "-[greenView(heightViews)]-(10)-|"
+
+        mainView.addConstraints(
             NSLayoutConstraint.constraints(
-                withVisualFormat: "V:|-(<=1)-[mainView(50)]|",
-                options: .alignAllCenterX,
-                metrics: nil,
+                withVisualFormat: visualFormat,
+                options: [],
+                metrics: metrics,
                 views: viewVLFMap
             )
         )
 
-        view.addConstraints(
+        mainView.addConstraints(
             NSLayoutConstraint.constraints(
-                withVisualFormat: "H:|-(<=1)-[mainView(50)]|",
-                options: .alignAllCenterY,
-                metrics: nil,
+                withVisualFormat: "H:|-(10)-[redView]-(10)-|",
+                options: [],
+                metrics: metrics,
                 views: viewVLFMap
             )
         )
 
-//        mainView.addConstraints(
-//            NSLayoutConstraint.constraints(
-//                withVisualFormat: "H:[mainView(heightMainView)]|",
-//                options: [],
-//                metrics: nil,
-//                views: viewVLFMap
-//            )
-//        )
-//
-//        mainView.addConstraints(
-//            NSLayoutConstraint.constraints(
-//                withVisualFormat: "V:[mainView(widthMainView)]|",
-//                options: [],
-//                metrics: nil,
-//                views: viewVLFMap
-//            )
-//        )
+        mainView.addConstraints(
+            NSLayoutConstraint.constraints(
+                withVisualFormat: "H:|-(10)-[yellowView]-(10)-|",
+                options: [],
+                metrics: metrics,
+                views: viewVLFMap
+            )
+        )
 
-//        NSLayoutConstraint.activate([
-        ////            mainView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
-        ////            mainView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-//            mainView.widthAnchor.constraint(equalTo: mainView.heightAnchor, multiplier: 0.47),
-//            mainView.heightAnchor.constraint(equalToConstant: 308),
-//        ])
-//
-//        let heightAnchor = mainView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.38)
-//        heightAnchor.priority = .defaultHigh
-//        heightAnchor.isActive = true
+        mainView.addConstraints(
+            NSLayoutConstraint.constraints(
+                withVisualFormat: "H:|-(10)-[greenView]-(10)-|",
+                options: [],
+                metrics: metrics,
+                views: viewVLFMap
+            )
+        )
     }
 
-    private func setupRedViewConstraint() {
-        NSLayoutConstraint.activate([
-            redView.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 10),
-            redView.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 10),
-            redView.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -10),
-            redView.heightAnchor.constraint(equalTo: mainView.heightAnchor, multiplier: 0.3)
-        ])
-    }
+    private func deleteAllConstraints() {
+        for constraint in view.constraints {
+            view.removeConstraint(constraint)
+        }
 
-    private func setupYellowViewConstraint() {
-        NSLayoutConstraint.activate([
-            yellowView.topAnchor.constraint(equalTo: redView.bottomAnchor, constant: 5),
-            yellowView.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 10),
-            yellowView.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -10),
-            yellowView.heightAnchor.constraint(equalTo: redView.heightAnchor)
-        ])
-    }
+        for constraint in mainView.constraints {
+            mainView.removeConstraint(constraint)
+        }
 
-    private func setupGreenViewConstraint() {
-        NSLayoutConstraint.activate([
-            greenView.topAnchor.constraint(equalTo: yellowView.bottomAnchor, constant: 5),
-            greenView.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 10),
-            greenView.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -10),
-            greenView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -10),
-        ])
+        for constraint in redView.constraints {
+            redView.removeConstraint(constraint)
+        }
+
+        for constraint in yellowView.constraints {
+            yellowView.removeConstraint(constraint)
+        }
+
+        for constraint in greenView.constraints {
+            greenView.removeConstraint(constraint)
+        }
     }
 }
